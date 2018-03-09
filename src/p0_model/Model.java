@@ -39,9 +39,12 @@ public class Model {
 	}
 
 	public void selectDBAssetclasses() {
-		String url = "jdbc:mysql://localhost:3306/sql2223131";
-		String username = "sql2223131";
-		String password = "lY1*vS6*";
+//		String url = "jdbc:mysql://localhost:3306/sql2223131";
+//		String username = "sql2223131";
+//		String password = "lY1*vS6*";
+		String url = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11225625";
+		String username = "sql11225625";
+		String password = "WNjKXk31lH";
 
 		System.out.println("Connecting database...");
 
@@ -51,7 +54,7 @@ public class Model {
 			Statement stmt = connection.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM PB_ASSETCLASS_DATA ORDER BY AC_ID");
 			
-			while (rs.next()) {// über die Zeilen gehen
+			while (rs.next()) {// Ã¼ber die Zeilen gehen
 				Assetclass ac1 = new Assetclass(rs.getInt("AC_ID"), rs.getString("NAME"), rs.getDouble("SIGMA"),
 						rs.getDouble("RISK"));
 				model1.assetclasses.put(rs.getInt("AC_ID"), ac1);

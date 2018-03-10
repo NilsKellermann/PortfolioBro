@@ -4,7 +4,7 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.StringProperty;
 
-public class Aktie {
+public class Aktie { 
 private IntegerProperty share_id;
 private StringProperty name;
 private StringProperty industry;

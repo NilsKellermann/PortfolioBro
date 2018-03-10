@@ -54,7 +54,7 @@ public class Model {
 			Statement stmt = connection.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM PB_ASSETCLASS_DATA ORDER BY AC_ID");
 			
-			while (rs.next()) {// über die Zeilen gehen
+			while (rs.next()) {// ueber die Zeilen gehen
 				Assetclass ac1 = new Assetclass(rs.getInt("AC_ID"), rs.getString("NAME"), rs.getDouble("SIGMA"),
 						rs.getDouble("RISK"));
 				model1.assetclasses.put(rs.getInt("AC_ID"), ac1);

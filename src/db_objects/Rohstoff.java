@@ -5,11 +5,11 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.StringProperty;
 
 public class Rohstoff {
-private IntegerProperty comm_id;
-private StringProperty name;
-private StringProperty category;
-private DoubleProperty sigma;
-private DoubleProperty risk;
+private int comm_id;
+private String name;
+private String category;
+private double sigma;
+private double risk;
 
 ///->?? date??
 private int courses[][];

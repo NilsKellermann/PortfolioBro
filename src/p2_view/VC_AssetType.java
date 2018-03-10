@@ -89,7 +89,7 @@ public class VC_AssetType {
 		ObservableList<XYChart.Series<Number, Number>> scatterGraphSeries = FXCollections.observableArrayList();
 		for (Assetclass ac1 : m1.assetclasses.values()) {
 			XYChart.Series series1 = new XYChart.Series();
-			series1.getData().add(new XYChart.Data(ac1.getSigma(), ac1.getRisk()));
+			series1.getData().add(new XYChart.Data<Double, Double>(ac1.getSigma(), ac1.getRisk()));
 			series1.setName(ac1.getName());
 			scatterGraphSeries.add(series1);
 		}

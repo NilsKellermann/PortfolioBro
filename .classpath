@@ -17,5 +17,7 @@
 	<classpathentry kind="lib" path="C:/Users/nilsk/Desktop 3/eclipse/workspace/____________JARS/jfreechart-1.0.19/lib/servlet.jar"/>
 	<classpathentry kind="lib" path="C:/Users/nilsk/Desktop 3/eclipse/workspace/____________JARS/jfreechart-1.0.19/lib/swtgraphics2d.jar"/>
 	<classpathentry kind="lib" path="C:/Users/nilsk/Desktop 3/eclipse/workspace/____________JARS/mysql-connector-java-5.1.45-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nilsk/Desktop 3/eclipse/workspace/Libraries/jcommon-1.0.23.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nilsk/Desktop 3/eclipse/workspace/Libraries/jfreechart-1.0.19.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

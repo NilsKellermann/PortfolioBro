@@ -1,4 +1,4 @@
-package test; //A
+package test; //A Merge
 
 	import static javafx.application.Application.launch;
 

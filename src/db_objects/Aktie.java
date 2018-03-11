@@ -15,3 +15,4 @@ private DoubleProperty risk;
 ///->?? date??
 private int courses[][];
 }
+ 

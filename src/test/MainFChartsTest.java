@@ -1,7 +1,4 @@
-package test; //a
-
-
-
+package test; //b a
 
 	import static javafx.application.Application.launch;
 

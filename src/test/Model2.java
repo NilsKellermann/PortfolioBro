@@ -11,13 +11,13 @@ import java.sql.Statement;
 import java.util.HashMap;
 import db_objects.Assetclass;
 import db_objects.PortfolioTableEntry;
-import db_objects.User;
+import db_objects.__________User;
 
 public class Model2 {
 	private static Model2 model1;
 
 	public int loggedInUser_id;
-	public ObservableList<User> userList = FXCollections.observableArrayList();
+	public ObservableList<__________User> userList = FXCollections.observableArrayList();
 	
 	public HashMap<Integer, Assetclass> assetclasses = new HashMap<Integer, Assetclass>();
 

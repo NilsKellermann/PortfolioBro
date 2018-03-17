@@ -12,7 +12,7 @@ import java.util.Vector;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
-import db_objects.User;
+import db_objects.__________User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableListBase;
@@ -33,7 +33,7 @@ public class UserController {
 	@FXML
 	public static TableView<ObservableList<String>> tv_user=new TableView<ObservableList<String>>();
 	@FXML
-	public static TableView<User> tv_user2=new TableView<User>();
+	public static TableView<__________User> tv_user2=new TableView<__________User>();
 	@FXML
 	public static Button bu_save=new Button();
 

@@ -1,40 +1,26 @@
 package p2_view;
 
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Vector;
-
-import javax.swing.JScrollPane;
-import javax.swing.table.DefaultTableModel;
-
+import java.util.List;
+import java.util.stream.Collectors;
+import java.io.IOException;
+import db_objects.AktieTableEntry;
 import db_objects.PortfolioTableEntry;
-import db_objects.User;
-import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableListBase;
 import javafx.fxml.FXML;
-import javafx.scene.chart.Axis;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.ScatterChart;
-import javafx.scene.chart.XYChart;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import p0_model.Model;
 import p1_controller.Controller;
 
@@ -44,19 +30,93 @@ public class VC_Shares {
 	
 	
 	@FXML
-	private ListView<String> list1;
+	private ListView<String> listView1;
 	@FXML
 	private TabPane tabPane1;
-
+	
 	@FXML
 	private ScatterChart<Number, Number> scatterChart1;
 
 	@FXML
-	private TableView<PortfolioTableEntry> pTable;
+	private TableView<AktieTableEntry> tableView1;
 	@FXML
-	private TableColumn<PortfolioTableEntry, Number> IdColumn;
+	private TableView<AktieTableEntry> tableView2;	
 	@FXML
-	private TableColumn<PortfolioTableEntry, String> nameColumn;
+	private TableView<AktieTableEntry> tableView3;
+	@FXML
+	private TableView<AktieTableEntry> tableView4;
+	@FXML
+	private TableView<AktieTableEntry> tableView5;
+	
+	
+	@FXML
+	private TableColumn<AktieTableEntry, Number> IdColumn1;
+	@FXML
+	private TableColumn<AktieTableEntry, String> nameColumn1;
+	@FXML
+	private TableColumn<AktieTableEntry, Number> industryColumn1 ;
+	@FXML
+	private TableColumn<AktieTableEntry, String> sigmaColumn1 ;	
+	@FXML
+	private TableColumn<AktieTableEntry, String> riskColumn1 ;		
+	@FXML
+	private TableColumn<AktieTableEntry, Number> IdColumn2;
+	@FXML
+	private TableColumn<AktieTableEntry, String> nameColumn2;
+	@FXML
+	private TableColumn<AktieTableEntry, Number> industryColumn2 ;
+	@FXML
+	private TableColumn<AktieTableEntry, String> sigmaColumn2 ;	
+	@FXML
+	private TableColumn<AktieTableEntry, String> riskColumn2 ;	
+	@FXML
+	private TableColumn<AktieTableEntry, Number> IdColumn3;
+	@FXML
+	private TableColumn<AktieTableEntry, String> nameColumn3;
+	@FXML
+	private TableColumn<AktieTableEntry, Number> industryColumn3 ;
+	@FXML
+	private TableColumn<AktieTableEntry, String> sigmaColumn3 ;	
+	@FXML
+	private TableColumn<AktieTableEntry, String> riskColumn3 ;	
+	@FXML
+	private TableColumn<AktieTableEntry, Number> IdColumn4;
+	@FXML
+	private TableColumn<AktieTableEntry, String> nameColumn4;
+	@FXML
+	private TableColumn<AktieTableEntry, Number> industryColumn4 ;
+	@FXML
+	private TableColumn<AktieTableEntry, String> sigmaColumn4 ;	
+	@FXML
+	private TableColumn<AktieTableEntry, String> riskColumn4 ;	
+	@FXML
+	private TableColumn<AktieTableEntry, Number> IdColumn5;
+	@FXML
+	private TableColumn<AktieTableEntry, String> nameColumn5;
+	@FXML
+	private TableColumn<AktieTableEntry, Number> industryColumn5 ;
+	@FXML
+	private TableColumn<AktieTableEntry, String> sigmaColumn5 ;	
+	@FXML
+	private TableColumn<AktieTableEntry, String> riskColumn5 ;	
+	
+	
+	@FXML
+	private Button addbutton1 ;	
+	@FXML
+	private Button addbutton2 ;
+	@FXML
+	private Button addbutton3 ;
+	@FXML
+	private Button addbutton4 ;
+	@FXML
+	private Button addbutton5 ;
+	
+	@FXML
+	private Button deletebutton1 ;	
+	@FXML
+	private Button vorleaufigUpdatenButton1 ;
+
 
 	@FXML
 	private Label idLabel;
@@ -77,9 +137,11 @@ public class VC_Shares {
 	private TextField newEstateDistTextField;
 	@FXML
 	private TextField newBondDistTextField;
-	// Reference to the main application.
-	// private MainApp mainApp;
-
+	
+    protected List<String> asianCurrencyList ;
+	protected ListProperty<String> listProperty = new SimpleListProperty<>();
+	
+	
 	/**
 	 * The constructor. The constructor is called before the initialize() method.
 	 */
@@ -92,75 +154,140 @@ public class VC_Shares {
 	 */
 	@FXML
 	private void initialize() {
+	}
+	public void updateData() {
+		
+		
+//		ObservableList<String> fruitList = FXCollections.<String>observableArrayList("Apple", "Banana", "Orange", "Mango");
+//		// Create the ListView for the fruits
+//		listView1 = new ListView<String>();
+//		listView1.getItems().addAll(fruitList);
 
-		ObservableList<String> items = FXCollections.observableArrayList("A", "B", "C", "D");
-		list1.setItems(items);
 
 		// tabPane1.setStyle("-fx-background-color:transparent;");
 		tabPane1.getStyleClass().add("floating");
 
-		//// pTable.setItems(Model.yourPortfolioList);
-		// // Initialize the person table with the two columns.
-		// IdColumn.setCellValueFactory(cellData ->
-		//// cellData.getValue().getPortfolio_id());
-		// nameColumn.setCellValueFactory(cellData -> cellData.getValue().getName());
-		//
-		// // Clear person details.
-		// saveSelectedAndUseSelectedToFill(null);
-		// // Listen for selection changes and show the person details when changed.
-		// pTable.getSelectionModel().selectedItemProperty()
-		// .addListener((observable, oldValue, newValue) ->
-		//// saveSelectedAndUseSelectedToFill(newValue));
-		//
-		//
+		
+		ObservableList<AktieTableEntry> allAktienOhneKurseTE_DAX = m1.allAktienOhneKurseTE.stream()
+	            .filter(x -> (x.getIndex().equals("DAX")))
+	            .collect(Collectors.toCollection(FXCollections::observableArrayList));
+		System.out.println("Tabelle22222" +allAktienOhneKurseTE_DAX);
+		tableView1.setItems(allAktienOhneKurseTE_DAX);
+		IdColumn1.setCellValueFactory(cellData -> cellData.getValue().get2Share_id());
+		nameColumn1.setCellValueFactory(cellData -> cellData.getValue().get2Name());    
+		
+		ObservableList<AktieTableEntry> allAktienOhneKurseTE_TecDAX = m1.allAktienOhneKurseTE.stream()
+	            .filter(x -> (x.getIndex().equals("TecDAX")))
+	            .collect(Collectors.toCollection(FXCollections::observableArrayList));
+		System.out.println("Tabelle22222" +allAktienOhneKurseTE_TecDAX);
+		tableView2.setItems(allAktienOhneKurseTE_TecDAX);
+		IdColumn2.setCellValueFactory(cellData -> cellData.getValue().get2Share_id());
+		nameColumn2.setCellValueFactory(cellData -> cellData.getValue().get2Name());                            
 
-		/////////////////////// SCATTERCHART///////////////////////////
-		// final NumberAxis xAxis = new NumberAxis(0, 10, 1);
-		// final NumberAxis yAxis = new NumberAxis(-100, 500, 100);
-		// scatterChart1 = new ScatterChart<Number,Number>(xAxis,yAxis);
+		ObservableList<AktieTableEntry> allAktienOhneKurseTE_MDAX = m1.allAktienOhneKurseTE.stream()
+	            .filter(x -> (x.getIndex().equals("MDAX")))
+	            .collect(Collectors.toCollection(FXCollections::observableArrayList));
+		System.out.println("Tabelle33333" +allAktienOhneKurseTE_MDAX);
+		tableView3.setItems(allAktienOhneKurseTE_MDAX);
+		IdColumn3.setCellValueFactory(cellData -> cellData.getValue().get2Share_id());
+		nameColumn3.setCellValueFactory(cellData -> cellData.getValue().get2Name()); 
+		
+		ObservableList<AktieTableEntry> allAktienOhneKurseTE_Nikkei = m1.allAktienOhneKurseTE.stream()
+	            .filter(x -> (x.getIndex().equals("Nikkei 225")))
+	            .collect(Collectors.toCollection(FXCollections::observableArrayList));
+		System.out.println("Tabelle44444" +allAktienOhneKurseTE_Nikkei);
+		tableView4.setItems(allAktienOhneKurseTE_Nikkei);
+		IdColumn4.setCellValueFactory(cellData -> cellData.getValue().get2Share_id());
+		nameColumn4.setCellValueFactory(cellData -> cellData.getValue().get2Name());
+		
+		ObservableList<AktieTableEntry> allAktienOhneKurseTE_DowJones = m1.allAktienOhneKurseTE.stream()
+	            .filter(x -> (x.getIndex().equals("Dow Jones")))
+	            .collect(Collectors.toCollection(FXCollections::observableArrayList));
+		System.out.println("Tabelle55555" +allAktienOhneKurseTE_DowJones);
+		tableView5.setItems(allAktienOhneKurseTE_DowJones);
+		IdColumn5.setCellValueFactory(cellData -> cellData.getValue().get2Share_id());
+		nameColumn5.setCellValueFactory(cellData -> cellData.getValue().get2Name());
 
-		// final ScatterChart<Number,Number> sc = new
-		// ScatterChart<Number,Number>(xAxis,yAxis);
-		// xAxis.setLabel("Age (years)");
-		// yAxis.setLabel("Returns to date");
+		///////////////////////
+		//5x Table Listener
+		///////////////////////
+		tableView1.getSelectionModel().selectedItemProperty()
+		.addListener((observable, oldValue, newValue) -> handleSaveSelected(newValue));
+		tableView2.getSelectionModel().selectedItemProperty()
+		.addListener((observable, oldValue, newValue) -> handleSaveSelected(newValue));
+		tableView3.getSelectionModel().selectedItemProperty()
+		.addListener((observable, oldValue, newValue) -> handleSaveSelected(newValue));
+		tableView4.getSelectionModel().selectedItemProperty()
+		.addListener((observable, oldValue, newValue) -> handleSaveSelected(newValue));
+		tableView5.getSelectionModel().selectedItemProperty()
+		.addListener((observable, oldValue, newValue) -> handleSaveSelected(newValue));
+		
+		System.out.println("6666" + m1.currentPortfoliosAktienMitKursen);
+		asianCurrencyList= new ArrayList<>();
+		
+		m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> asianCurrencyList.add(v.getShare_id() + " " + v.getName() + " (" +v.getIndex() + ")"));
 
-		// scatterChart1.setTitle("Investment Overview44");
-		//
-		// // CategoryAxis xAxis = (CategoryAxis) scatterChart1.getXAxis();
-		// Axis<Number> xAxis = scatterChart1.getXAxis();
-		// xAxis
-		// xAxis.getCategories().setAll(
-		// "UFO sightings",
-		// "Paranormal Events",
-		// "Inexplicable Tweets"
-		// );
+	    asianCurrencyList.add("CNH");
+        asianCurrencyList.add("JPY");
+        asianCurrencyList.add("HKD");
+        asianCurrencyList.add("KRW");
+        asianCurrencyList.add("SGD");
 
-		// XYChart.Series series1 = new XYChart.Series();
-		// series1.setName("Equities");
-		// series1.getData().add(new XYChart.Data(4.2, 193.2));
-		//
-		// XYChart.Series series2 = new XYChart.Series();
-		// series2.setName("Mutual funds");
-		// series2.getData().add(new XYChart.Data(5.2, 229.2));
-		// scatterChart1.getData().addAll(series1, series2);
-		///////////////////// SCATTERCHATT END////////////////////////
+		listView1.itemsProperty().bind(listProperty);
+		listProperty.set(FXCollections.observableArrayList(asianCurrencyList));        
 
+		listView1.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+		    @Override
+		    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+		        System.out.println("ListView selection changed from oldValue = " 
+		                + oldValue + " to newValue = " + newValue);
+		        m1.selectedCurrentSharesString = newValue;
+		    }
+		});
+		
 	}
-
-	private void saveSelectedAndUseSelectedToFill(PortfolioTableEntry portf1) {
-		if (portf1 != null) {
-			m1.selectedPortfolio = portf1;
-			idLabel.setText("" + m1.selectedPortfolio.get2Portfolio_id());
-			nameLabel.setText(m1.selectedPortfolio.get2Name());
-
-		} else {
-			//
-			m1.selectedPortfolio = null;
-
-			idLabel.setText("");
-			nameLabel.setText("");
+	
+	
+	////////////////////////////////////////////////////////
+	// Handle-Methoden
+	////////////////////////////////////////////////////////	
+	@FXML
+	private void handleDeleteSelected() {
+	    System.out.println(" Removing from HashMap" +m1.currentPortfoliosAktienMitKursen );
+		m1.currentPortfoliosAktienMitKursen.remove(Integer.valueOf(m1.selectedCurrentSharesString.substring(0, m1.selectedCurrentSharesString.indexOf(" "))));
+		
+		updateData();
+	}
+	
+			private void handleSaveSelected (AktieTableEntry aktie1) {
+			if (aktie1 != null) {
+				m1.selectedAktie = aktie1;
+//				idLabel.setText("" + m1.selectedAktie.get2Portfolio_id());
+//				nameLabel.setText(m1.selectedAktie.get2Name());
+				System.out.println("Selected Aktie:" + aktie1);
+			} else {
+				//
+				m1.selectedAktie = null;
+//				idLabel.setText("");
+//				nameLabel.setText("");
+			}
 		}
-	}
+
+			@FXML
+			private void handleAdd() {
+				m1.currentPortfoliosAktienMitKursen.put(new Integer(m1.selectedAktie.getShare_id()), m1.allAktienOhneKurse.get(m1.selectedAktie.getShare_id()));
+				System.out.println("hinzugefügte Aktie: " + m1.currentPortfoliosAktienMitKursen);
+				
+				
+				
+//				List sortedKeys=new ArrayList(m1.currentPortfoliosAktienMitKursen.keySet());
+			//	Collections.sort(m1.currentPortfoliosAktienMitKursen.keySet());
+				m1.sortCurrentPortfoliosAktien();
+				updateData();
+				
+			}
+			
+
 
 	@FXML
 	private void handleDelete() {
@@ -171,12 +298,12 @@ public class VC_Shares {
 	@FXML
 	private void handleUnfertigesPortfolioErstellen() {
 		try {
-			boolean alreadyExists = m1.yourPortfolioList.stream()
+			boolean alreadyExists = m1.yourPortfolioTE.stream()
 					.anyMatch(t -> t.get2Name().equals(this.newNameTextField.getText()));
 			if (alreadyExists == true) {
 				System.out.println("Portfolio name already in use.");
 			} else {
-				PortfolioTableEntry p1 = new PortfolioTableEntry(m1.nextPortfolio_id,
+				PortfolioTableEntry p1 = new PortfolioTableEntry(m1.calculateNextPortfolioID(),
 						this.newNameTextField.getText(), m1.loggedInUser_id,
 						Double.parseDouble(this.newInvestmentTextField.getText()),
 						Double.parseDouble(this.newShareDistTextField.getText()),
@@ -193,10 +320,9 @@ public class VC_Shares {
 						+ p1.get2Bond_dist() != 100) {
 					System.out.println("Die Summe der Prozentwerte muss 100% sein.");
 					return;
-				}
-				m1.nextPortfolio_id = m1.nextPortfolio_id + 1;
-				m1.yourPortfolioList.add(p1);
-				m1.allPortfolioList.add(p1);
+				};
+				m1.yourPortfolioTE.add(p1);
+				m1.allPortfolioTE.add(p1);
 				System.out.println("Portfolio created.");
 			}
 		} catch (java.lang.NumberFormatException e) {
@@ -207,7 +333,13 @@ public class VC_Shares {
 	@FXML
 	private void handleWeiter() throws IOException {
 		System.out.println("Weiterbutton pressed!");
-		Controller.setSceneToUser();
+		this.c1.setSceneToUser();
+	}
+	
+	@FXML
+	private void handleVorleaufigUpdaten() throws IOException {
+		System.out.println("VorleaufigUpdaten pressed!");
+		m1.updatePB_PORTF_SHAREmit12();
 	}
 
 }

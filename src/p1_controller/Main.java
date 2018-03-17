@@ -34,7 +34,7 @@ public class Main extends Application {
 
 		Controller.getInstance(primaryStage, m1);
 
-		Controller.setSceneToV_AssetType();
+		Controller.setSceneToV_MainMenu();
 		// setSceneToV_Shares();
 		// setSceneTo1();
 

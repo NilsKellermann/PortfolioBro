@@ -1,10 +1,7 @@
 package db_objects;
 
-import java.time.LocalDate;
-
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -40,10 +37,10 @@ public class PortfolioTableEntry {
 	private ObservableList<Commodity_In_Portf> commlist;
 	
 	
-	public PortfolioTableEntry() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+//	public PortfolioTableEntry() {
+//		super();
+//		// TODO Auto-generated constructor stub
+//	}
 
 
 	public PortfolioTableEntry(int portfolio_id, String name, int user_id, double capital, double share_dist,
@@ -66,6 +63,19 @@ public class PortfolioTableEntry {
 		this.sigma_comm = new SimpleDoubleProperty(0);
 		this.risk_comm = new SimpleDoubleProperty(0);
 	}
+
+
+	
+	@Override
+	public String toString() {
+		return "PortfolioTableEntry [portfolio_id=" + portfolio_id + ", name=" + name + ", user_id=" + user_id
+				+ ", capital=" + capital + ", share_dist=" + share_dist + ", comm_dist=" + comm_dist + ", curr_dist="
+				+ curr_dist + ", estate_dist=" + estate_dist + ", bond_dist=" + bond_dist + ", sigma_full=" + sigma_full
+				+ ", risk_full=" + risk_full + ", sigma_share=" + sigma_share + ", risk_share=" + risk_share
+				+ ", sigma_comm=" + sigma_comm + ", risk_comm=" + risk_comm + ", sharelist=" + sharelist + ", commlist="
+				+ commlist + "]";
+	}
+
 
 
 	public int get2Portfolio_id() {

@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import p0_model.Model;
 import p2_view.VC_AssetType;
+import p2_view.VC_MainMenu;
 import p2_view.VC_Portfolios;
 import p2_view.VC_Shares;
 //import javafx.event.ActionEvent;
@@ -134,20 +135,26 @@ public class Controller /*implements EventHandler*/ {
 		prim.show();
 	}
 	
-<<<<<<< HEAD
-=======
+
 	public static void setSceneToV_MainMenu() throws IOException {
+
+		// Initialize View (no model)
 		FXMLLoader loader = new FXMLLoader(Controller.class.getResource("/p2_view/V_MainMenu.fxml"));
 		Pane pane1 = loader.load();
-		
+		VC_MainMenu vc1 = loader.getController();
+
+		// Set View attributes and UI-Elements
+		vc1.c1 = getInstance();
+		vc1.m1 = getInstance().model;
+
+		vc1.updateData();
 		Stage prim=getInstance().prim;
 		prim.setScene(new Scene(pane1, 1200, 600));
 		prim.setMinWidth(800);
 		prim.setMinHeight(400);
 		prim.show();
 	}
-	
->>>>>>> pull10
+
 
 //	@Override
 //	public void handle(Event event) {

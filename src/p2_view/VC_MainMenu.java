@@ -47,7 +47,7 @@ public class VC_MainMenu {
 
 	}
 	
-//	public void updateData() {
+	public void updateData() {
 		//Fill Portfolio-table & add listener
 		
 		
@@ -56,7 +56,7 @@ public class VC_MainMenu {
 		
 		//Fill Scatter Chart
 	
-//	}
+	}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Handle-Methoden
@@ -65,7 +65,7 @@ public class VC_MainMenu {
 	@FXML
 	private void handleGo() throws IOException {
 		System.out.println("Weiterbutton pressed!");
-		this.c1.setSceneToV_AssetType();
+		this.c1.setSceneToV_Portfolios();
 
 }
 	

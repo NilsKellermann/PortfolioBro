@@ -3,20 +3,13 @@ package p3_excel;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
-
-import db_objects.Assetclass;
 import p4_excelPOI.ExcelToSListCList;
-import p4_excelPOI.ExcelToYearCourseShares;
 import p4_excelPOI.ExcelToYearCourseShares2;
 import p4_excelPOI.ExcelToYearCourseShares3;
 

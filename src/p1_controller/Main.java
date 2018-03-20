@@ -33,6 +33,7 @@ public class Main extends Application {
 
 		m1.loggedInUser_id = 1000;
 
+<<<<<<< HEAD
 		m1.initializeAssetClasses_allSHeads_allCHeads_allPortfolios();
 		m1.transferCurrentShareHashmapToObservableList();
 		m1.transferAllShareHashmapToObservableList();
@@ -48,5 +49,15 @@ public class Main extends Application {
 		c1.setSceneToV_Portfolios();
 		System.out.println(m1.allAktienOhneKurse);
 		System.out.println(m1.currentPortfoliosAktienMitKursen);
+=======
+		m1.selectDBAssetclasses();
+
+		Controller.getInstance(primaryStage, m1);
+
+		Controller.setSceneToV_MainMenu();
+		// setSceneToV_Shares();
+		// setSceneTo1();
+
+>>>>>>> pull10
 	}
 }

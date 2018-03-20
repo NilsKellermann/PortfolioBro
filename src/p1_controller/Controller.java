@@ -134,6 +134,20 @@ public class Controller /*implements EventHandler*/ {
 		prim.show();
 	}
 	
+<<<<<<< HEAD
+=======
+	public static void setSceneToV_MainMenu() throws IOException {
+		FXMLLoader loader = new FXMLLoader(Controller.class.getResource("/p2_view/V_MainMenu.fxml"));
+		Pane pane1 = loader.load();
+		
+		Stage prim=getInstance().prim;
+		prim.setScene(new Scene(pane1, 1200, 600));
+		prim.setMinWidth(800);
+		prim.setMinHeight(400);
+		prim.show();
+	}
+	
+>>>>>>> pull10
 
 //	@Override
 //	public void handle(Event event) {

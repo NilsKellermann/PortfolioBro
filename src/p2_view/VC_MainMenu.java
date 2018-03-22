@@ -13,6 +13,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.application.Application; 
+//import javafx.scene.Scene; 
+//import javafx.scene.image.Image; 
+//import javafx.scene.image.ImageView; 
+//import javafx.scene.layout.BorderPane; 
+//import javafx.stage.Stage; 
+
 import p0_model.Model;
 import p1_controller.Controller;
 
@@ -28,6 +35,8 @@ public class VC_MainMenu {
 	@FXML 
 	private Button go;
 	
+	//@FXML
+	//private ImageView picture;
 	
 
 	
@@ -35,27 +44,24 @@ public class VC_MainMenu {
 	/**
 	 * The constructor. The constructor is called before the initialize() method.
 	 */
+	
 	public VC_MainMenu() {
+		
 	}
 
 	/**
 	 * Initializes the controller class. This method is automatically called after
 	 * the fxml file has been loaded.
 	 */
-	@FXML
+	
 	private void initialize() {
-
+		
 	}
 	
 	public void updateData() {
-		//Fill Portfolio-table & add listener
 		
-		
-		// Clear person details.
-		
-		
-		//Fill Scatter Chart
-	
+        
+		 
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -69,5 +75,8 @@ public class VC_MainMenu {
 
 }
 	
+
+  
+		
 	
 }

@@ -10,7 +10,7 @@
    <children>
       <BorderPane prefHeight="500.0" prefWidth="800.0">
          <center>
-            <SwingNode fx:id="sn1" BorderPane.alignment="CENTER" />
+   <!--         <SwingNode fx:id="sn1" BorderPane.alignment="CENTER" />--> 
          </center>
          <top>
             <Pane prefHeight="50.0" prefWidth="800.0" BorderPane.alignment="CENTER">

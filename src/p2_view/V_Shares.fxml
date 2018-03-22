@@ -4,6 +4,7 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.ScatterChart?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
@@ -13,6 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
@@ -33,84 +35,185 @@
                <children>
                   <TabPane fx:id="tabPane1" style="fx-background-color:transparent" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
-                      <Tab text="Untitled Tab 1">
+                      <Tab text="DAX">
                         <content>
-                          <AnchorPane>
+                              <GridPane>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="314.0" minHeight="10.0" prefHeight="300.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="37.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
                                  <children>
-                                    <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <content>
-                                          <TableView>
-                                            <columns>
-                                              <TableColumn prefWidth="75.0" text="C1" />
-                                              <TableColumn prefWidth="75.0" text="C2" />
-                                            </columns>
-                                          </TableView>
-                                       </content>
-                                    </ScrollPane>
+                                <AnchorPane>
+                                       <children>
+                                          <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <content>
+                                                <TableView fx:id="tableView1">
+                                                  <columns>
+                                                    <TableColumn fx:id="IdColumn1" prefWidth="75.0" text="C1" />
+                                                    <TableColumn fx:id="nameColumn1" prefWidth="75.0" text="C2" />
+                                                      <TableColumn prefWidth="75.0" text="C2" />
+                                                  </columns>
+                                                </TableView>
+                                             </content>
+                                          </ScrollPane>
+                                       </children>
+                                    </AnchorPane>
+                                    <Button fx:id="addbutton1" mnemonicParsing="false" onAction="#handleAdd" text="Hinzufügen" GridPane.rowIndex="1" />
                                  </children>
-                              </AnchorPane>
+                              </GridPane>
                         </content>
                       </Tab>
-                      <Tab text="Untitled Tab 2">
+                      <Tab text="TecDAX">
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                              <GridPane>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="299.0" minHeight="10.0" prefHeight="299.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="83.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
                                  <children>
-                                    <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <content>
-                                          <TableView>
-                                             <columns>
-                                                <TableColumn prefWidth="75.0" text="C1" />
-                                                <TableColumn prefWidth="75.0" text="C2" />
-                                             </columns>
-                                          </TableView>
-                                       </content>
-                                    </ScrollPane>
-                                 </children></AnchorPane>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <content>
+                                                <TableView fx:id="tableView2">
+                                                   <columns>
+                                                      <TableColumn fx:id="IdColumn2" prefWidth="75.0" text="C1" />
+                                                      <TableColumn fx:id="nameColumn2" prefWidth="75.0" text="C2" />
+                                                      <TableColumn prefWidth="75.0" text="C2" />
+                                                      <TableColumn prefWidth="75.0" text="C2" />
+                                                   </columns>
+                                                </TableView>
+                                             </content>
+                                          </ScrollPane>
+                                       </children>
+                                    </AnchorPane>
+                                    <Button fx:id="addbutton2" mnemonicParsing="false" onAction="#handleAdd" text="Hinzufügen" GridPane.rowIndex="1" />
+                                 </children>
+                              </GridPane>
                         </content>
                       </Tab>
-                        <Tab text="Untitled Tab">
+                        <Tab text="MDAX">
                           <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                              <GridPane>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="296.0" minHeight="10.0" prefHeight="296.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="78.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
                                  <children>
-                                    <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <content>
-                                          <TableView>
-                                             <columns>
-                                                <TableColumn prefWidth="75.0" text="C1" />
-                                                <TableColumn prefWidth="75.0" text="C2" />
-                                             </columns>
-                                          </TableView>
-                                       </content>
-                                    </ScrollPane>
-                                 </children></AnchorPane>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <content>
+                                                <TableView fx:id="tableView3">
+                                                   <columns>
+                                                      <TableColumn fx:id="IdColumn3" prefWidth="75.0" text="C1" />
+                                                      <TableColumn fx:id="nameColumn3" prefWidth="75.0" text="C2" />
+                                                   </columns>
+                                                </TableView>
+                                             </content>
+                                          </ScrollPane>
+                                       </children>
+                                    </AnchorPane>
+                                    <Button fx:id="addbutton3" mnemonicParsing="false" onAction="#handleAdd" text="Hinzufügen" GridPane.rowIndex="1" />
+                                 </children>
+                              </GridPane>
                           </content>
                         </Tab>
-                        <Tab text="Untitled Tab">
+                        <Tab text="Nikkei 225">
                           <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                              <GridPane>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="298.0" minHeight="10.0" prefHeight="298.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="81.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
                                  <children>
-                                    <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <content>
-                                          <TableView>
-                                             <columns>
-                                                <TableColumn prefWidth="75.0" text="C1" />
-                                                <TableColumn prefWidth="75.0" text="C2" />
-                                             </columns>
-                                          </TableView>
-                                       </content>
-                                    </ScrollPane>
-                                 </children></AnchorPane>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <content>
+                                                <TableView fx:id="tableView4">
+                                                   <columns>
+                                                      <TableColumn fx:id="IdColumn4" prefWidth="75.0" text="C1" />
+                                                      <TableColumn fx:id="nameColumn4" prefWidth="75.0" text="C2" />
+                                                   </columns>
+                                                </TableView>
+                                             </content>
+                                          </ScrollPane>
+                                       </children>
+                                    </AnchorPane>
+                                    <Button fx:id="addbutton4" mnemonicParsing="false" onAction="#handleAdd" text="Hinzufügen" GridPane.rowIndex="1" />
+                                 </children>
+                              </GridPane>
                           </content>
+                        </Tab>
+                        <Tab text="Dow Jones">
+                           <content>
+                              <GridPane>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="317.0" minHeight="10.0" prefHeight="297.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="83.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <content>
+                                                <TableView fx:id="tableView5">
+                                                   <columns>
+                                                      <TableColumn fx:id="IdColumn5" prefWidth="75.0" text="C1" />
+                                                      <TableColumn fx:id="nameColumn5" prefWidth="75.0" text="C2" />
+                                                   </columns>
+                                                </TableView>
+                                             </content>
+                                          </ScrollPane>
+                                       </children>
+                                    </AnchorPane>
+                                    <Button fx:id="addbutton5" mnemonicParsing="false" onAction="#handleAdd" text="Hinzufügen" GridPane.rowIndex="1" />
+                                 </children>
+                              </GridPane>
+                           </content>
                         </Tab>
                     </tabs>
                      <GridPane.margin>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </GridPane.margin>
                   </TabPane>
-                  <ListView fx:id="list1" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                  <GridPane GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </GridPane.margin></ListView>
+                     </GridPane.margin>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="135.0" minHeight="10.0" prefHeight="124.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="28.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <ListView fx:id="listView1" prefHeight="200.0" prefWidth="200.0" />
+                        <FlowPane GridPane.rowIndex="1">
+                           <children>
+                              <Button fx:id="deletebutton1" mnemonicParsing="false" onAction="#handleDeleteSelected" text="Entfernen" />
+                              <Button fx:id="vorleaufigUpdatenButton1" mnemonicParsing="false" onAction="#handleVorleaufigUpdaten" text="Vorläufige Aktienliste in DB updaten." />
+                           </children>
+                        </FlowPane>
+                     </children>
+                  </GridPane>
                   <ScatterChart GridPane.columnIndex="1">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />

@@ -97,6 +97,7 @@ public class VC_AssetType {
 	private void initialize() {
 		System.out.println("nichts tun");
 	}
+	
 
 	public void updateData() {
 		// Fill Portfolio-table & add listener
@@ -109,10 +110,11 @@ public class VC_AssetType {
 
 		// Clear person details.
 		handleSaveSelectedAndUseSelectedToFill(null);
-
-		// Fill Scatter Chart
+////////////////////////////////////////////
+//FILL SCATTERCHART
+////////////////////////////////////////////
 		sc.setTitle("Sigma-r Diagramm der Assetklassen");
-
+//5x Assetclass-Daten einfüllen
 		ObservableList<XYChart.Series<Double, Double>> scatterGraphSeries = FXCollections.observableArrayList();
 		for (Assetclass ac1 : m1.assetclasses.values()) {
 			XYChart.Series<Double,Double> series1 = new XYChart.Series<Double,Double>();
@@ -120,11 +122,19 @@ public class VC_AssetType {
 			series1.setName(ac1.getName());
 			scatterGraphSeries.add(series1);
 		}
+//1x GesamtPortfolio-Daten einfüllen
+		XYChart.Series<Double,Double> series1 = new XYChart.Series<Double,Double>();
+		series1.getData().add(new XYChart.Data<Double, Double>(m1.usedPortfolio.getSigma_asset_preview(), m1.usedPortfolio.getRisk_asset_preview()));
+		series1.setName(m1.usedPortfolio.getName());
+		scatterGraphSeries.add(series1);
+		
 		sc.setData(scatterGraphSeries);
 
 		sn1 = new SwingNode();
 		paneWithSwing.getChildren().add(sn1);
-		updatePieChart();
+////////////////////////////////////////////
+//END FILL SCATTERCHART
+////////////////////////////////////////////		
 
 		List<TextField> tList1 = new ArrayList<TextField>();
 		tList1.add(this.newShareDistTextField);
@@ -159,6 +169,7 @@ public class VC_AssetType {
 				this.weiter.requestFocus();
 			});
 		}
+		updatePieChart();
 	}
 
 	public void updatePieChart() {
@@ -217,11 +228,6 @@ public class VC_AssetType {
 		}
 	}
 
-	@FXML
-	private void handleDelete() {
-		System.out.println("DeleteButton Pressed!");
-
-	}
 
 	@FXML
 	private void handleUnfertigesPortfolioErstellen() {
@@ -249,6 +255,27 @@ public class VC_AssetType {
 						Double.parseDouble(this.newEstateDistTextField.getText()),
 						Double.parseDouble(this.newBondDistTextField.getText()), 0, 0, 0, 0, 0, 0);
 
+				//0 Liquide, 1 Anleihen, 2 Aktien, 3 Rohstoffe, 4 Immobilien
+				Assetclass a0=m1.assetclasses.get(new Integer(0));
+				Double sigma0= a0.getSigma();
+				Double risk0= a0.getRisk();
+				Assetclass a1=m1.assetclasses.get(new Integer(1));
+				Double sigma1= a1.getSigma();
+				Double risk1= a1.getRisk();
+				Assetclass a2=m1.assetclasses.get(new Integer(2));
+				Double sigma2= a2.getSigma();
+				Double risk2= a2.getRisk();
+				Assetclass a3=m1.assetclasses.get(new Integer(3));
+				Double sigma3= a3.getSigma();
+				Double risk3= a3.getRisk();
+				Assetclass a4=m1.assetclasses.get(new Integer(4));
+				Double sigma4= a4.getSigma();
+				Double risk4= a4.getRisk();
+				m1.usedPortfolio.setSigma_asset_preview((portf1.getCurr_dist()*sigma0 + portf1.getBond_dist()* sigma1 + portf1.getShare_dist() * sigma2+ portf1.getComm_dist() * sigma3 + portf1.getEstate_dist() * sigma4) /100.0);
+				m1.usedPortfolio.setRisk_asset_preview((portf1.getCurr_dist()*risk0 + portf1.getBond_dist()* risk1 + portf1.getShare_dist() * risk2+ portf1.getComm_dist() * risk3 + portf1.getEstate_dist() * risk4) / 100.0);
+				
+				
+			//	m1.usedPortfolio.setRisk_asset_preview(risk_asset_preview);
 				if (p1.get2Name() == "") {
 					System.out.println("Das Namensfeld kann nicht leer bleiben.");
 					return;
@@ -258,6 +285,7 @@ public class VC_AssetType {
 					System.out.println("Die Summe der Prozentwerte muss 100% sein.");
 					return;
 				}
+				
 				m1.yourPortfolioTE.add(p1);
 				m1.allPortfolioTE.add(p1);
 				System.out.println("Portfolio created.");

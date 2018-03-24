@@ -138,7 +138,7 @@ public class VC_Shares {
 	@FXML
 	private TextField newBondDistTextField;
 	
-    protected List<String> asianCurrencyList ;
+    protected List<String> simpleStringList ;
 	protected ListProperty<String> listProperty = new SimpleListProperty<>();
 	
 	
@@ -155,16 +155,10 @@ public class VC_Shares {
 	@FXML
 	private void initialize() {
 	}
+	
+	
 	public void updateData() {
-		
-		
-//		ObservableList<String> fruitList = FXCollections.<String>observableArrayList("Apple", "Banana", "Orange", "Mango");
-//		// Create the ListView for the fruits
-//		listView1 = new ListView<String>();
-//		listView1.getItems().addAll(fruitList);
 
-
-		// tabPane1.setStyle("-fx-background-color:transparent;");
 		tabPane1.getStyleClass().add("floating");
 
 		
@@ -211,6 +205,7 @@ public class VC_Shares {
 		///////////////////////
 		//5x Table Listener
 		///////////////////////
+		
 		tableView1.getSelectionModel().selectedItemProperty()
 		.addListener((observable, oldValue, newValue) -> handleSaveSelected(newValue));
 		tableView2.getSelectionModel().selectedItemProperty()
@@ -223,18 +218,18 @@ public class VC_Shares {
 		.addListener((observable, oldValue, newValue) -> handleSaveSelected(newValue));
 		
 		System.out.println("6666" + m1.currentPortfoliosAktienMitKursen);
-		asianCurrencyList= new ArrayList<>();
+		simpleStringList= new ArrayList<>();
 		
-		m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> asianCurrencyList.add(v.getShare_id() + " " + v.getName() + " (" +v.getIndex() + ")"));
+		m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> simpleStringList.add(v.getShare_id() + " " + v.getName() + " (" +v.getIndex() + ")"));
 
-	    asianCurrencyList.add("CNH");
-        asianCurrencyList.add("JPY");
-        asianCurrencyList.add("HKD");
-        asianCurrencyList.add("KRW");
-        asianCurrencyList.add("SGD");
+	    simpleStringList.add("CNH");
+        simpleStringList.add("JPY");
+        simpleStringList.add("HKD");
+        simpleStringList.add("KRW");
+        simpleStringList.add("SGD");
 
 		listView1.itemsProperty().bind(listProperty);
-		listProperty.set(FXCollections.observableArrayList(asianCurrencyList));        
+		listProperty.set(FXCollections.observableArrayList(simpleStringList));        
 
 		listView1.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 		    @Override
@@ -278,21 +273,14 @@ public class VC_Shares {
 				m1.currentPortfoliosAktienMitKursen.put(new Integer(m1.selectedAktie.getShare_id()), m1.allAktienOhneKurse.get(m1.selectedAktie.getShare_id()));
 				System.out.println("hinzugefügte Aktie: " + m1.currentPortfoliosAktienMitKursen);
 				
-				
-				
-//				List sortedKeys=new ArrayList(m1.currentPortfoliosAktienMitKursen.keySet());
-			//	Collections.sort(m1.currentPortfoliosAktienMitKursen.keySet());
 				m1.sortCurrentPortfoliosAktien();
 				updateData();
 				
 			}
 			
-
-
 	@FXML
 	private void handleDelete() {
 		System.out.println("DeleteButton Pressed!");
-
 	}
 
 	@FXML
@@ -333,7 +321,7 @@ public class VC_Shares {
 	@FXML
 	private void handleWeiter() throws IOException {
 		System.out.println("Weiterbutton pressed!");
-		this.c1.setSceneToUser();
+		this.c1.setSceneToV_Analysis_Shares();
 	}
 	
 	@FXML

@@ -210,6 +210,7 @@
                            <children>
                               <Button fx:id="deletebutton1" mnemonicParsing="false" onAction="#handleDeleteSelected" text="Entfernen" />
                               <Button fx:id="vorleaufigUpdatenButton1" mnemonicParsing="false" onAction="#handleVorleaufigUpdaten" text="Vorläufige Aktienliste in DB updaten." />
+                              <Button mnemonicParsing="false" onAction="#handleWeiter" text="Weiter" />
                            </children>
                         </FlowPane>
                      </children>

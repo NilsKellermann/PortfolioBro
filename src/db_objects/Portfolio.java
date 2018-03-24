@@ -16,7 +16,33 @@ public class Portfolio {
 	private double risk_share;
 	private double sigma_comm;
 	private double risk_comm;
+	private double risk_asset_preview;
+	private double sigma_asset_preview;
 	
+	public double getInvestment() {
+		return investment;
+	}
+
+	public double getRisk_asset_preview() {
+		return risk_asset_preview;
+	}
+
+	public double getSigma_asset_preview() {
+		return sigma_asset_preview;
+	}
+
+	public void setInvestment(double investment) {
+		this.investment = investment;
+	}
+
+	public void setRisk_asset_preview(double risk_asset_preview) {
+		this.risk_asset_preview = risk_asset_preview;
+	}
+
+	public void setSigma_asset_preview(double sigma_asset_preview) {
+		this.sigma_asset_preview = sigma_asset_preview;
+	}
+
 	public Portfolio(int portfolio_id, String name, int user_id, double capital, double share_dist, double comm_dist,
 			double curr_dist, double estate_dist, double bond_dist, double sigma_full, double risk_full,
 			double sigma_share, double risk_share, double sigma_comm, double risk_comm) {
@@ -36,6 +62,8 @@ public class Portfolio {
 		this.risk_share = risk_share;
 		this.sigma_comm = sigma_comm;
 		this.risk_comm = risk_comm;
+		this.risk_asset_preview = 0;
+		this.sigma_asset_preview = 0;
 	}
 
 	@Override

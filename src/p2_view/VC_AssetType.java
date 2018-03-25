@@ -53,7 +53,7 @@ public class VC_AssetType {
 	private TableColumn<PortfolioTableEntry, String> nameColumn;
 
 	@FXML
-	private StackPane paneWithSwing;
+	private StackPane panedgfWithSwing;
 
 	@FXML
 	private Label testidLabel;

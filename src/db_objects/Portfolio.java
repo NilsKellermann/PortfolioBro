@@ -17,6 +17,8 @@ public class Portfolio {
 	private double sigma_comm;
 	private double risk_comm;
 	
+	
+	
 	public Portfolio(int portfolio_id, String name, int user_id, double capital, double share_dist, double comm_dist,
 			double curr_dist, double estate_dist, double bond_dist, double sigma_full, double risk_full,
 			double sigma_share, double risk_share, double sigma_comm, double risk_comm) {

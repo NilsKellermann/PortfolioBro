@@ -92,7 +92,6 @@ public class MainExcelToDB {
 		}
 	}
 
-
 	public static void uploadShareYearCourses() {
 		// String url = "jdbc:mysql://localhost:3306/sql2223131";
 		// String username = "sql2223131";

@@ -1,4 +1,4 @@
-package test;
+package p2_view.charts;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;

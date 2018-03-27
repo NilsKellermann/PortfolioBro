@@ -1,10 +1,29 @@
 package p2_view;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import javax.swing.JPanel;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.time.Day;
+import org.jfree.data.time.TimeSeries;
+import org.jfree.data.time.TimeSeriesCollection;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+
 import java.io.IOException;
+
+import db_objects.Aktie;
 import db_objects.AktieTableEntry;
+import db_objects.Assetclass;
 import db_objects.PortfolioTableEntry;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
@@ -12,8 +31,10 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
 import javafx.scene.chart.ScatterChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -21,6 +42,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
 import p0_model.Model;
 import p1_controller.Controller;
 
@@ -28,15 +50,17 @@ public class VC_Shares {
 	public Model m1;
 	public Controller c1;
 	
-	
+	// Nicht FXML!
+	private SwingNode sn1;
 	@FXML
 	private ListView<String> listView1;
 	@FXML
 	private TabPane tabPane1;
 	
 	@FXML
-	private ScatterChart<Number, Number> scatterChart1;
-
+	private ScatterChart<Double, Double> sc;
+	@FXML 
+	private StackPane paneWithSwing ;
 	@FXML
 	private TableView<AktieTableEntry> tableView1;
 	@FXML
@@ -240,9 +264,57 @@ public class VC_Shares {
 		    }
 		});
 		
-	}
+////////////////////////////////////////////
+//FILL SCATTERCHART
+////////////////////////////////////////////
+sc.setTitle("Sigma-r Diagramm der Assetklassen");
+//5x Assetclass-Daten einfüllen
+ObservableList<XYChart.Series<Double, Double>> scatterGraphSeries = FXCollections.observableArrayList();
+for (Aktie ac1 : m1.currentPortfoliosAktienMitKursen.values()) {
+XYChart.Series<Double,Double> series1 = new XYChart.Series<Double,Double>();
+series1.getData().add(new XYChart.Data<Double, Double>(ac1.getSigma(), ac1.getRisk()));
+series1.setName(ac1.getName());
+scatterGraphSeries.add(series1);
+}
+////1x GesamtPortfolio-Daten einfüllen
+//XYChart.Series<Double,Double> series1 = new XYChart.Series<Double,Double>();
+//series1.getData().add(new XYChart.Data<Double, Double>(m1.usedPortfolio.getSigma_asset_preview(), m1.usedPortfolio.getRisk_asset_preview()));
+//series1.setName(m1.usedPortfolio.getName());
+//scatterGraphSeries.add(series1);
+
+sc.setData(scatterGraphSeries);
+////////////////////////////////////////////
+//END FILL SCATTERCHART
+////////////////////////////////////////////
+
+//		////////////////////////////////
+//		//LINECHART1
+//		////////////////////////////////
+sn1 = new SwingNode();
+paneWithSwing.getChildren().add(sn1);
 	
-	
+
+//		sn1= new SwingNode();
+//		paneWithSwing.getChildren().add(sn1);
+//		Aktie a1 = m1.currentPortfoliosAktienMitKursen.get(Integer.valueOf(m1.selectedCurrentSharesString.substring(0, m1.selectedCurrentSharesString.indexOf(" "))));
+//		XYSeries series = new XYSeries("Y = X"); 
+//		XYSeriesCollection dataset = new XYSeriesCollection();
+//		dataset.addSeries(series);
+//	    // Create chart
+//	    JFreeChart chart = ChartFactory.crea(
+//	        "XY Line Chart Example",
+//	        "X-Axis",
+//	        "Y-Axis",
+//	        dataset,
+//	        PlotOrientation.VERTICAL,
+//	        true, true, false);
+//	    
+//
+//	    // Create Panel
+//	    ChartPanel panel = new ChartPanel(chart);
+//	    sn1.setContent(panel);    
+	  }
+
 	////////////////////////////////////////////////////////
 	// Handle-Methoden
 	////////////////////////////////////////////////////////	

@@ -6,7 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import p0_model.Model;
-import p2_view.VC_AssetType;
+
+import p2_view.VC_AssetClasses;
 import p2_view.VC_MainMenu;
 import p2_view.VC_Portfolios;
 import p2_view.VC_Shares;
@@ -77,9 +78,9 @@ public class Controller /*implements EventHandler*/ {
 		model.loadSelectedPortfolioData();
 
 		
-		FXMLLoader loader = new FXMLLoader(Controller.class.getResource("/p2_view/V_AssetType.fxml"));
+		FXMLLoader loader = new FXMLLoader(Controller.class.getResource("/p2_view/V_AssetClasses.fxml"));
 		Pane pane1 = loader.load();
-		VC_AssetType vc1 = loader.getController();
+		VC_AssetClasses vc1 = loader.getController();
 
 		// Set View attributes and UI-Elements
 		vc1.c1 = getInstance();
@@ -153,7 +154,7 @@ public class Controller /*implements EventHandler*/ {
 		prim.show();
 	}
 
-	public static void setSceneToV_MainMenu() throws IOException {
+	public void setSceneToV_MainMenu() throws IOException {
 
 		// Initialize View (no model)
 		FXMLLoader loader = new FXMLLoader(Controller.class.getResource("/p2_view/V_MainMenu.fxml"));

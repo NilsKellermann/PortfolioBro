@@ -267,7 +267,7 @@ public class VC_Shares {
 ////////////////////////////////////////////
 //FILL SCATTERCHART
 ////////////////////////////////////////////
-sc.setTitle("Sigma-r Diagramm der Assetklassen");
+sc.setTitle("Sigma-R-Diagramm der Aktien");
 //5x Assetclass-Daten einfüllen
 ObservableList<XYChart.Series<Double, Double>> scatterGraphSeries = FXCollections.observableArrayList();
 for (Aktie ac1 : m1.currentPortfoliosAktienMitKursen.values()) {
@@ -394,6 +394,12 @@ paneWithSwing.getChildren().add(sn1);
 	private void handleWeiter() throws IOException {
 		System.out.println("Weiterbutton pressed!");
 		this.c1.setSceneToV_Analysis_Shares();
+	}
+	
+	@FXML
+	private void handleZurueck() throws IOException {
+		System.out.println("Weiterbutton pressed!");
+		this.c1.setSceneToV_AssetType();
 	}
 	
 	@FXML

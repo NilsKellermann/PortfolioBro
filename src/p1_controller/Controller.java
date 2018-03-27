@@ -154,7 +154,7 @@ public class Controller /*implements EventHandler*/ {
 		prim.show();
 	}
 
-	public static void setSceneToV_MainMenu() throws IOException {
+	public void setSceneToV_MainMenu() throws IOException {
 
 		// Initialize View (no model)
 		FXMLLoader loader = new FXMLLoader(Controller.class.getResource("/p2_view/V_MainMenu.fxml"));

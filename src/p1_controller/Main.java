@@ -38,8 +38,8 @@ public class Main extends Application {
 		m1.transferCurrentShareHashmapToObservableList();
 		m1.transferAllShareHashmapToObservableList();
 		m1.transferAllPortfolioHashmapToObservableList();		
-		System.out.println("1Liste wurde in Tabellenform gebracht:(LEER WEIL ERST BEIM WECHSEL IN V_ASSETCLASS GEFÜLLT WIRD)" + m1.currentPortfoliosAktienMitKursen );
-		System.out.println("2Liste wurde in Tabellenform gebracht:(LEER WEIL ERST BEIM WECHSEL IN V_ASSETCLASS GEFÜLLT WIRD)" + m1.currentPortfoliosAktienMitKursenTE );
+		System.out.println("1Liste wurde in Tabellenform gebracht:(LEER WEIL ERST BEIM WECHSEL IN V_ASSETCLASS GEFï¿½LLT WIRD)" + m1.currentPortfoliosAktienMitKursen );
+		System.out.println("2Liste wurde in Tabellenform gebracht:(LEER WEIL ERST BEIM WECHSEL IN V_ASSETCLASS GEFï¿½LLT WIRD)" + m1.currentPortfoliosAktienMitKursenTE );
 		System.out.println("3Alle Aktienheader der Datenbank:"+ m1.allAktienOhneKurse);
 		System.out.println("4all-Aktien-Liste wurde in Tabellenform gebracht:" +  m1.allAktienOhneKurseTE );
 		System.out.println("5Portfolios geladen, Anzahl:" + m1.allPortfolios);
@@ -54,7 +54,7 @@ public class Main extends Application {
 
 		Controller.getInstance(primaryStage, m1);
 
-		Controller.setSceneToV_MainMenu();
+		Controller.setSceneToV_CompletePortfolio();
 		// setSceneToV_Shares();
 		// setSceneTo1();
 

@@ -10,6 +10,9 @@ import p2_view.VC_AssetType;
 import p2_view.VC_MainMenu;
 import p2_view.VC_Portfolios;
 import p2_view.VC_Shares;
+import p2_view.VC_CompletePortfolio;
+import p2_view.VC_CompletePortfolioCompare;
+
 //import javafx.event.ActionEvent;
 //import javafx.event.Event;
 //import javafx.event.EventHandler;
@@ -171,7 +174,44 @@ public class Controller /*implements EventHandler*/ {
 		prim.setMinHeight(400);
 		prim.show();
 	}
+	public static void setSceneToV_CompletePortfolio() throws IOException {
 
+		// Initialize View (no model)
+		FXMLLoader loader = new FXMLLoader(Controller.class.getResource("/p2_view/V_CompletePortfolio.fxml"));
+		Pane pane1 = loader.load();
+		VC_CompletePortfolio vc1 = loader.getController();
+
+		// Set View attributes and UI-Elements
+		vc1.c1 = getInstance();
+		vc1.m1 = getInstance().model;
+
+		vc1.updateData();
+		Stage prim=getInstance().prim;
+		prim.setScene(new Scene(pane1, 1200, 600));
+		prim.setMinWidth(800);
+		prim.setMinHeight(400);
+		prim.show();
+	}
+	
+	
+	public static void setSceneToV_CompletePortfolioCompare() throws IOException {
+
+		// Initialize View (no model)
+		FXMLLoader loader = new FXMLLoader(Controller.class.getResource("/p2_view/V_CompletePortfolioCompare.fxml"));
+		Pane pane1 = loader.load();
+		VC_CompletePortfolioCompare vc1 = loader.getController();
+
+		// Set View attributes and UI-Elements
+		vc1.c1 = getInstance();
+		vc1.m1 = getInstance().model;
+
+		vc1.updateData();
+		Stage prim=getInstance().prim;
+		prim.setScene(new Scene(pane1, 1200, 600));
+		prim.setMinWidth(800);
+		prim.setMinHeight(400);
+		prim.show();
+	}
 
 //	@Override
 //	public void handle(Event event) {

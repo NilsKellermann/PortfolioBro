@@ -54,7 +54,7 @@ public class Main extends Application {
 
 		Controller.getInstance(primaryStage, m1);
 
-		Controller.setSceneToV_CompletePortfolio();
+		Controller.setSceneToV_MainMenu();
 		// setSceneToV_Shares();
 		// setSceneTo1();
 

@@ -20,9 +20,9 @@ import p2_view.VC_CompletePortfolioCompare;
 import javafx.stage.Stage;
 
 public class Controller /*implements EventHandler*/ {
-	private static Controller c1;
-	private Stage prim;
-	private Model model;
+	public static Controller c1;
+	public Stage prim;
+	public Model model;
 
 ///////////////////////////////////////
 //Konstruktoren und getInstance-Methoden

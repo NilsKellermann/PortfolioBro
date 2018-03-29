@@ -39,22 +39,29 @@ public class Model {
 	public ObservableList<PortfolioTableEntry> allPortfolioTE = FXCollections.observableArrayList();
 	public ObservableList<PortfolioTableEntry> yourPortfolioTE = FXCollections.observableArrayList();
 	public ObservableList<XYChart.Series<Number, Number>> scatterGraphSeries = FXCollections.observableArrayList();
-
-	public int nextPtfolio_id;
+	
+	public Portfolio usedPortfolio;
 	public PortfolioTableEntry selectedPortfolio;
 	public PortfolioTableEntry newPortfolio;
 
 	public HashMap<Integer, Aktie> allAktienOhneKurse = new HashMap<Integer, Aktie>();
 	public HashMap<Integer, Aktie> currentPortfoliosAktienMitKursen = new HashMap<Integer, Aktie>();
-
+	public HashMap<Integer, Double> currentPortfoliosAktienProzente = new HashMap<Integer, Double>();
+	
 	public ObservableList<AktieTableEntry> currentPortfoliosAktienMitKursenTE = FXCollections.observableArrayList();
 	public ObservableList<AktieTableEntry> allAktienOhneKurseTE = FXCollections.observableArrayList();
 
 	public AktieTableEntry selectedAktie;
-
 	public String selectedCurrentSharesString;
+	
+	
+	//AktienAnalyse
+    public HashMap<Integer, Boolean> analyseErgebnis = new HashMap<Integer, Boolean>();
+	
+	public String selectedCurrentSharesStringAnalyse1;
+//	public String selectedCurrentSharesStringAnalyse2
+	;
 
-	public Portfolio usedPortfolio;
 
 	public static Model getInstance() {
 		if (model1 == null)
@@ -224,7 +231,7 @@ public class Model {
 				// it.remove(); // avoids a ConcurrentModificationException
 				System.out.println("Aktuelles Portfolio und Aktien darin:" + this.currentPortfoliosAktienMitKursen);
 			}
-			sortCurrentPortfoliosAktien();
+			sortBothCurrentPortfoliosAktien();
 			//////////////////////////////////////////////
 			// ENDE
 			//////////////////////////////////////////////
@@ -328,10 +335,14 @@ public class Model {
 		////////////////////////////////////////
 	// AKTIEN DES USED PORTFOLIOS -SORTIEREN METHODEN
 	////////////////////////////////////////
-	public void sortCurrentPortfoliosAktien() {
+	public void sortBothCurrentPortfoliosAktien() {
 		this.currentPortfoliosAktienMitKursen = this.currentPortfoliosAktienMitKursen.entrySet().stream()
 				.sorted(Map.Entry.comparingByKey()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
 						(oldValue, newValue) -> oldValue, LinkedHashMap::new));
+		this.currentPortfoliosAktienProzente = this.currentPortfoliosAktienProzente.entrySet().stream()
+				.sorted(Map.Entry.comparingByKey()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+						(oldValue, newValue) -> oldValue, LinkedHashMap::new));
+		
 	}
 	public int calculateNextPortfolioID() {
 		
@@ -342,4 +353,12 @@ public class Model {
 	    return oldest.getPortfolio_id() +1;
 	}
 	
+	public void addToCurrentPAktien(Integer i1, Aktie a1, Double d1){
+		this.currentPortfoliosAktienMitKursen.put(i1, a1);
+		this.currentPortfoliosAktienProzente.put(i1, d1);
+	}
+	public void deleteFromCurrentPAktien(Integer i1){
+		this.currentPortfoliosAktienMitKursen.remove(i1);
+		this.currentPortfoliosAktienProzente.remove(i1);
+	}
 }

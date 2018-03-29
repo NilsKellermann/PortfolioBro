@@ -183,9 +183,10 @@ public class VC_Shares {
 	
 	public void updateData() {
 
+//////Initiale Anpassungen
 		tabPane1.getStyleClass().add("floating");
 
-		
+//Tabellen füllen		
 		ObservableList<AktieTableEntry> allAktienOhneKurseTE_DAX = m1.allAktienOhneKurseTE.stream()
 	            .filter(x -> (x.getIndex().equals("DAX")))
 	            .collect(Collectors.toCollection(FXCollections::observableArrayList));
@@ -242,8 +243,9 @@ public class VC_Shares {
 		.addListener((observable, oldValue, newValue) -> handleSaveSelected(newValue));
 		
 		System.out.println("6666" + m1.currentPortfoliosAktienMitKursen);
+	
+		//Liste füllen		
 		simpleStringList= new ArrayList<>();
-		
 		m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> simpleStringList.add(v.getShare_id() + " " + v.getName() + " (" +v.getIndex() + ")"));
 
 	    simpleStringList.add("CNH");
@@ -321,7 +323,7 @@ paneWithSwing.getChildren().add(sn1);
 	@FXML
 	private void handleDeleteSelected() {
 	    System.out.println(" Removing from HashMap" +m1.currentPortfoliosAktienMitKursen );
-		m1.currentPortfoliosAktienMitKursen.remove(Integer.valueOf(m1.selectedCurrentSharesString.substring(0, m1.selectedCurrentSharesString.indexOf(" "))));
+		m1.deleteFromCurrentPAktien(Integer.valueOf(m1.selectedCurrentSharesString.substring(0, m1.selectedCurrentSharesString.indexOf(" "))));
 		
 		updateData();
 	}
@@ -342,10 +344,10 @@ paneWithSwing.getChildren().add(sn1);
 
 			@FXML
 			private void handleAdd() {
-				m1.currentPortfoliosAktienMitKursen.put(new Integer(m1.selectedAktie.getShare_id()), m1.allAktienOhneKurse.get(m1.selectedAktie.getShare_id()));
+				m1.addToCurrentPAktien(new Integer(m1.selectedAktie.getShare_id()), m1.allAktienOhneKurse.get(m1.selectedAktie.getShare_id()), new Double(0.0));
 				System.out.println("hinzugefügte Aktie: " + m1.currentPortfoliosAktienMitKursen);
 				
-				m1.sortCurrentPortfoliosAktien();
+				m1.sortBothCurrentPortfoliosAktien();
 				updateData();
 				
 			}
@@ -393,7 +395,7 @@ paneWithSwing.getChildren().add(sn1);
 	@FXML
 	private void handleWeiter() throws IOException {
 		System.out.println("Weiterbutton pressed!");
-		this.c1.setSceneToV_Analysis_Shares();
+		this.c1.setSceneToV_Aktienanalyse();
 	}
 	
 	@FXML

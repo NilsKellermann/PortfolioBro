@@ -200,9 +200,9 @@ public class VC_AssetClasses {
 			plot.setNoDataMessage("No data to display");
 			plot.setLabelGenerator(new PieChart3DDemo3.CustomLabelGenerator());
 
-			JFreeChart chart1 = chart;
-			JPanel chartPanel = new ChartPanel(chart1);
-			chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
+//			JFreeChart chart1 = chart;
+//			JPanel chartPanel = new ChartPanel(chart1);
+//			chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
 
 			ChartPanel panel = new ChartPanel(chart);
 			panel.setMouseWheelEnabled(true);

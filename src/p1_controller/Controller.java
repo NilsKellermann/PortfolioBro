@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import p0_model.Model;
-
+import p2_view.VC_Aktienanalyse;
 import p2_view.VC_AssetClasses;
 import p2_view.VC_MainMenu;
 import p2_view.VC_Portfolios;
@@ -138,11 +138,11 @@ public class Controller /*implements EventHandler*/ {
 		prim.setMinHeight(400);
 		prim.show();
 	}
-	public void setSceneToV_Analysis_Shares() throws IOException {
+	public void setSceneToV_Aktienanalyse() throws IOException {
 		// Initialize View (no model)
-		FXMLLoader loader = new FXMLLoader(Controller.class.getResource("/p2_view/V_Portfolios.fxml"));
+		FXMLLoader loader = new FXMLLoader(Controller.class.getResource("/p2_view/V_Aktienanalyse.fxml"));
 		Pane pane1 = loader.load();
-		VC_Portfolios vc1 = loader.getController();
+		VC_Aktienanalyse vc1 = loader.getController();
 
 		// Set View attributes and UI-Elements
 		vc1.c1 = getInstance();
@@ -214,6 +214,7 @@ public class Controller /*implements EventHandler*/ {
 		prim.show();
 	}
 
+	
 //	@Override
 //	public void handle(Event event) {
 //		// TODO Auto-generated method stub

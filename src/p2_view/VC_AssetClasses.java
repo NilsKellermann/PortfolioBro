@@ -35,7 +35,7 @@ import p0_model.Model;
 import p1_controller.Controller;
 import p2_view.charts.PieChart3DDemo3;
 
-public class VC_AssetType {
+public class VC_AssetClasses {
 
 	public Model m1;
 	public Controller c1;
@@ -53,7 +53,7 @@ public class VC_AssetType {
 	private TableColumn<PortfolioTableEntry, String> nameColumn;
 
 	@FXML
-	private StackPane panedgfWithSwing;
+	private StackPane paneWithSwing;
 
 	@FXML
 	private Label testidLabel;
@@ -86,7 +86,7 @@ public class VC_AssetType {
 	/**
 	 * The constructor. The constructor is called before the initialize() method.
 	 */
-	public VC_AssetType() {
+	public VC_AssetClasses() {
 	}
 
 	/**
@@ -200,9 +200,9 @@ public class VC_AssetType {
 			plot.setNoDataMessage("No data to display");
 			plot.setLabelGenerator(new PieChart3DDemo3.CustomLabelGenerator());
 
-			JFreeChart chart1 = chart;
-			JPanel chartPanel = new ChartPanel(chart1);
-			chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
+//			JFreeChart chart1 = chart;
+//			JPanel chartPanel = new ChartPanel(chart1);
+//			chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
 
 			ChartPanel panel = new ChartPanel(chart);
 			panel.setMouseWheelEnabled(true);
@@ -304,6 +304,12 @@ public class VC_AssetType {
 	private void handleWeiter() throws IOException {
 		System.out.println("Weiterbutton pressed!");
 		this.c1.setSceneToV_Shares();
+	}
+	
+	@FXML
+	private void handleZurueck() throws IOException {
+		System.out.println("Weiterbutton pressed!");
+		this.c1.setSceneToV_Portfolios();
 	}
 
 	public void focusGained(FocusEvent e) {

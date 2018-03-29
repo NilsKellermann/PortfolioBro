@@ -6,10 +6,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import p0_model.Model;
-import p2_view.VC_AssetType;
+import p2_view.VC_Aktienanalyse;
+import p2_view.VC_AssetClasses;
 import p2_view.VC_MainMenu;
 import p2_view.VC_Portfolios;
 import p2_view.VC_Shares;
+import p2_view.VC_CompletePortfolio;
+import p2_view.VC_CompletePortfolioCompare;
+
 //import javafx.event.ActionEvent;
 //import javafx.event.Event;
 //import javafx.event.EventHandler;
@@ -77,9 +81,9 @@ public class Controller /*implements EventHandler*/ {
 		model.loadSelectedPortfolioData();
 
 		
-		FXMLLoader loader = new FXMLLoader(Controller.class.getResource("/p2_view/V_AssetType.fxml"));
+		FXMLLoader loader = new FXMLLoader(Controller.class.getResource("/p2_view/V_AssetClasses.fxml"));
 		Pane pane1 = loader.load();
-		VC_AssetType vc1 = loader.getController();
+		VC_AssetClasses vc1 = loader.getController();
 
 		// Set View attributes and UI-Elements
 		vc1.c1 = getInstance();
@@ -134,11 +138,11 @@ public class Controller /*implements EventHandler*/ {
 		prim.setMinHeight(400);
 		prim.show();
 	}
-	public void setSceneToV_Analysis_Shares() throws IOException {
+	public void setSceneToV_Aktienanalyse() throws IOException {
 		// Initialize View (no model)
-		FXMLLoader loader = new FXMLLoader(Controller.class.getResource("/p2_view/V_Portfolios.fxml"));
+		FXMLLoader loader = new FXMLLoader(Controller.class.getResource("/p2_view/V_Aktienanalyse.fxml"));
 		Pane pane1 = loader.load();
-		VC_Portfolios vc1 = loader.getController();
+		VC_Aktienanalyse vc1 = loader.getController();
 
 		// Set View attributes and UI-Elements
 		vc1.c1 = getInstance();
@@ -153,7 +157,7 @@ public class Controller /*implements EventHandler*/ {
 		prim.show();
 	}
 
-	public static void setSceneToV_MainMenu() throws IOException {
+	public void setSceneToV_MainMenu() throws IOException {
 
 		// Initialize View (no model)
 		FXMLLoader loader = new FXMLLoader(Controller.class.getResource("/p2_view/V_MainMenu.fxml"));
@@ -171,8 +175,46 @@ public class Controller /*implements EventHandler*/ {
 		prim.setMinHeight(400);
 		prim.show();
 	}
+	public static void setSceneToV_CompletePortfolio() throws IOException {
 
+		// Initialize View (no model)
+		FXMLLoader loader = new FXMLLoader(Controller.class.getResource("/p2_view/V_CompletePortfolio.fxml"));
+		Pane pane1 = loader.load();
+		VC_CompletePortfolio vc1 = loader.getController();
 
+		// Set View attributes and UI-Elements
+		vc1.c1 = getInstance();
+		vc1.m1 = getInstance().model;
+
+		vc1.updateData();
+		Stage prim=getInstance().prim;
+		prim.setScene(new Scene(pane1, 1200, 600));
+		prim.setMinWidth(800);
+		prim.setMinHeight(400);
+		prim.show();
+	}
+	
+	
+	public static void setSceneToV_CompletePortfolioCompare() throws IOException {
+
+		// Initialize View (no model)
+		FXMLLoader loader = new FXMLLoader(Controller.class.getResource("/p2_view/V_CompletePortfolioCompare.fxml"));
+		Pane pane1 = loader.load();
+		VC_CompletePortfolioCompare vc1 = loader.getController();
+
+		// Set View attributes and UI-Elements
+		vc1.c1 = getInstance();
+		vc1.m1 = getInstance().model;
+
+		vc1.updateData();
+		Stage prim=getInstance().prim;
+		prim.setScene(new Scene(pane1, 1200, 600));
+		prim.setMinWidth(800);
+		prim.setMinHeight(400);
+		prim.show();
+	}
+
+	
 //	@Override
 //	public void handle(Event event) {
 //		// TODO Auto-generated method stub

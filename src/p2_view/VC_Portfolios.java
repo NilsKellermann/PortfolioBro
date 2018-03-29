@@ -100,6 +100,12 @@ public class VC_Portfolios {
 		m1.usedPortfolio = new Portfolio(m1.calculateNextPortfolioID(), "empty" , m1.loggedInUser_id, 0, 50, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 		this.c1.setSceneToV_AssetType();
 	}
+	
+	@FXML
+	private void handleZurueck() throws IOException {
+		System.out.println("Weiterbutton pressed!");
+		this.c1.setSceneToV_MainMenu();
+	}
 
 	@FXML
 	private void handleAnpassen() throws IOException {

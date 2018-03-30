@@ -9,31 +9,32 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import p4_excelPOI.ExcelToSListCList;
-import p4_excelPOI.ExcelToYearCourseShares2;
-import p4_excelPOI.ExcelToYearCourseShares3;
+import p4_excelPOI.ExcelPOI_Headerdata_S_C;
+import p4_excelPOI.ExcelPOI_AllCourses_S_C;
+import p4_excelPOI.ExcelPOI_HalfyearCourses_S_C;
+import p4_excelPOI.ExcelPOI_Headerdata2_S_C;
 
 public class MainExcelToDB {
-	static HashMap<String, HashMap<String, String>> ShareDaten;
-	static HashMap<String, HashMap<String, Double>> allSharesRisRen;
-	static HashMap<String, HashMap<Date, Double>> allSharesHalfyearCourses;
-	// static HashMap <String, HashMap<Date, Double>> allSharesCourses;
+	 static HashMap<String, HashMap<String, String>> ShareDaten;
+	 static HashMap<String, HashMap<String, Double>> allSharesRisRen;
+	 static HashMap<String, HashMap<Date, Double>> allSharesHalfyearCourses;
+	 static HashMap <String, HashMap<Date, Double>> allSharesCourses;
 
 	 static HashMap<String, HashMap<String, String>> CommoditiesDaten;
 	 static HashMap<String, HashMap<String, Double>> allCommoditiesRisRen;
 	 static HashMap <String, HashMap<Date, Double>> allCommoditiesHalfyearCourses;
-	// static HashMap <String, HashMap<Date, Double>> allCommoditiesCourses;
+	 static HashMap <String, HashMap<Date, Double>> allCommoditiesCourses;
 
 	public static void main(String[] args) {
-		ShareDaten = ExcelToSListCList.getListS();
-		allSharesRisRen = ExcelToYearCourseShares3.getListS();
-		allSharesHalfyearCourses = ExcelToYearCourseShares2.getListS();
-		// allSharesCourses =ExcelToYearCourseShares.getListS();
+		ShareDaten = ExcelPOI_Headerdata_S_C.getListS();
+		allSharesRisRen = ExcelPOI_Headerdata2_S_C.getListS();
+		allSharesHalfyearCourses = ExcelPOI_HalfyearCourses_S_C.getListS();
+//		allSharesCourses = ExcelPOI_AllCourses_S_C.getListS();
 
-		 CommoditiesDaten = ExcelToSListCList.getListC();
-		 allCommoditiesRisRen = ExcelToYearCourseShares3.getListC();
-		 allCommoditiesHalfyearCourses = ExcelToYearCourseShares2.getListC();
-		// allCommoditiesCourses =ExcelToYearCourseShares.getListC();
+		 CommoditiesDaten = ExcelPOI_Headerdata_S_C.getListC();
+		 allCommoditiesRisRen = ExcelPOI_Headerdata2_S_C.getListC();
+		 allCommoditiesHalfyearCourses = ExcelPOI_HalfyearCourses_S_C.getListC();
+//		 allCommoditiesCourses =ExcelPOI_AllCourses_S_C.getListC();
 
 		uploadShareHeaders();
 		uploadShareYearCourses();
@@ -41,6 +42,7 @@ public class MainExcelToDB {
 		uploadCommYearCourses();
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void uploadShareHeaders() {
 		// String url = "jdbc:mysql://localhost:3306/sql2223131";
 		// String username = "sql2223131";
@@ -54,7 +56,6 @@ public class MainExcelToDB {
 			System.out.println("Database connected!");
 			Statement stmt;
 			Iterator it;
-			Iterator it2;
 			////////////////////////////////////////
 			//////////////////////////////////////// ShareDaten durchlaufen
 			stmt = connection.createStatement();
@@ -64,14 +65,14 @@ public class MainExcelToDB {
 				Map.Entry<String, HashMap<String, Double>> pair = (Map.Entry) it.next();
 				System.out.println(pair.getKey() + " = " + pair.getValue());
 				////////////////////////////////////////
-				//////////////////////////////////////// Nebenbei aus allShareRisRen die Daten über Rendite und Risiko rausholen
+				//////////////////////////////////////// aus HashMap allSharesRisRen das Risiko und die Rendite herausholen
 				Double rendite = null;
 				Double risk = null;
 				if (allSharesRisRen.get(pair.getKey()) != null) {
-					rendite = allSharesRisRen.get(pair.getKey()).get("Renditepa");
+					rendite = allSharesRisRen.get(pair.getKey()).get("Risikopa"); //!!Stimmt so, Name vertauscht beim ExcelImport
 				}
 				if (allSharesRisRen.get(pair.getKey()) != null) {
-					risk = allSharesRisRen.get(pair.getKey()).get("Risikopa");
+					risk = allSharesRisRen.get(pair.getKey()).get("Renditepa"); // " " "
 				}
 				////////////////////////////////////////
 				//////////////////////////////////////// DB UPLOAD
@@ -85,13 +86,13 @@ public class MainExcelToDB {
 				}
 				i = i + 1;
 			}
-			it.remove(); // avoids a ConcurrentModificationException
+			it.remove();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void uploadShareYearCourses() {
 		// String url = "jdbc:mysql://localhost:3306/sql2223131";
 		// String username = "sql2223131";
@@ -103,10 +104,9 @@ public class MainExcelToDB {
 
 		try (Connection connection = DriverManager.getConnection(url, username, password)) {
 			System.out.println("Database connected!");
-			Statement stmt;
 			Iterator it;
 			Iterator it2;
-			stmt = connection.createStatement();
+			//stmt = connection.createStatement();
 			it = ShareDaten.entrySet().iterator();
 			int i = 1;
 			////////////////////////////////////////
@@ -121,13 +121,13 @@ public class MainExcelToDB {
 					HashMap<Date, Double> share1HalfyearData = allSharesHalfyearCourses.get(pair.getKey());
 					it2 = share1HalfyearData.entrySet().iterator();
 					int i2 = 1;
-					Date date = null;
+					//Date date = null;
 					Double course = null;
 					////////////////////////////////////////
-					//////////////////////////////////////// HalfyearData den jeweiligen Sharenamen-Hashmap rausholen---- &durchlaufen
+					//////////////////////////////////////// HalfyearData konvertieren
 					while (it2.hasNext()) {
 						System.out.println("yearCoursesSchleife2");
-						Map.Entry<Date, Double> pair2 = (Map.Entry) it2.next();
+						Map.Entry<Date, Double> pair2 = (Map.Entry<Date, Double>) it2.next();
 						Date dateUnbearbeitet = pair2.getKey();
 						java.sql.Date dateBearbeitet = new java.sql.Date(dateUnbearbeitet.getTime());
 						course = pair2.getValue();
@@ -149,15 +149,15 @@ public class MainExcelToDB {
 						}
 					}
 				}
-				it.remove(); // avoids a ConcurrentModificationException
+				it.remove();
 				i = i + 1;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void uploadCommHeaders() {
 		// String url = "jdbc:mysql://localhost:3306/sql2223131";
 		// String username = "sql2223131";
@@ -171,17 +171,16 @@ public class MainExcelToDB {
 			System.out.println("Database connected!");
 			Statement stmt;
 			Iterator it;
-			Iterator it2;
 			////////////////////////////////////////
-			//////////////////////////////////////// ShareDaten durchlaufen
+			////////////////////////////////////////
 			stmt = connection.createStatement();
 			it = CommoditiesDaten.entrySet().iterator();
 			int i = 1;
 			while (it.hasNext()) {
-				Map.Entry<String, HashMap<String, Double>> pair = (Map.Entry) it.next();
+				Map.Entry<String, HashMap<String, Double>> pair = (Map.Entry<String, HashMap<String, Double>>) it.next();
 				System.out.println(pair.getKey() + " = " + pair.getValue());
 				////////////////////////////////////////
-				//////////////////////////////////////// Nebenbei aus allShareRisRen die Daten über Rendite und Risiko rausholen
+				////////////////////////////////////////
 				Double rendite = null;
 				Double risk = null;
 				if (allCommoditiesRisRen.get(pair.getKey()) != null) {
@@ -205,13 +204,13 @@ public class MainExcelToDB {
 				}
 				i = i + 1;
 			}
-			it.remove(); // avoids a ConcurrentModificationException
+			it.remove();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void uploadCommYearCourses() {
 		// String url = "jdbc:mysql://localhost:3306/sql2223131";
 		// String username = "sql2223131";
@@ -223,10 +222,10 @@ public class MainExcelToDB {
 
 		try (Connection connection = DriverManager.getConnection(url, username, password)) {
 			System.out.println("Database connected!");
-			Statement stmt;
+			//Statement stmt;
 			Iterator it;
 			Iterator it2;
-			stmt = connection.createStatement();
+			//stmt = connection.createStatement();
 			it = CommoditiesDaten.entrySet().iterator();
 			int i = 1;
 			////////////////////////////////////////
@@ -241,10 +240,9 @@ public class MainExcelToDB {
 					HashMap<Date, Double> share1HalfyearData = allCommoditiesHalfyearCourses.get(pair.getKey());
 					it2 = share1HalfyearData.entrySet().iterator();
 					int i2 = 1;
-					Date date = null;
 					Double course = null;
 					////////////////////////////////////////
-					//////////////////////////////////////// HalfyearData den jeweiligen Commoditynamen-Hashmap rausholen---- &durchlaufen
+					//////////////////////////////////////// entnehmen der HalfyearData aus Commoditynamen-Hashmap ---- durchlaufen
 					while (it2.hasNext()) {
 						System.out.println("yearCoursesSchleife2");
 						Map.Entry<Date, Double> pair2 = (Map.Entry) it2.next();
@@ -269,11 +267,10 @@ public class MainExcelToDB {
 						}
 					}
 				}
-				it.remove(); // avoids a ConcurrentModificationException
+				it.remove();
 				i = i + 1;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

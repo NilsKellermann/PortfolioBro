@@ -19,7 +19,7 @@ import p2_view.VC_CompletePortfolioCompare;
 //import javafx.event.EventHandler;
 import javafx.stage.Stage;
 
-public class Controller /*implements EventHandler*/ {
+public class Controller {
 	public static Controller c1;
 	public Stage prim;
 	public Model model;
@@ -52,18 +52,18 @@ public class Controller /*implements EventHandler*/ {
 	}
 
 ///////////////////////////////////////
-//Methods to set the JavaFX Scene
+//Methoden zur Erstellung der JavaFX Scene
 ///////////////////////////////////////	
 	public void setSceneToV_Portfolios() throws IOException {
-		//DB-INITIALIZATION
+		//DB-Initialisierung
 		model.initializeAssetClasses_allSHeads_allCHeads_allPortfolios();
 		
-		// Initialize View (no model)
+		// View-Initialisierung 
 		FXMLLoader loader = new FXMLLoader(Controller.class.getResource("/p2_view/V_Portfolios.fxml"));
 		Pane pane1 = loader.load();
 		VC_Portfolios vc1 = loader.getController();
 
-		// Set View attributes and UI-Elements
+		// UI-Elemente und Attribute setzen
 		vc1.c1 = getInstance();
 		vc1.m1 = getInstance().model;
 
@@ -77,15 +77,12 @@ public class Controller /*implements EventHandler*/ {
 	}
 	
 	public void setSceneToV_AssetType() throws IOException {
-		// Initialize View (no model)
 		model.loadSelectedPortfolioData();
-
 		
 		FXMLLoader loader = new FXMLLoader(Controller.class.getResource("/p2_view/V_AssetClasses.fxml"));
 		Pane pane1 = loader.load();
 		VC_AssetClasses vc1 = loader.getController();
 
-		// Set View attributes and UI-Elements
 		vc1.c1 = getInstance();
 		vc1.m1 = getInstance().model;
 
@@ -156,7 +153,6 @@ public class Controller /*implements EventHandler*/ {
 		prim.setMinHeight(400);
 		prim.show();
 	}
-
 	public void setSceneToV_MainMenu() throws IOException {
 
 		// Initialize View (no model)

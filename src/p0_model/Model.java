@@ -2,7 +2,15 @@ package p0_model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.chart.XYChart;
+import p0_db_objects.Aktie;
+import p0_db_objects.AktieTableEntry;
+import p0_db_objects.AnlageKlasse;
+import p0_db_objects.Portfolio;
+import p0_db_objects.PortfolioTableEntry;
+import p0_db_objects.Rohstoff;
+import p0_db_objects.RohstoffTableEntry;
+import test.__________User;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,82 +27,76 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
-import db_objects.Aktie;
-import db_objects.AktieTableEntry;
-import db_objects.Assetclass;
-import db_objects.Portfolio;
-import db_objects.PortfolioTableEntry;
-import db_objects.__________User;
-
 public class Model {
 	private static Model model1;
-
+	
+	// Allgemein
 	public int loggedInUser_id;
-	public ObservableList<__________User> userList = FXCollections.observableArrayList();
+	public HashMap<Integer, AnlageKlasse> assetclasses = new HashMap<Integer, AnlageKlasse>();
 
-	public HashMap<Integer, Assetclass> assetclasses = new HashMap<Integer, Assetclass>();
-
+	// V_Portfolios
 	public HashMap<Integer, Portfolio> allPortfolios = new HashMap<Integer, Portfolio>();
 	public HashMap<Integer, Portfolio> yourPortfolios = new HashMap<Integer, Portfolio>();
 	public ObservableList<PortfolioTableEntry> allPortfolioTE = FXCollections.observableArrayList();
 	public ObservableList<PortfolioTableEntry> yourPortfolioTE = FXCollections.observableArrayList();
-	public ObservableList<XYChart.Series<Number, Number>> scatterGraphSeries = FXCollections.observableArrayList();
-	
-	public Portfolio usedPortfolio;
+	// public PortfolioTableEntry newPortfolio;
 	public PortfolioTableEntry selectedPortfolio;
-	public PortfolioTableEntry newPortfolio;
 
-	public HashMap<Integer, Aktie> allAktienOhneKurse = new HashMap<Integer, Aktie>();
+	// SHARES
+	//---Portfolio bearbeiten in V_AssetClasses, V_Shares, V_Aktienanalyse---
+	public Portfolio usedPortfolio;
 	public HashMap<Integer, Aktie> currentPortfoliosAktienMitKursen = new HashMap<Integer, Aktie>();
 	public HashMap<Integer, Double> currentPortfoliosAktienProzente = new HashMap<Integer, Double>();
-	
 	public ObservableList<AktieTableEntry> currentPortfoliosAktienMitKursenTE = FXCollections.observableArrayList();
-	public ObservableList<AktieTableEntry> allAktienOhneKurseTE = FXCollections.observableArrayList();
 
+	// V_SHARES
+	public HashMap<Integer, Aktie> allAktienOhneKurse = new HashMap<Integer, Aktie>();
+	public ObservableList<AktieTableEntry> allAktienOhneKurseTE = FXCollections.observableArrayList();
 	public AktieTableEntry selectedAktie;
 	public String selectedCurrentSharesString;
-	
-	
-	//AktienAnalyse
-    public HashMap<Integer, Boolean> analyseErgebnis = new HashMap<Integer, Boolean>();
-	
+
+	// AktienAnalyse
+	public HashMap<Integer, Boolean> analyseErgebnis = new HashMap<Integer, Boolean>();
 	public String selectedCurrentSharesStringAnalyse1;
-//	public String selectedCurrentSharesStringAnalyse2
-	;
+	
+	
+	///COMMODITIES
+	// ---Portfolio bearbeiten in V_AssetClasses, V_Comm, V_Rohstoffeanalyse---
+	public HashMap<Integer, Rohstoff> currentPortfoliosRohstoffeMitKursen = new HashMap<Integer, Rohstoff>();
+	public HashMap<Integer, Double> currentPortfoliosRohstoffeProzente = new HashMap<Integer, Double>();
+	public ObservableList<RohstoffTableEntry> currentPortfoliosRohstoffeMitKursenTE = FXCollections.observableArrayList();
 
+	// V_Comm
+	public HashMap<Integer, Rohstoff> allRohstoffeOhneKurse = new HashMap<Integer, Rohstoff>();
+	public ObservableList<RohstoffTableEntry> allRohstoffeOhneKurseTE = FXCollections.observableArrayList();
+	public RohstoffTableEntry selectedRohstoff;
+	public String selectedCurrentCommString;
 
+	// RohstoffeAnalyse
+	public HashMap<Integer, Boolean> analyseErgebnisRohstoffe = new HashMap<Integer, Boolean>();
+	public String selectedCurrentCommStringAnalyse1;
+
+	//COULD HAVE
+    //public ObservableList<__________User> userList = FXCollections.observableArrayList();
+	
+//Konstruktor
 	public static Model getInstance() {
 		if (model1 == null)
 			model1 = new Model();
 		return model1;
 	}
-
+	
+	
+//TabellenEntry-Listen konvertieren	
 	public void transferCurrentShareHashmapToObservableList() {
-		System.out.println("Liste wird in Tabellenform gebracht:" + currentPortfoliosAktienMitKursen);
 		currentPortfoliosAktienMitKursen
 				.forEach((k, v) -> this.currentPortfoliosAktienMitKursenTE.add(new AktieTableEntry(v.getShare_id(),
 						v.getName(), v.getIndustry(), v.getIndex(), v.getSigma(), v.getRisk(), null)));
-		System.out.println("Liste wurde in Tabellenform gebracht:" + currentPortfoliosAktienMitKursenTE);
 	}
 
 	public void transferAllShareHashmapToObservableList() {
-		System.out.println("Liste wird in Tabellenform gebracht:" + currentPortfoliosAktienMitKursen);
 		allAktienOhneKurse.forEach((k, v) -> this.allAktienOhneKurseTE.add(new AktieTableEntry(v.getShare_id(),
 				v.getName(), v.getIndustry(), v.getIndex(), v.getSigma(), v.getRisk(), null)));
-		System.out.println("Liste wurde in Tabellenform gebracht:" + currentPortfoliosAktienMitKursenTE);
-
-		// Iterator it = allAktienOhneKurse.entrySet().iterator();
-		// while (it.hasNext()) {
-		// Map.Entry<Integer, Aktie> pair = (Map.Entry)it.next();
-		// System.out.println(pair.getKey() + " = " + pair.getValue());
-		// this. allAktienOhneKurseTE.add(new
-		// AktieTableEntry(pair.getValue().getShare_id(), pair.getValue().getName(),
-		// pair.getValue().getIndustry(), pair.getValue().getIndex(),
-		// pair.getValue().getSigma(), pair.getValue().getRisk(), null));
-		// //it.remove(); // avoids a ConcurrentModificationException
-		// System.out.println("all-Aktien-Liste wurde in Tabellenform gebracht:" +
-		// allAktienOhneKurseTE );
-		// }
 	}
 
 	public void transferAllPortfolioHashmapToObservableList() {
@@ -110,12 +112,31 @@ public class Model {
 		System.out.println("Liste wurde in Tabellenform gebracht:" + this.allPortfolioTE);
 	}
 
-	//////////////////////////////////////////////
-	//////////////////////////////////////////////
-	// DB Zugriffe
-	//////////////////////////////////////////////
-	//////////////////////////////////////////////
+//Methoden zur Bearbeitung der Model-Daten
+	public int calculateNextPortfolioID() {
 
+		final Comparator<Portfolio> comp = (p1, p2) -> Integer.compare(p1.getPortfolio_id(), p2.getPortfolio_id());
+		Portfolio oldest = this.allPortfolios.values().stream().max(comp).get();
+		return oldest.getPortfolio_id() + 1;
+	}
+
+	public void addToCurrentPAktien(Integer i1, Aktie a1, Double d1) {
+		this.currentPortfoliosAktienMitKursen.put(i1, a1);
+		this.currentPortfoliosAktienProzente.put(i1, d1);
+	}
+
+	public void deleteFromCurrentPAktien(Integer i1) {
+		this.currentPortfoliosAktienMitKursen.remove(i1);
+		this.currentPortfoliosAktienProzente.remove(i1);
+	}
+	
+	
+	
+	//////////////////////////////////////////////
+	//////////////////////////////////////////////
+	// DB-Zugriffe
+	//////////////////////////////////////////////
+	//////////////////////////////////////////////
 	public void initializeAssetClasses_allSHeads_allCHeads_allPortfolios() {
 		// String url = "jdbc:mysql://localhost:3306/sql2223131";
 		// String username = "sql2223131";
@@ -153,14 +174,14 @@ public class Model {
 				this.allPortfolios.put(rs.getInt("PORTFOLIO_ID"), p1);
 				System.out.println(p1.toString());
 			}
-			
+
 			this.transferAllPortfolioHashmapToObservableList();
 			//////////////////////////////////////////////
 			// LOAD FROM DATABASE: FILL ASSETCLASSES
 			//////////////////////////////////////////////
 			rs = stmt.executeQuery("SELECT * FROM PB_ASSETCLASS_DATA ORDER BY AC_ID");
 			while (rs.next()) {// ueber die Zeilen gehen
-				Assetclass ac1 = new Assetclass(rs.getInt("AC_ID"), rs.getString("NAME"), rs.getDouble("SIGMA"),
+				AnlageKlasse ac1 = new AnlageKlasse(rs.getInt("AC_ID"), rs.getString("NAME"), rs.getDouble("SIGMA"),
 						rs.getDouble("RISK"));
 				model1.assetclasses.put(rs.getInt("AC_ID"), ac1);
 				System.out.println(ac1.toString());
@@ -171,14 +192,15 @@ public class Model {
 			e.printStackTrace();
 		}
 	}
-
-	//////////////////////////
-	// Aus DB laden: Aktien des UsedPortfolio MIT KURSEN
+	
+	//BESCHREIBUNG:
 	// Aufrufzeitpunkte:
 	// -->Beim View-Wechsel von V_PORTFOLIO zu V_ASSETCLASS (Wenn neues Portf.
-	////////////////////////// erschaffen wird passiert nichts (die Schleife wird
-	////////////////////////// erst garnicht betreten))
+	//////erschaffen wird passiert nichts (die Schleife wird
+	//////erst garnicht betreten))
 	// -->Bei jeder Änderung der usedPortfolio-Shares
+	//////////////////////////
+	// DB AKTIEN DES USEDPORTFOLIOS LADEN
 	//////////////////////////
 	public void loadSelectedPortfolioData() {
 		String url = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11225625";
@@ -198,6 +220,7 @@ public class Model {
 					"SELECT * FROM PB_PORTF_SHARE WHERE PORTFOLIO_ID =" + this.usedPortfolio.getPortfolio_id() + ";");// selectedPortfolio.getPortfolio_ID;
 			while (rs.next()) {
 				shareList.add(rs.getInt("SHARE_ID"));
+				this.currentPortfoliosAktienProzente.put(rs.getInt("SHARE_ID"), rs.getDouble("PERCENT"));
 				System.out.println("" + shareList);
 			}
 			//// 2. SELECT-Befehl-String der nur diese Aktien-header aus der DB läd
@@ -242,9 +265,9 @@ public class Model {
 	}
 
 	////////////////////////////////////////
-	// NEUE SHARES INS PORTFOLIO- DB_UPDATE_METHODEN
+	// DB NEUE SHARES INS PORTFOLIO- DB_UPDATE_METHODEN
 	////////////////////////////////////////
-	public void updatePB_PORTF_SHAREmit12() {
+	public void updatePB_PORTF_SHAREwithPercents() {
 		String url = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11225625";
 		String username = "sql11225625";
 		String password = "WNjKXk31lH";
@@ -264,7 +287,10 @@ public class Model {
 
 				System.out.println("REPLACE INTO `PB_PORTF_SHARE` VALUES (1,neu,12);");
 				statement = connection.prepareStatement("REPLACE INTO `PB_PORTF_SHARE` VALUES ("
-						+ this.usedPortfolio.getPortfolio_id() + "," + value.getShare_id() + "," + 12 + ");");
+						+ this.usedPortfolio.getPortfolio_id() + "," + value.getShare_id() + ","
+						+ (this.currentPortfoliosAktienProzente.get(entry.getKey()) == null ? "0.0"
+								: this.currentPortfoliosAktienProzente.get(entry.getKey()))
+						+ ");");
 				statement.execute();
 			}
 		} catch (SQLException e) {
@@ -272,10 +298,8 @@ public class Model {
 		}
 	}
 
-
-
 	////////////////
-	// DB UPDATE PORTFOLIO Methode1
+	// DB UPDATE PORTFOLIO
 	/////////////////
 	public void updateDB_PORTFOLIO_updatePortfolioTE(Portfolio portf1) {
 		String url = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11225625";
@@ -310,7 +334,7 @@ public class Model {
 	}
 
 	/////////////////////////////
-	// DB UPDATE PORTFOLIO Methode2
+	// DB UPDATE PORTFOLIO
 	/////////////////////////////
 	public void deleteDB_Portfolio_updatePortfolioTE(PortfolioTableEntry portfEntry1) {
 		String url = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11225625";
@@ -331,8 +355,8 @@ public class Model {
 		}
 		transferAllPortfolioHashmapToObservableList();
 	}
-	
-		////////////////////////////////////////
+
+	////////////////////////////////////////
 	// AKTIEN DES USED PORTFOLIOS -SORTIEREN METHODEN
 	////////////////////////////////////////
 	public void sortBothCurrentPortfoliosAktien() {
@@ -342,23 +366,7 @@ public class Model {
 		this.currentPortfoliosAktienProzente = this.currentPortfoliosAktienProzente.entrySet().stream()
 				.sorted(Map.Entry.comparingByKey()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
 						(oldValue, newValue) -> oldValue, LinkedHashMap::new));
-		
+
 	}
-	public int calculateNextPortfolioID() {
-		
-	    final Comparator<Portfolio> comp = (p1, p2) -> Integer.compare( p1.getPortfolio_id(), p2.getPortfolio_id());
-	    Portfolio oldest = this.allPortfolios.values().stream()
-	                              .max(comp)
-	                              .get();
-	    return oldest.getPortfolio_id() +1;
-	}
-	
-	public void addToCurrentPAktien(Integer i1, Aktie a1, Double d1){
-		this.currentPortfoliosAktienMitKursen.put(i1, a1);
-		this.currentPortfoliosAktienProzente.put(i1, d1);
-	}
-	public void deleteFromCurrentPAktien(Integer i1){
-		this.currentPortfoliosAktienMitKursen.remove(i1);
-		this.currentPortfoliosAktienProzente.remove(i1);
-	}
+
 }

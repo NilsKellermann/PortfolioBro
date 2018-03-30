@@ -1,4 +1,4 @@
-package db_objects;
+package test;
 
 public class __________User {
 public int user_id;

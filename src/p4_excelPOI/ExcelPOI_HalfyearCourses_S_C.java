@@ -1,34 +1,19 @@
 package p4_excelPOI;
 
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import db_objects.Assetclass;
-
-public class ExcelToYearCourseShares2 {
+public class ExcelPOI_HalfyearCourses_S_C {
 	
 	public static HashMap <String, HashMap<Date, Double>> readExcelData(String fileName) {
 		HashMap <String, HashMap<Date, Double>> result= new HashMap <String, HashMap<Date, Double>>();
@@ -84,7 +69,7 @@ public class ExcelToYearCourseShares2 {
 	}
 
 	public static HashMap <String, HashMap<Date, Double>> getListS() {
-		File f = new File("bla");
+		File f = new File("file1");
 		System.out.println(f.getAbsolutePath());
 		HashMap <String, HashMap<Date, Double>> list = readExcelData("Files/ImportsheetShares.xlsx");
 		System.out.println("Assetclass List\n"+list);
@@ -93,7 +78,7 @@ public class ExcelToYearCourseShares2 {
 	}
 
 	public static HashMap <String, HashMap<Date, Double>> getListC() {
-		File f = new File("bla");
+		File f = new File("file1");
 		System.out.println(f.getAbsolutePath());
 		HashMap <String, HashMap<Date, Double>> list = readExcelData("Files/ImportsheetCommodities.xlsx");
 		System.out.println("Assetclass List\n"+list);

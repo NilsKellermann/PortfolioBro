@@ -1,8 +1,7 @@
 package p2_view;
 
 import java.io.IOException;
-import db_objects.Assetclass;
-import db_objects.PortfolioTableEntry;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,6 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import p0_db_objects.AnlageKlasse;
+import p0_db_objects.PortfolioTableEntry;
 import javafx.application.Application; 
 //import javafx.scene.Scene; 
 //import javafx.scene.image.Image; 

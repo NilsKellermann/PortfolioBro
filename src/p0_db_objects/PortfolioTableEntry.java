@@ -1,4 +1,4 @@
-package db_objects;
+package p0_db_objects;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;

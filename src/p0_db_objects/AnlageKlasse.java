@@ -1,12 +1,12 @@
-package db_objects;
+package p0_db_objects;
 
-public class Assetclass {
+public class AnlageKlasse {
 	private int AC_ID;
 	private String name;
 	private double sigma;
 	private double risk;
 
-	public Assetclass(int aC_ID, String name, double sigma, double risk) {
+	public AnlageKlasse(int aC_ID, String name, double sigma, double risk) {
 		super();
 		AC_ID = aC_ID;
 		this.name = name;

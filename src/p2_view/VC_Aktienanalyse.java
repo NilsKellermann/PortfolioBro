@@ -318,7 +318,7 @@ public class VC_Aktienanalyse {
 			m1.usedPortfolio.setSigma_share(sigma_shareValue);
 			m1.usedPortfolio.setRisk_share(risk_shareValue);
 			m1.updatePB_PORTF_SHAREwithPercents();
-			this.c1.setSceneToV_AssetType();}
+			this.c1.setSceneToV_CompletePortfolio();}
 
 		else {
 			// Show a predefined Warning notification

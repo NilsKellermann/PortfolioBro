@@ -17,6 +17,7 @@ public class Main extends Application {
 		
 //Model initialisieren
 		Model m1 = Model.getInstance();
+		m1.loggedInUser_id = 1000;
 		m1.initializeAssetClasses_allSHeads_allCHeads_allPortfolios();
 		m1.transferCurrentShareHashmapToObservableList();
 		m1.transferAllShareHashmapToObservableList();

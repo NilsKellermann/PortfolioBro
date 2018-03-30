@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.awt.event.FocusEvent;
-import javax.swing.JPanel;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -252,11 +250,20 @@ public class VC_AssetClasses {
 			boolean alreadyExists = m1.yourPortfolioTE.stream()
 					.anyMatch(t -> t.get2Name().equals(this.newNameTextField.getText()));
 			if (alreadyExists == true) {
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("Information Dialog");
-				alert.setHeaderText("");
-				alert.setContentText("Der Name des Portfolios wird bereits verwendet.");
-				alert.showAndWait();
+//				Alert alert = new Alert(AlertType.INFORMATION);
+//				alert.setTitle("Information Dialog");
+//				alert.setHeaderText("");
+//				alert.setContentText("Der Name des Portfolios wird bereits verwendet.");
+//				alert.showAndWait();
+				m1.usedPortfolio.setPortfolio_id(m1.usedPortfolio.getPortfolio_id());
+				m1.usedPortfolio.setName(this.newNameTextField.getText());
+				m1.usedPortfolio.setUser_id(m1.loggedInUser_id);
+				m1.usedPortfolio.setInvestment(Double.parseDouble(this.newInvestmentTextField.getText()));
+				m1.usedPortfolio.setShare_dist(Double.parseDouble(this.newShareDistTextField.getText()));
+				m1.usedPortfolio.setComm_dist(Double.parseDouble(this.newCommDistTextField.getText()));
+				m1.usedPortfolio.setCurr_dist(Double.parseDouble(this.newCurrDistTextField.getText()));
+				m1.usedPortfolio.setEstate_dist(Double.parseDouble(this.newEstateDistTextField.getText()));
+				m1.usedPortfolio.setBond_dist(Double.parseDouble(this.newBondDistTextField.getText()));
 			} else {
 
 				PortfolioTableEntry p1 = new PortfolioTableEntry(m1.usedPortfolio.getPortfolio_id(),

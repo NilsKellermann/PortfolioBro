@@ -121,6 +121,11 @@ public class VC_Portfolios {
 	}
 
 	@FXML
+	private void handleVergleichen() throws IOException {
+		Controller.setSceneToV_CompletePortfolioCompare();
+	}
+	
+	@FXML
 	private void handleAnpassen() throws IOException {
 		if (m1.selectedPortfolio != null) {
 			m1.usedPortfolio = m1.allPortfolios.get(m1.selectedPortfolio.get2Portfolio_id());

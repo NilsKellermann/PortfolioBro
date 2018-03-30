@@ -1,6 +1,6 @@
-package db_objects;
+package p0_db_objects;
 
-public class Rohstoff {
+public class RohstoffTableEntry {
 
 private int comm_id;
 private String name;
@@ -10,7 +10,7 @@ private double risk;
 
 private int courses[][];
 
-public Rohstoff(int comm_id, String name, String category, double sigma, double risk, int[][] courses) {
+public RohstoffTableEntry(int comm_id, String name, String category, double sigma, double risk, int[][] courses) {
 		super();
 		this.comm_id = comm_id;
 		this.name = name;

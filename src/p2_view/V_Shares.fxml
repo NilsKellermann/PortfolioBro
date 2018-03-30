@@ -4,6 +4,7 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.ScatterChart?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
@@ -51,9 +52,9 @@
                                              <content>
                                                 <TableView fx:id="tableView1">
                                                   <columns>
-                                                    <TableColumn fx:id="IdColumn1" prefWidth="75.0" text="C1" />
-                                                    <TableColumn fx:id="nameColumn1" prefWidth="75.0" text="C2" />
-                                                      <TableColumn prefWidth="75.0" text="C2" />
+                                                    <TableColumn fx:id="IdColumn1" prefWidth="60.0" text="ID" />
+                                                    <TableColumn fx:id="nameColumn1" prefWidth="171.0" text="Name" />
+                                                      <TableColumn fx:id="industryColumn1" prefWidth="145.0" text="Marktsektor" />
                                                   </columns>
                                                 </TableView>
                                              </content>
@@ -82,10 +83,9 @@
                                              <content>
                                                 <TableView fx:id="tableView2">
                                                    <columns>
-                                                      <TableColumn fx:id="IdColumn2" prefWidth="75.0" text="C1" />
-                                                      <TableColumn fx:id="nameColumn2" prefWidth="75.0" text="C2" />
-                                                      <TableColumn prefWidth="75.0" text="C2" />
-                                                      <TableColumn prefWidth="75.0" text="C2" />
+                                                      <TableColumn fx:id="IdColumn2" prefWidth="51.0" text="ID" />
+                                                      <TableColumn fx:id="nameColumn2" prefWidth="177.0" text="Name" />
+                                                      <TableColumn fx:id="industryColumn2" prefWidth="148.0" text="Marktsektor" />
                                                    </columns>
                                                 </TableView>
                                              </content>
@@ -114,8 +114,9 @@
                                              <content>
                                                 <TableView fx:id="tableView3">
                                                    <columns>
-                                                      <TableColumn fx:id="IdColumn3" prefWidth="75.0" text="C1" />
-                                                      <TableColumn fx:id="nameColumn3" prefWidth="75.0" text="C2" />
+                                                      <TableColumn fx:id="IdColumn3" prefWidth="48.0" text="ID" />
+                                                      <TableColumn fx:id="nameColumn3" prefWidth="162.0" text="Name" />
+                                                      <TableColumn fx:id="industryColumn3" prefWidth="166.0" text="Marktsektor" />
                                                    </columns>
                                                 </TableView>
                                              </content>
@@ -144,8 +145,9 @@
                                              <content>
                                                 <TableView fx:id="tableView4">
                                                    <columns>
-                                                      <TableColumn fx:id="IdColumn4" prefWidth="75.0" text="C1" />
-                                                      <TableColumn fx:id="nameColumn4" prefWidth="75.0" text="C2" />
+                                                      <TableColumn fx:id="IdColumn4" prefWidth="31.0" text="ID" />
+                                                      <TableColumn fx:id="nameColumn4" prefWidth="185.0" text="Name" />
+                                                      <TableColumn fx:id="industryColumn4" minWidth="0.0" prefWidth="161.0" text="Marktsektor" />
                                                    </columns>
                                                 </TableView>
                                              </content>
@@ -174,8 +176,9 @@
                                              <content>
                                                 <TableView fx:id="tableView5">
                                                    <columns>
-                                                      <TableColumn fx:id="IdColumn5" prefWidth="75.0" text="C1" />
-                                                      <TableColumn fx:id="nameColumn5" prefWidth="75.0" text="C2" />
+                                                      <TableColumn fx:id="IdColumn5" prefWidth="51.0" text="ID" />
+                                                      <TableColumn fx:id="nameColumn5" prefWidth="168.0" text="Name" />
+                                                      <TableColumn fx:id="industryColumn5" prefWidth="158.0" text="Marktsektor" />
                                                    </columns>
                                                 </TableView>
                                              </content>
@@ -236,7 +239,10 @@
                      </rowConstraints>
                      <children>
                         <StackPane fx:id="paneWithSwing" prefHeight="150.0" prefWidth="303.0" GridPane.columnIndex="1" />
-                        <BorderPane fx:id="bp1" prefHeight="200.0" prefWidth="200.0" />
+                        <BorderPane fx:id="bp1" prefHeight="200.0" prefWidth="200.0">
+                           <center>
+                              <Label text="Klicken Sie auf eine der Aktien (links unten) , um den Aktienkurs anzuzeigen." BorderPane.alignment="CENTER" />
+                           </center></BorderPane>
                      </children>
                   </GridPane>
                   <ScatterChart fx:id="sc" legendSide="RIGHT" prefHeight="250.0" prefWidth="442.0" GridPane.columnIndex="1">

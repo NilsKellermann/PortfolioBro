@@ -1,42 +1,25 @@
 package p4_excelPOI;
 
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
-
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import db_objects.Assetclass;
-
-public class ExcelToYearCourseShares3 {
+public class ExcelPOI_Headerdata2_S_C {
 	
 	public static HashMap <String, HashMap<String, Double>> readExcelData(String fileName) {
 		HashMap <String, HashMap<String, Double>> result= new HashMap <String, HashMap<String, Double>>();
 		System.out.println("start");
 		try {
-			//Create the input stream from the xlsx/xls file
+			//Input stream von xlsx/xls Datei erzeugen
 			FileInputStream fis = new FileInputStream(fileName);
-			//Create Workbook instance for xlsx/xls file input stream
+			//Workbook erzeugen
 			Workbook workbook = null;
 			if(fileName.toLowerCase().endsWith("xlsx")){
 				workbook = new XSSFWorkbook(fis);
@@ -44,17 +27,16 @@ public class ExcelToYearCourseShares3 {
 				workbook = new HSSFWorkbook(fis);
 			}
 			
-			//Get the number of sheets in the xlsx file
 			int numberOfSheets = workbook.getNumberOfSheets();
 //////////////////////////////			
-			//loop through each of the sheets
+			//Excel-Sheets durchlaufen
 			for(int i=0; i < numberOfSheets; i++){
 				Sheet sheet = workbook.getSheetAt(i);
 				System.out.println("start2");
 
 //////////////////////////////
 				Iterator<Row> rowIterator = sheet.iterator();
-				HashMap<String, Double> countrieslist= new HashMap<String, Double>();				
+				HashMap<String, Double> c_list= new HashMap<String, Double>();				
 				Double risikopa= 0.0;
 				Double renditepa= 0.0;
 //////////////////////////////
@@ -64,13 +46,12 @@ public class ExcelToYearCourseShares3 {
 				row = rowIterator.next();
 				if(row.getCell(5) != null)renditepa = row.getCell(5).getNumericCellValue();
 				
-				countrieslist.put("Risikopa",risikopa);
-				countrieslist.put("Renditepa",renditepa);
+				c_list.put("Risikopa",risikopa);
+				c_list.put("Renditepa",renditepa);
 /////////////////////////////
 
-			result.put(workbook.getSheetName(i), countrieslist);
-		} //end of sheets for loop
-		//close file input stream
+			result.put(workbook.getSheetName(i), c_list);
+		} //Sheets durchlaufen ENDE
 		fis.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -80,20 +61,18 @@ public class ExcelToYearCourseShares3 {
 	}
 
 	public static HashMap <String, HashMap<String, Double>> getListS(){
-		File f = new File("bla");
+		File f = new File("excel");
 		System.out.println(f.getAbsolutePath());
 		HashMap <String, HashMap<String, Double>> list = readExcelData("Files/ImportsheetShares.xlsx");
 		System.out.println("Assetclass List\n"+list);
-		System.out.println("abc");
 		return list;
 	}
 	
 	public static HashMap <String, HashMap<String, Double>> getListC(){
-		File f = new File("bla");
+		File f = new File("excel");
 		System.out.println(f.getAbsolutePath());
 		HashMap <String, HashMap<String, Double>> list = readExcelData("Files/ImportsheetCommodities.xlsx");
 		System.out.println("Assetclass List\n"+list);
-		System.out.println("abc");
 		return list;
 	}
 	

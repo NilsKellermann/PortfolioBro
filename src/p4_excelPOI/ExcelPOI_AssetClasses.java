@@ -1,15 +1,11 @@
 package p4_excelPOI;
 
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
-
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -17,15 +13,13 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import db_objects.Assetclass;
+import p0_db_objects.AnlageKlasse;
 
-public class ExcelToAssetclassList2 {
+public class ExcelPOI_AssetClasses {
 
-	public static HashMap <String, HashMap<Integer, Assetclass>> readExcelData(String fileName) {
+	public static HashMap <String, HashMap<Integer, AnlageKlasse>> readExcelData(String fileName) {
 		
-		HashMap <String, HashMap<Integer, Assetclass>> result= new HashMap <String, HashMap<Integer, Assetclass>>();
-		
-		
+		HashMap <String, HashMap<Integer, AnlageKlasse>> result= new HashMap <String, HashMap<Integer, AnlageKlasse>>();
 		
 		try {
 			//Create the input stream from the xlsx/xls file
@@ -44,7 +38,7 @@ public class ExcelToAssetclassList2 {
 			
 			//loop through each of the sheets
 			for(int i=0; i < numberOfSheets; i++){
-				HashMap<Integer, Assetclass> countriesList = new HashMap<Integer, Assetclass>();
+				HashMap<Integer, AnlageKlasse> countriesList = new HashMap<Integer, AnlageKlasse>();
 				//Get the nth sheet from the workbook
 				Sheet sheet = workbook.getSheetAt(i);
 				
@@ -98,7 +92,7 @@ public class ExcelToAssetclassList2 {
 		            	}
 		            	
 		            } //end of cell iterator
-		            Assetclass c = new Assetclass(i1, shortCode, name, risk1);
+		            AnlageKlasse c = new AnlageKlasse(i1, shortCode, name, risk1);
 		            countriesList.put(i1, c);
 		            i1= i1 +1;
 		            result.put(workbook.getSheetName(i) + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", countriesList);
@@ -113,11 +107,12 @@ public class ExcelToAssetclassList2 {
 		
 		return result;
 	}
-	//HashMap<Integer, Assetclass> assetclasses
+
+	
 	public static void main(String args[]){
-		File f = new File("bla");
+		File f = new File("file1");
 		System.out.println(f.getAbsolutePath());
-		HashMap <String, HashMap<Integer, Assetclass>> list = readExcelData("Files/Assetklassen.xlsx");
+		HashMap <String, HashMap<Integer, AnlageKlasse>> list = readExcelData("Files/Assetklassen.xlsx");
 		System.out.println("Assetclass List\n"+list);
 	}
 

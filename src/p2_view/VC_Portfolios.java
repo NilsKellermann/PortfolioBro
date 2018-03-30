@@ -2,11 +2,12 @@ package p2_view;
 
 import java.awt.event.FocusEvent;
 import java.io.IOException;
-import db_objects.Portfolio;
-import db_objects.PortfolioTableEntry;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import p0_db_objects.Portfolio;
+import p0_db_objects.PortfolioTableEntry;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -25,8 +26,19 @@ public class VC_Portfolios {
 	private TableColumn<PortfolioTableEntry, Number> IdColumn;
 	@FXML
 	private TableColumn<PortfolioTableEntry, String> nameColumn;
-
-
+	@FXML
+	private TableColumn<PortfolioTableEntry, Number> InvestmentColumn;
+	@FXML
+	private TableColumn<PortfolioTableEntry, Number> A_Column;
+	@FXML
+	private TableColumn<PortfolioTableEntry, Number> B_Column;
+	@FXML
+	private TableColumn<PortfolioTableEntry, Number> C_Column;
+	@FXML
+	private TableColumn<PortfolioTableEntry, Number> D_Column;
+	@FXML
+	private TableColumn<PortfolioTableEntry, Number> E_Column;
+	
 	@FXML
 	private Label testidLabel;
 	@FXML
@@ -39,7 +51,6 @@ public class VC_Portfolios {
 	private Button loeschen;
 	@FXML
 	private Button weiter;
-	
 
 	/**
 	 * The constructor. The constructor is called before the initialize() method.
@@ -55,21 +66,26 @@ public class VC_Portfolios {
 	private void initialize() {
 
 	}
-	
+
 	public void updateData() {
-		//Fill Portfolio-table & add listener
+		// Portfolio-Tabelle füllen
 		pTable.setItems(m1.allPortfolioTE);
 		IdColumn.setCellValueFactory(cellData -> cellData.getValue().getPortfolio_id());
 		nameColumn.setCellValueFactory(cellData -> cellData.getValue().getName());
+		InvestmentColumn.setCellValueFactory(cellData -> cellData.getValue().getCapital());
+		A_Column.setCellValueFactory(cellData -> cellData.getValue().getShare_dist());
+		B_Column.setCellValueFactory(cellData -> cellData.getValue().getComm_dist());
+		C_Column.setCellValueFactory(cellData -> cellData.getValue().getCurr_dist());
+		D_Column.setCellValueFactory(cellData -> cellData.getValue().getEstate_dist());
+		E_Column.setCellValueFactory(cellData -> cellData.getValue().getBond_dist());
 
-		
 		pTable.getSelectionModel().selectedItemProperty()
-		.addListener((observable, oldValue, newValue) -> handleSaveSelectedAndUseSelectedToFill(newValue));
-		
+				.addListener((observable, oldValue, newValue) -> handleSaveSelectedAndUseSelectedToFill(newValue));
+
 		// Clear person details.
 		handleSaveSelectedAndUseSelectedToFill(null);
 	}
-	
+
 	////////////////////////////////////////////////////////
 	// Handle-Methoden
 	////////////////////////////////////////////////////////
@@ -79,7 +95,6 @@ public class VC_Portfolios {
 			idLabel.setText("" + m1.selectedPortfolio.get2Portfolio_id());
 			nameLabel.setText(m1.selectedPortfolio.get2Name());
 		} else {
-			//
 			m1.selectedPortfolio = null;
 			idLabel.setText("");
 			nameLabel.setText("");
@@ -88,7 +103,6 @@ public class VC_Portfolios {
 
 	@FXML
 	private void handleDelete() {
-		System.out.println("DeleteButton Pressed!");
 		m1.allPortfolios.remove(m1.selectedPortfolio.get2Portfolio_id());
 		m1.deleteDB_Portfolio_updatePortfolioTE(m1.selectedPortfolio);
 		this.updateData();
@@ -96,23 +110,22 @@ public class VC_Portfolios {
 
 	@FXML
 	private void handleWeiter() throws IOException {
-		System.out.println("Weiterbutton pressed!");
-		m1.usedPortfolio = new Portfolio(m1.calculateNextPortfolioID(), "empty" , m1.loggedInUser_id, 0, 50, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+		m1.usedPortfolio = new Portfolio(m1.calculateNextPortfolioID(), "empty", m1.loggedInUser_id, 0, 50, 50, 0, 0, 0,
+				0, 0, 0, 0, 0, 0);
 		this.c1.setSceneToV_AssetType();
 	}
-	
+
 	@FXML
 	private void handleZurueck() throws IOException {
-		System.out.println("Weiterbutton pressed!");
 		this.c1.setSceneToV_MainMenu();
 	}
 
 	@FXML
 	private void handleAnpassen() throws IOException {
-		if(m1.selectedPortfolio != null) {
-	m1.usedPortfolio = m1.allPortfolios.get(m1.selectedPortfolio.get2Portfolio_id());
-	this.c1.setSceneToV_AssetType();}
-		else {
+		if (m1.selectedPortfolio != null) {
+			m1.usedPortfolio = m1.allPortfolios.get(m1.selectedPortfolio.get2Portfolio_id());
+			this.c1.setSceneToV_AssetType();
+		} else {
 			// Show a predefined Warning notification
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information Dialog");
@@ -120,17 +133,6 @@ public class VC_Portfolios {
 			alert.setContentText("");
 			alert.showAndWait();
 		}
-	}
-	
-	public void focusGained(FocusEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
-	public void focusLost(FocusEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

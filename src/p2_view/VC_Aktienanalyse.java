@@ -26,8 +26,6 @@ import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
-import db_objects.Assetclass;
-import db_objects.PortfolioTableEntry;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.value.ChangeListener;
@@ -49,6 +47,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.StackPane;
+import p0_db_objects.AnlageKlasse;
+import p0_db_objects.PortfolioTableEntry;
 import p0_model.Model;
 import p1_controller.Controller;
 
@@ -123,7 +123,7 @@ public class VC_Aktienanalyse {
 		}
 		
 		m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> 
-		{if(m1.analyseErgebnis.isEmpty() || m1.analyseErgebnis.get(k).booleanValue() == true) //0.0 != m1.currentPortfoliosAktienProzente.get(k))
+		{if(m1.analyseErgebnis.isEmpty() || (m1.analyseErgebnis.containsKey(k) ? m1.analyseErgebnis.get(k).booleanValue() : false) == true) //0.0 != m1.currentPortfoliosAktienProzente.get(k))
 		{simpleStringList.add(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosAktienProzente.get(k) + "% )");}});
 
 	    simpleStringList.add("CNH");
@@ -299,6 +299,25 @@ public class VC_Aktienanalyse {
 		//TODOOOO	//////////777777777777777777777777777777
 		////////////////////////////////////////
 		///////////////////////////////////////
+			
+			//aussortierte Aktien-Prozentwerte auf 0.0 setzen
+			m1.analyseErgebnis.forEach((i,boolean1) -> {if(boolean1==false)m1.currentPortfoliosAktienProzente.put(i, 0.0);});
+			
+			//Alle Aktien durchlaufen und average Sigma und Rendite berechnen.
+			List<Double> risk_shareL = new ArrayList<Double>();
+			List<Double> sigma_shareL = new ArrayList<Double>();
+			List<Double> risk_commL = new ArrayList<Double>();
+			List<Double> sigma_commL = new ArrayList<Double>();
+			m1.currentPortfoliosAktienMitKursen.forEach ((i,aktie1) -> {
+				risk_shareL.add(aktie1.getRisk() * m1.currentPortfoliosAktienProzente.get(i) ); //ohne Teilen durch 100. Im Exceldokument lagen bereits Prozentwerte vor.
+				sigma_shareL.add(aktie1.getSigma() * m1.currentPortfoliosAktienProzente.get(i) );//ohne Teilen durch 100. Im Exceldokument lagen bereits Prozentwerte vor.
+
+			} );
+			Double sigma_shareValue = sigma_shareL.stream().reduce(0.0, Double::sum);
+			Double risk_shareValue = risk_shareL.stream().reduce(0.0, Double::sum);
+			m1.usedPortfolio.setSigma_share(sigma_shareValue);
+			m1.usedPortfolio.setRisk_share(risk_shareValue);
+			m1.updatePB_PORTF_SHAREwithPercents();
 			this.c1.setSceneToV_AssetType();}
 
 		else {
@@ -309,7 +328,9 @@ public class VC_Aktienanalyse {
 			alert.setContentText("");
 			alert.showAndWait();
 		}
+
 	}
+	
 	@FXML
 	private void handleZurueck() throws IOException {
 		System.out.println("Weiterbutton pressed!");

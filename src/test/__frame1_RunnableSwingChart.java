@@ -1,4 +1,4 @@
-package p2_view;
+package test;
 
 import javax.swing.JPanel;
 

@@ -40,6 +40,7 @@ import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TabPane;
@@ -65,6 +66,12 @@ public class VC_Aktienanalyse {
 	private StackPane paneWithSwing2;
 	@FXML
 	private TabPane tabPane1;
+	
+	@FXML
+	private TextField aversionscoefficient;
+	@FXML
+	private ChoiceBox<String> functiontyp;
+	ObservableList<String> functiontypList = FXCollections.observableArrayList("Linear","Quadratisch");
 	
 	@FXML
 	private ListView<String> listView1;
@@ -101,7 +108,9 @@ public class VC_Aktienanalyse {
 	 */
 	@FXML
 	private void initialize() {
-
+		functiontyp.setItems(functiontypList);
+		functiontyp.setValue("Linear");
+		//System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>"+functiontyp.getValue());
 	}
 	
 	public void updateData() {
@@ -318,10 +327,7 @@ public class VC_Aktienanalyse {
 	private void handleSuedOstStreng() throws IOException {
 		
 		System.out.println("suedOst pressed!");
-		///// 
-//		m1.currentPortfoliosAktienMitKursen; 
-
-		//System.out.println(m1.currentPortfoliosAktienMitKursen.size());
+		
 		int counter = m1.currentPortfoliosAktienMitKursen.size();
 		double [][] temp = new double [counter][4];
 		final int[] i = {0};
@@ -361,16 +367,18 @@ public class VC_Aktienanalyse {
 			
 			if(temp[j][0] <= temp[j+1][0] && temp[j+1][1] <= temp[j][1] && (temp[j][3] == 1 && temp[j+1][3] == 1)) {
 				
-				double [][] temp2 = {{temp[j+1][0],temp[j+1][1],temp[j+1][3]}};
+				double [][] temp2 = {{temp[j+1][0],temp[j+1][1],temp[j+1][2],temp[j+1][3]}};
 				
 				for (int m = j+1; m < temp.length-1; m++) {
 					temp[m][0] = temp[m+1][0];
 					temp[m][1] = temp[m+1][1];
+					temp[m][2] = temp[m+1][2];
 					temp[m][3] = temp[m+1][3];
 				};
 				
 				temp[temp.length-1][0] = temp2[0][0];
 				temp[temp.length-1][1] = temp2[0][1];
+				temp[temp.length-1][2] = temp2[0][2];
 				temp[temp.length-1][3] = 0;
 				
 				j--;
@@ -384,12 +392,13 @@ public class VC_Aktienanalyse {
 		XYSeriesCollection dataset = new XYSeriesCollection();
 		XYSeries series2 = new XYSeries("Kurve1");
 		for(int j = 0; j < temp.length; j++) {
+			if(j==0) {series2.add(temp[j][0],-1);}
 			if(temp[j][3]==1) {
 				series2.add(temp[j][0],temp[j][1]);
 				if(temp[j+1][3]==1) {
 					series2.add(temp[j+1][0],temp[j][1]);
 				}
-				else series2.add(100,temp[j][1]);
+				else series2.add(1,temp[j][1]);
 			}
 		};
 		dataset.addSeries(series2);
@@ -414,26 +423,15 @@ public class VC_Aktienanalyse {
 				if (temp[j][2] == Integer.valueOf(Label[m][0])) {Info = Label[m][1];}
 			}
 		
-		/*
-			if (temp[j][2] ==)
-			//if (temp[i][2] == 0) {Info="BMW";};
-			if (temp[j][2] == 1) {Info="Honda";};
-			if (temp[j][2] == 2) {Info="Toyota";};
-			if (temp[j][2] == 3) {Info="McLaren";};
-			if (temp[j][2] == 4) {Info="Suzuki";};
-			if (temp[j][2] == 5) {Info="Opel";};
-			if (temp[j][2] == 6) {Info="Ferrari";};
-			if (temp[j][2] == 7) {Info="Daihatsu";};
-			if (temp[j][2] == 8) {Info="Mercedes";};
-			if (temp[j][2] == 9) {Info="Renault";};
-			if (temp[j][2] == 13) {Info="Daihatsu";};
-			if (temp[j][2] == 14) {Info="Mercedes";};
-			if (temp[j][2] == 27) {Info="Renault";};
-			*/
 			XYSeries series1 = new XYSeries(Info);
 			series1.add(temp[j][0], temp[j][1]);
 			dataset.addSeries(series1);
 		};
+		
+		for(int j = 0; j < temp.length; j++) {
+        	if(temp[j][3] == 1) {m1.analyseErgebnis.put((int)(temp[j][2]), new Boolean(true));}
+        	else {m1.analyseErgebnis.put((int)(temp[j][2]), new Boolean(false));}
+        }		
 		
 		sn1 = new SwingNode();
 		paneWithSwing1.getChildren().add(sn1);
@@ -460,10 +458,10 @@ public class VC_Aktienanalyse {
         plot.setRangeGridlinePaint(Color.white);
         
         NumberAxis domain = (NumberAxis) plot.getDomainAxis();
-        domain.setRange(-0, 0.7);
+        domain.setRange(0, 1);
         domain.setTickUnit(new NumberTickUnit(0.1));
         NumberAxis range = (NumberAxis) plot.getRangeAxis();
-        range.setRange(-0, 0.7);
+        range.setRange(-0.31, 0.71);
         range.setTickUnit(new NumberTickUnit(0.1));
         
         XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
@@ -485,18 +483,11 @@ public class VC_Aktienanalyse {
 		
         ChartPanel panel = new ChartPanel(chart);
         sn1.setContent(panel);
-//		---> m1.analyseErgebnis<id, TOPFLOPBOOLEAN>
-		////
-		/*
-        for(int j = 0; j < temp.length; j++) {
-        	if(temp[j][2] == )
-        	m1.analyseErgebnis.put(6, new Boolean(true));
-        }
-        */
-		////Grafik erschaffen und füllen
+
 		this.updateData();
 	}
 	
+	/*
 	@FXML
 	private void handleSuedOstNormal() throws IOException {
 		System.out.println("Weiterbutton pressed!");
@@ -506,10 +497,202 @@ public class VC_Aktienanalyse {
 
 				this.updateData();	
 	}
+	*/
 	
 	@FXML
 	private void handleIndifferenz() throws IOException {
 		System.out.println("Weiterbutton pressed!");
-		this.c1.setSceneToV_Shares();
+		//this.c1.setSceneToV_Shares();
+		
+		String functp = this.functiontyp.getValue();
+		double averco = Double.parseDouble(this.aversionscoefficient.getText());
+		int counter = m1.currentPortfoliosAktienMitKursen.size();
+		double [][] temp = new double [counter][5];
+		final int[] i = {0};
+
+		m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> 
+			{
+				temp [i[0]][0] = v.getSigma();
+				temp [i[0]][1] = v.getRisk();
+				temp [i[0]][2] = v.getShare_id();
+				temp [i[0]][3] = 0;
+				//System.out.println(v.getShare_id() + " " + v.getName());
+				System.out.println(temp[i[0]][0] + " " + temp[i[0]][1] + " " + temp[i[0]][2] + " " + temp[i[0]][3]+ " " + temp[i[0]][4]);	
+				i[0] += 1;
+			}
+		);
+		
+		if(functp == "Linear") {
+			for(int j = 0; j < temp.length; j++) {
+				//System.out.println(temp[i][1] - aversionscoefficient * temp[i][0]);
+				temp[j][4] = (temp[j][1] - averco/20 * temp[j][0]);
+			}
+		};
+		
+		/*Quadratisch*/
+		if(functp == "Quadratisch") {
+			for(int j = 0; j < temp.length; j++) {
+				//System.out.println(temp[i][1] - aversionscoefficient * (temp[i][0] * temp[i][0]));
+				temp[j][4] = (temp[j][1] - averco/5 * (temp[j][0] * temp[j][0]));
+			}
+		};
+		
+		for(int j = 0; j<counter; j++) {
+    		System.out.println(temp[j][0] + " " + temp[j][1] + " " + temp[j][2] + " " + temp[j][3] + " " + temp[j][4]);
+    	}
+		
+		//Sortierung
+				Arrays.sort(temp, 
+		        		new Comparator<double[]>() {
+				            @Override
+				            public int compare( double[] a,  double[] b) {
+				                 int distance = Double.compare(b[4],a[4]);
+				                 if(distance == 0) {
+				                	 distance = Double.compare(b[0],a[0]);
+				                 }
+				            return distance;
+				            }
+		        		}
+		        );
+		
+		double SchwelleProzent = 0.3; 
+		double Schwellenwert = (1-SchwelleProzent)*temp[0][4];
+		
+		for(int j = 0; j<temp.length; j++) {
+    		if (temp[j][4] > Schwellenwert) {temp[j][3]=1;}
+    		//System.out.println(temp[i][0] + " " + temp[i][1] + " " + temp[i][2] + " " + temp[i][3] + " " + temp[i][4]);
+    	}
+		
+		for(int j = 0; j<counter; j++) {
+    		System.out.println(temp[j][0] + " " + temp[j][1] + " " + temp[j][2] + " " + temp[j][3] + " " + temp[j][4]);
+    	}
+		
+		XYSeriesCollection dataset = new XYSeriesCollection();
+		
+		XYSeries series2 = new XYSeries("Kurve1");
+		XYSeries series3 = new XYSeries("Kurve2");
+		XYSeries series4 = new XYSeries("Kurve3");
+		XYSeries series5 = new XYSeries("Kurve4");
+		XYSeries series6 = new XYSeries("Kurve5");
+		for(double j = 0; j < 1; j+=0.01) {
+			if(functp == "Linear") {
+				//System.out.print(z[j] + aversionscoefficient * i + " ");
+				series2.add(j, (-0.20+Schwellenwert) + averco/20 * j);
+				series3.add(j, (-0.10+Schwellenwert) + averco/20 * j);
+				series4.add(j, (Schwellenwert) + averco/20 * j);
+				series5.add(j, (0.10+Schwellenwert) + averco/20 * j);
+				series6.add(j, (0.20+Schwellenwert) + averco/20 * j);
+			}
+			if(functp == "Quadratisch") {
+				//System.out.print(z[j] + aversionscoefficient * (i * i) + " ");
+				series2.add(j, (-0.20+Schwellenwert) + averco/5 * (j*j));
+				series3.add(j, (-0.10+Schwellenwert) + averco/5 * (j*j));
+				series4.add(j, (Schwellenwert) + averco/5 * (j*j));
+				series5.add(j, (0.10+Schwellenwert) + averco/5 * (j*j));
+				series6.add(j, (0.20+Schwellenwert) + averco/5 * (j*j));
+			}
+		}
+		dataset.addSeries(series2);
+		dataset.addSeries(series3);
+		dataset.addSeries(series4);
+		dataset.addSeries(series5);
+		dataset.addSeries(series6);
+		
+		String [][] Label = new String [counter][2];
+		i[0] = 0;
+		m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> 
+			{
+				Label [i[0]][0] = String.valueOf(v.getShare_id());
+				Label [i[0]][1] = v.getName();
+				//System.out.println(v.getShare_id() + " " + v.getName());
+				System.out.println(Label[i[0]][0] + " " + Label[i[0]][1]);	
+				i[0] += 1;
+			}
+		);
+		
+		for(int j = 0; j < temp.length; j++) {
+			String Info = null;
+			//Info = m1.currentPortfoliosAktienMitKursen.values(3,3);
+			for(int m = 0; m < Label.length; m++) {
+				if (temp[j][2] == Integer.valueOf(Label[m][0])) {Info = Label[m][1];}
+			}
+		
+			XYSeries series1 = new XYSeries(Info);
+			series1.add(temp[j][0], temp[j][1]);
+			dataset.addSeries(series1);
+		};
+		
+		for(int j = 0; j < temp.length; j++) {
+        	if(temp[j][3] == 1) {m1.analyseErgebnis.put((int)(temp[j][2]), new Boolean(true));}
+        	else {m1.analyseErgebnis.put((int)(temp[j][2]), new Boolean(false));}
+        }
+		
+		sn2 = new SwingNode();
+		paneWithSwing2.getChildren().add(sn2);
+		
+		// create the chart...
+        JFreeChart chart = ChartFactory.createXYLineChart(
+            "Indifferenzkurven",      // chart title
+            "Risiko",                      // x axis label
+            "Rendite",                      // y axis label
+            dataset,                  // data
+            PlotOrientation.VERTICAL,
+            false,                     // include legend
+            true,                     // tooltips
+            false                     // urls
+        );
+        chart.setBackgroundPaint(Color.gray);
+        chart.getTitle().setPaint(Color.black);
+        
+        
+     // get a reference to the plot for further customisation...
+        XYPlot plot = chart.getXYPlot();
+        plot.setBackgroundPaint(Color.black);
+        plot.setDomainGridlinePaint(Color.white);
+        plot.setRangeGridlinePaint(Color.white);
+        //title.setPaint(Color.red)
+       
+        NumberAxis domain = (NumberAxis) plot.getDomainAxis();
+        domain.setRange(0, 1);
+        domain.setTickUnit(new NumberTickUnit(0.1));
+        NumberAxis range = (NumberAxis) plot.getRangeAxis();
+        range.setRange(-0.31, 0.71);
+        range.setTickUnit(new NumberTickUnit(0.1));
+        
+        XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
+        renderer.setSeriesPaint(0, Color.white);
+        renderer.setSeriesPaint(1, Color.white);
+        renderer.setSeriesPaint(2, Color.red);
+        renderer.setSeriesPaint(3, Color.white);
+        renderer.setSeriesPaint(4, Color.white);
+        renderer.setSeriesShapesVisible(0, false);//für alle Kurven
+        renderer.setSeriesShapesVisible(1, false);//für alle Kurven
+        renderer.setSeriesShapesVisible(2, false);//für alle Kurven
+        renderer.setSeriesShapesVisible(3, false);//für alle Kurven
+        renderer.setSeriesShapesVisible(4, false);//für alle Kurven
+        renderer.setSeriesItemLabelsVisible(0,false);
+        renderer.setSeriesItemLabelsVisible(1,false);
+        renderer.setSeriesItemLabelsVisible(2,false);
+        renderer.setSeriesItemLabelsVisible(3,false);
+        renderer.setSeriesItemLabelsVisible(4,false);
+        
+        
+        NumberFormat format = NumberFormat.getNumberInstance();
+        format.setMaximumFractionDigits(2); // etc.
+        
+        XYItemLabelGenerator generator =
+        	new StandardXYItemLabelGenerator("{0}", format, format) ;
+        renderer.setBaseItemLabelGenerator(generator);
+        renderer.setBaseItemLabelsVisible(true);
+        renderer.setBaseItemLabelPaint(new Color(188,210,238));
+        
+        plot.setRenderer(renderer);
+        
+        ChartPanel panel = new ChartPanel(chart);
+        sn2.setContent(panel);
+
+		this.updateData();
+		
+		
 	}
 }

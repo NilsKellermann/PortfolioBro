@@ -2,6 +2,7 @@ package p2_view;
 
 import java.io.IOException;
 import db_objects.Assetclass;
+import db_objects.Portfolio;
 import db_objects.PortfolioTableEntry;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,14 +15,20 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.application.Application; 
+import java.awt.event.FocusEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
 //import javafx.scene.Scene; 
 //import javafx.scene.image.Image; 
 //import javafx.scene.image.ImageView; 
 //import javafx.scene.layout.BorderPane; 
 //import javafx.stage.Stage; 
 
+
 import p0_model.Model;
 import p1_controller.Controller;
+
 
 public class VC_CompletePortfolioCompare {
 
@@ -31,9 +38,27 @@ public class VC_CompletePortfolioCompare {
 	@FXML
 	private TextField WelcomeTextField;
 	
-	
+		@FXML
+		private TableView<PortfolioTableEntry> pTable1;
 
+@FXML
+	private TableView<PortfolioTableEntry> pTable2;
 	
+		@FXML
+		private TableColumn<PortfolioTableEntry, Number> idColumn1;
+		@FXML
+		private TableColumn<PortfolioTableEntry, String> nameColumn1;
+	
+	@FXML
+	private TableColumn<PortfolioTableEntry, Number> idColumn2;
+	@FXML
+	private TableColumn<PortfolioTableEntry, String> nameColumn2;
+	
+		@FXML
+		private Label nameLabel1;
+	
+	@FXML
+	private Label nameLabel2;
 
 	/**
 	 * The constructor. The constructor is called before the initialize() method.
@@ -54,13 +79,56 @@ public class VC_CompletePortfolioCompare {
 	
 	public void updateData() {
 		
-        
+		//Fill Portfolio-tables & add listeners
+				pTable1.setItems(m1.allPortfolioTE);
+				idColumn1.setCellValueFactory(cellData -> cellData.getValue().getPortfolio_id());
+				nameColumn1.setCellValueFactory(cellData -> cellData.getValue().getName());
+
+				
+				pTable1.getSelectionModel().selectedItemProperty()
+				.addListener((observable, oldValue, newValue) -> handleSaveSelectedAndUseSelectedToFill1(newValue));
+				
+				// Clear person details.
+				handleSaveSelectedAndUseSelectedToFill1(null);
+		
+			pTable2.setItems(m1.allPortfolioTE);
+				idColumn2.setCellValueFactory(cellData -> cellData.getValue().getPortfolio_id());
+				nameColumn2.setCellValueFactory(cellData -> cellData.getValue().getName());
+
+				
+				pTable2.getSelectionModel().selectedItemProperty()
+				.addListener((observable, oldValue, newValue) -> handleSaveSelectedAndUseSelectedToFill2(newValue));
+				
+				// Clear person details.
+				handleSaveSelectedAndUseSelectedToFill2(null);
 		 
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Handle-Methoden
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	private void handleSaveSelectedAndUseSelectedToFill1(PortfolioTableEntry portf1) {
+		if (portf1 != null) {
+			m1.selectedPortfolio = portf1;
+			nameLabel1.setText(m1.selectedPortfolio.get2Name());
+		} else {
+			//
+			m1.selectedPortfolio = null;
+			nameLabel1.setText("");
+		}
+	}
+	
+	private void handleSaveSelectedAndUseSelectedToFill2(PortfolioTableEntry portf2) {
+		if (portf2 != null) {
+			m1.selectedPortfolio = portf2;
+			nameLabel2.setText(m1.selectedPortfolio.get2Name());
+		} else {
+			//
+			m1.selectedPortfolio = null;
+			nameLabel2.setText("");
+	}	
+	}
+	
 	
 	@FXML
 	private void handleZurueck() throws IOException {

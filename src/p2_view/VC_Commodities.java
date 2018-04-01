@@ -44,13 +44,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import p0_db_objects.Aktie;
-import p0_db_objects.AktieTableEntry;
+import p0_db_objects.Rohstoff;
+import p0_db_objects.RohstoffTableEntry;
 import p0_db_objects.PortfolioTableEntry;
 import p0_model.Model;
 import p1_controller.Controller;
 
-public class VC_Shares {
+public class VC_Commodities {
 	public Model m1;
 	public Controller c1;
 
@@ -69,66 +69,66 @@ public class VC_Shares {
 	@FXML
 	private StackPane paneWithSwing;
 	@FXML
-	private TableView<AktieTableEntry> tableView1;
+	private TableView<RohstoffTableEntry> tableView1;
 	@FXML
-	private TableView<AktieTableEntry> tableView2;
+	private TableView<RohstoffTableEntry> tableView2;
 	@FXML
-	private TableView<AktieTableEntry> tableView3;
+	private TableView<RohstoffTableEntry> tableView3;
 	@FXML
-	private TableView<AktieTableEntry> tableView4;
+	private TableView<RohstoffTableEntry> tableView4;
 	@FXML
-	private TableView<AktieTableEntry> tableView5;
+	private TableView<RohstoffTableEntry> tableView5;
 
 	@FXML
-	private TableColumn<AktieTableEntry, Number> IdColumn1;
+	private TableColumn<RohstoffTableEntry, Number> IdColumn1;
 	@FXML
-	private TableColumn<AktieTableEntry, String> nameColumn1;
+	private TableColumn<RohstoffTableEntry, String> nameColumn1;
 	@FXML
-	private TableColumn<AktieTableEntry, String> industryColumn1;
+	private TableColumn<RohstoffTableEntry, String> industryColumn1;
 	@FXML
-	private TableColumn<AktieTableEntry, String> sigmaColumn1;
+	private TableColumn<RohstoffTableEntry, String> sigmaColumn1;
 	@FXML
-	private TableColumn<AktieTableEntry, String> riskColumn1;
+	private TableColumn<RohstoffTableEntry, String> riskColumn1;
 	@FXML
-	private TableColumn<AktieTableEntry, Number> IdColumn2;
+	private TableColumn<RohstoffTableEntry, Number> IdColumn2;
 	@FXML
-	private TableColumn<AktieTableEntry, String> nameColumn2;
+	private TableColumn<RohstoffTableEntry, String> nameColumn2;
 	@FXML
-	private TableColumn<AktieTableEntry, String> industryColumn2;
+	private TableColumn<RohstoffTableEntry, String> industryColumn2;
 	@FXML
-	private TableColumn<AktieTableEntry, String> sigmaColumn2;
+	private TableColumn<RohstoffTableEntry, String> sigmaColumn2;
 	@FXML
-	private TableColumn<AktieTableEntry, String> riskColumn2;
+	private TableColumn<RohstoffTableEntry, String> riskColumn2;
 	@FXML
-	private TableColumn<AktieTableEntry, Number> IdColumn3;
+	private TableColumn<RohstoffTableEntry, Number> IdColumn3;
 	@FXML
-	private TableColumn<AktieTableEntry, String> nameColumn3;
+	private TableColumn<RohstoffTableEntry, String> nameColumn3;
 	@FXML
-	private TableColumn<AktieTableEntry, String> industryColumn3;
+	private TableColumn<RohstoffTableEntry, String> industryColumn3;
 	@FXML
-	private TableColumn<AktieTableEntry, String> sigmaColumn3;
+	private TableColumn<RohstoffTableEntry, String> sigmaColumn3;
 	@FXML
-	private TableColumn<AktieTableEntry, String> riskColumn3;
+	private TableColumn<RohstoffTableEntry, String> riskColumn3;
 	@FXML
-	private TableColumn<AktieTableEntry, Number> IdColumn4;
+	private TableColumn<RohstoffTableEntry, Number> IdColumn4;
 	@FXML
-	private TableColumn<AktieTableEntry, String> nameColumn4;
+	private TableColumn<RohstoffTableEntry, String> nameColumn4;
 	@FXML
-	private TableColumn<AktieTableEntry, String> industryColumn4;
+	private TableColumn<RohstoffTableEntry, String> industryColumn4;
 	@FXML
-	private TableColumn<AktieTableEntry, String> sigmaColumn4;
+	private TableColumn<RohstoffTableEntry, String> sigmaColumn4;
 	@FXML
-	private TableColumn<AktieTableEntry, String> riskColumn4;
+	private TableColumn<RohstoffTableEntry, String> riskColumn4;
 	@FXML
-	private TableColumn<AktieTableEntry, Number> IdColumn5;
+	private TableColumn<RohstoffTableEntry, Number> IdColumn5;
 	@FXML
-	private TableColumn<AktieTableEntry, String> nameColumn5;
+	private TableColumn<RohstoffTableEntry, String> nameColumn5;
 	@FXML
-	private TableColumn<AktieTableEntry, String> industryColumn5;
+	private TableColumn<RohstoffTableEntry, String> industryColumn5;
 	@FXML
-	private TableColumn<AktieTableEntry, String> sigmaColumn5;
+	private TableColumn<RohstoffTableEntry, String> sigmaColumn5;
 	@FXML
-	private TableColumn<AktieTableEntry, String> riskColumn5;
+	private TableColumn<RohstoffTableEntry, String> riskColumn5;
 
 	@FXML
 	private Button addbutton1;
@@ -172,7 +172,7 @@ public class VC_Shares {
 	/**
 	 * The constructor. The constructor is called before the initialize() method.
 	 */
-	public VC_Shares() {
+	public VC_Commodities() {
 	}
 
 	/**
@@ -189,45 +189,45 @@ public class VC_Shares {
 		tabPane1.getStyleClass().add("floating");
 
 		// Tabellen füllen
-		ObservableList<AktieTableEntry> allAktienOhneKurseTE_DAX = m1.allAktienOhneKurseTE.stream()
-				.filter(x -> (x.getIndex().equals("DAX")))
+		ObservableList<RohstoffTableEntry> allAktienOhneKurseTE_DAX = m1.allRohstoffeOhneKurseTE.stream()
+				.filter(x -> (x.getIndustry().equals("Industriemetalle")))
 				.collect(Collectors.toCollection(FXCollections::observableArrayList));
 		tableView1.setItems(allAktienOhneKurseTE_DAX);
 		IdColumn1.setCellValueFactory(cellData -> cellData.getValue().get2Share_id());
 		nameColumn1.setCellValueFactory(cellData -> cellData.getValue().get2Name());
 		industryColumn1.setCellValueFactory(cellData -> cellData.getValue().get2Industry());
 
-		ObservableList<AktieTableEntry> allAktienOhneKurseTE_TecDAX = m1.allAktienOhneKurseTE.stream()
-				.filter(x -> (x.getIndex().equals("TecDAX")))
+		ObservableList<RohstoffTableEntry> allAktienOhneKurseTE_TecDAX = m1.allRohstoffeOhneKurseTE.stream()
+				.filter(x -> (x.getIndustry().equals("Edelmetalle")))
 				.collect(Collectors.toCollection(FXCollections::observableArrayList));
 		tableView2.setItems(allAktienOhneKurseTE_TecDAX);
 		IdColumn2.setCellValueFactory(cellData -> cellData.getValue().get2Share_id());
 		nameColumn2.setCellValueFactory(cellData -> cellData.getValue().get2Name());
 		industryColumn2.setCellValueFactory(cellData -> cellData.getValue().get2Industry());
 
-		ObservableList<AktieTableEntry> allAktienOhneKurseTE_MDAX = m1.allAktienOhneKurseTE.stream()
-				.filter(x -> (x.getIndex().equals("MDAX")))
+		ObservableList<RohstoffTableEntry> allAktienOhneKurseTE_MDAX = m1.allRohstoffeOhneKurseTE.stream()
+				.filter(x -> (x.getIndustry().equals("Energie")))
 				.collect(Collectors.toCollection(FXCollections::observableArrayList));
 		tableView3.setItems(allAktienOhneKurseTE_MDAX);
 		IdColumn3.setCellValueFactory(cellData -> cellData.getValue().get2Share_id());
 		nameColumn3.setCellValueFactory(cellData -> cellData.getValue().get2Name());
 		industryColumn3.setCellValueFactory(cellData -> cellData.getValue().get2Industry());
 
-		ObservableList<AktieTableEntry> allAktienOhneKurseTE_Nikkei = m1.allAktienOhneKurseTE.stream()
-				.filter(x -> (x.getIndex().equals("Nikkei 225")))
-				.collect(Collectors.toCollection(FXCollections::observableArrayList));
-		tableView4.setItems(allAktienOhneKurseTE_Nikkei);
-		IdColumn4.setCellValueFactory(cellData -> cellData.getValue().get2Share_id());
-		nameColumn4.setCellValueFactory(cellData -> cellData.getValue().get2Name());
-		industryColumn4.setCellValueFactory(cellData -> cellData.getValue().get2Industry());
-
-		ObservableList<AktieTableEntry> allAktienOhneKurseTE_DowJones = m1.allAktienOhneKurseTE.stream()
-				.filter(x -> (x.getIndex().equals("Dow Jones")))
-				.collect(Collectors.toCollection(FXCollections::observableArrayList));
-		tableView5.setItems(allAktienOhneKurseTE_DowJones);
-		IdColumn5.setCellValueFactory(cellData -> cellData.getValue().get2Share_id());
-		nameColumn5.setCellValueFactory(cellData -> cellData.getValue().get2Name());
-		industryColumn5.setCellValueFactory(cellData -> cellData.getValue().get2Industry());
+//		ObservableList<RohstoffTableEntry> allAktienOhneKurseTE_Nikkei = m1.allRohstoffeOhneKurseTE.stream()
+//				.filter(x -> (x.getIndex().equals("Nikkei 225")))
+//				.collect(Collectors.toCollection(FXCollections::observableArrayList));
+//		tableView4.setItems(allAktienOhneKurseTE_Nikkei);
+//		IdColumn4.setCellValueFactory(cellData -> cellData.getValue().get2Share_id());
+//		nameColumn4.setCellValueFactory(cellData -> cellData.getValue().get2Name());
+//		industryColumn4.setCellValueFactory(cellData -> cellData.getValue().get2Industry());
+//
+//		ObservableList<RohstoffTableEntry> allAktienOhneKurseTE_DowJones = m1.allRohstoffeOhneKurseTE.stream()
+//				.filter(x -> (x.getIndex().equals("Dow Jones")))
+//				.collect(Collectors.toCollection(FXCollections::observableArrayList));
+//		tableView5.setItems(allAktienOhneKurseTE_DowJones);
+//		IdColumn5.setCellValueFactory(cellData -> cellData.getValue().get2Share_id());
+//		nameColumn5.setCellValueFactory(cellData -> cellData.getValue().get2Name());
+//		industryColumn5.setCellValueFactory(cellData -> cellData.getValue().get2Industry());
 
 		///////////////////////
 		// 5x Table Listener
@@ -238,15 +238,11 @@ public class VC_Shares {
 				.addListener((observable, oldValue, newValue) -> handleSaveSelected(newValue));
 		tableView3.getSelectionModel().selectedItemProperty()
 				.addListener((observable, oldValue, newValue) -> handleSaveSelected(newValue));
-		tableView4.getSelectionModel().selectedItemProperty()
-				.addListener((observable, oldValue, newValue) -> handleSaveSelected(newValue));
-		tableView5.getSelectionModel().selectedItemProperty()
-				.addListener((observable, oldValue, newValue) -> handleSaveSelected(newValue));
 
 		// Liste füllen
 		simpleStringList = new ArrayList<>();
-		m1.currentPortfoliosAktienMitKursen.forEach(
-				(k, v) -> simpleStringList.add(v.getShare_id() + " " + v.getName() + " (" + v.getIndex() + ")"));
+		m1.currentPortfoliosRohstoffeMitKursen.forEach(
+				(k, v) -> simpleStringList.add(v.getShare_id() + " " + v.getName() + " (" + v.getIndustry() + ")"));
 
 		listView1.itemsProperty().bind(listProperty);
 		listProperty.set(FXCollections.observableArrayList(simpleStringList));
@@ -255,7 +251,7 @@ public class VC_Shares {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 				if (newValue != null) {
-					m1.selectedCurrentSharesString = newValue;
+					m1.selectedCurrentCommodityString = newValue;
 				}
 				create2();
 			}
@@ -267,7 +263,7 @@ public class VC_Shares {
 		sc.setTitle("Sigma-R-Diagramm der Aktien");
 		// 5x Assetclass-Daten einfüllen
 		ObservableList<XYChart.Series<Double, Double>> scatterGraphSeries = FXCollections.observableArrayList();
-		for (Aktie ac1 : m1.currentPortfoliosAktienMitKursen.values()) {
+		for (Rohstoff ac1 : m1.currentPortfoliosRohstoffeMitKursen.values()) {
 			XYChart.Series<Double, Double> series1 = new XYChart.Series<Double, Double>();
 			series1.getData().add(new XYChart.Data<Double, Double>(ac1.getSigma(), ac1.getRisk()));
 			series1.setName(ac1.getName());
@@ -285,27 +281,27 @@ public class VC_Shares {
 	////////////////////////////////////////////////////////
 	@FXML
 	private void handleDeleteSelected() {
-		m1.deleteFromCurrentPAktien(Integer
-				.valueOf(m1.selectedCurrentSharesString.substring(0, m1.selectedCurrentSharesString.indexOf(" "))));
-		m1.updatePB_PORTF_SHAREwithPercents();
+		m1.deleteFromCurrentPRohstoffe(Integer
+				.valueOf(m1.selectedCurrentCommodityString.substring(0, m1.selectedCurrentCommodityString.indexOf(" "))));
+m1.updatePB_PORTF_COMMwithPercents();
 		updateData();
 	}
 
-	private void handleSaveSelected(AktieTableEntry aktie1) {
+	private void handleSaveSelected(RohstoffTableEntry aktie1) {
 		if (aktie1 != null) {
-			m1.selectedAktie = aktie1;
+			m1.selectedRohstoff = aktie1;
 		} else {
 			//
-			m1.selectedAktie = null;
+			m1.selectedRohstoff = null;
 		}
 	}
 
 	@FXML
 	private void handleAdd() {
-		m1.currentPortfoliosAktienMitKursen.put(new Integer(m1.selectedAktie.getShare_id()),
-				m1.allAktienOhneKurse.get(m1.selectedAktie.getShare_id()));
+		m1.currentPortfoliosRohstoffeMitKursen.put(new Integer(m1.selectedRohstoff.getShare_id()),
+				m1.allRohstoffeOhneKurse.get(m1.selectedRohstoff.getShare_id()));
 
-		m1.sortBothCurrentPortfoliosAktien();
+		m1.sortBothCurrentPortfoliosRohstoffe();
 		m1.loadSelectedPortfolioData();
 		updateData();
 
@@ -346,7 +342,7 @@ public class VC_Shares {
 	private void handleWeiter() throws IOException {
 		handleVorleaufigUpdaten();
 		m1.loadSelectedPortfolioData();
-		this.c1.setSceneToV_Aktienanalyse();
+		this.c1.setSceneToV_Rohstoffanalyse();
 	}
 
 	@FXML
@@ -356,7 +352,7 @@ public class VC_Shares {
 
 	@FXML
 	private void handleVorleaufigUpdaten() throws IOException {
-		m1.updatePB_PORTF_SHAREwithPercents();
+		m1.updatePB_PORTF_COMMwithPercents();
 	}
 
 	public void create2() {
@@ -381,17 +377,17 @@ public class VC_Shares {
 		Random rng = new Random();
 
 		try {
-			for (Map.Entry<Date, Double> entry : m1.currentPortfoliosAktienMitKursen
+			for (Map.Entry<Date, Double> entry : m1.currentPortfoliosRohstoffeMitKursen
 					.get(new Integer(Integer.valueOf(
-							m1.selectedCurrentSharesString.substring(0, m1.selectedCurrentSharesString.indexOf(" ")))))
+							m1.selectedCurrentCommodityString.substring(0, m1.selectedCurrentCommodityString.indexOf(" ")))))
 					.getHashOfHalfYear().entrySet()) {
 				Date key = entry.getKey();
 				Double value = entry.getValue();
 				LocalDate dateA = Instant.ofEpochMilli(key.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
 				String formattedDateA = formatter.format(dateA);
 				addData(data, formattedDateA, value);
-				s1.setName(m1.currentPortfoliosAktienMitKursen.get(new Integer(Integer.valueOf(
-						m1.selectedCurrentSharesString.substring(0, m1.selectedCurrentSharesString.indexOf(" ")))))
+				s1.setName(m1.currentPortfoliosRohstoffeMitKursen.get(new Integer(Integer.valueOf(
+						m1.selectedCurrentCommodityString.substring(0, m1.selectedCurrentCommodityString.indexOf(" ")))))
 						.getName());
 			}
 		} catch (NullPointerException e) {

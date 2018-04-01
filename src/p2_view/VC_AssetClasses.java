@@ -245,7 +245,7 @@ public class VC_AssetClasses {
 	}
 
 	@FXML
-	private void handleUnfertigesPortfolioErstellen() {
+	private void handleUnfertigesPortfolioErstellen() throws IOException {
 		try {
 			boolean alreadyExists = m1.yourPortfolioTE.stream()
 					.anyMatch(t -> t.get2Name().equals(this.newNameTextField.getText()));
@@ -331,7 +331,10 @@ public class VC_AssetClasses {
 				m1.usedPortfolio = portf1;
 				m1.updateDB_PORTFOLIO_updatePortfolioTE(portf1);
 				updateData();
+				
+				
 			}
+			this.c1.setSceneToV_Shares();
 		} catch (java.lang.NumberFormatException e) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information Dialog");
@@ -344,7 +347,8 @@ public class VC_AssetClasses {
 	@FXML
 	private void handleWeiter() throws IOException {
 		handleUnfertigesPortfolioErstellen();
-		this.c1.setSceneToV_Shares();
+		//Scene-Wechsel in der "unfertige...-Methode
+
 	}
 
 	@FXML

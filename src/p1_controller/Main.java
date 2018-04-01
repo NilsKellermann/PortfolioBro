@@ -19,6 +19,8 @@ public class Main extends Application {
 		Model m1 = Model.getInstance();
 		m1.loggedInUser_id = 1000;
 		m1.initializeAssetClasses_allSHeads_allCHeads_allPortfolios();
+		m1.transferCurrentCommoditiesHashmapToObservableList();
+		m1.transferAllCommoditiesHashmapToObservableList();
 		m1.transferCurrentShareHashmapToObservableList();
 		m1.transferAllShareHashmapToObservableList();
 		m1.transferAllPortfolioHashmapToObservableList();	

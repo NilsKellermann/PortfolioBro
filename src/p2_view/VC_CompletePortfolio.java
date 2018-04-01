@@ -30,7 +30,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
-import p0_db_objects.AktieTableEntry;
+import p0_db_objects.RohstoffTableEntry;
 import p0_db_objects.AnlageKlasse;
 import p0_db_objects.Portfolio;
 import p0_db_objects.PortfolioTableEntry;

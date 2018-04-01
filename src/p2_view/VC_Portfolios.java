@@ -41,8 +41,8 @@ public class VC_Portfolios {
 	
 	@FXML
 	private Label testidLabel;
-	@FXML
-	private Label idLabel;
+//	@FXML
+//	private Label idLabel;
 	@FXML
 	private Label nameLabel;
 	@FXML
@@ -92,11 +92,11 @@ public class VC_Portfolios {
 	private void handleSaveSelectedAndUseSelectedToFill(PortfolioTableEntry portf1) {
 		if (portf1 != null) {
 			m1.selectedPortfolio = portf1;
-			idLabel.setText("" + m1.selectedPortfolio.get2Portfolio_id());
+//			idLabel.setText("" + m1.selectedPortfolio.get2Portfolio_id());
 			nameLabel.setText(m1.selectedPortfolio.get2Name());
 		} else {
 			m1.selectedPortfolio = null;
-			idLabel.setText("");
+//			idLabel.setText("");
 			nameLabel.setText("");
 		}
 	}

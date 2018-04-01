@@ -52,7 +52,7 @@ import p0_db_objects.PortfolioTableEntry;
 import p0_model.Model;
 import p1_controller.Controller;
 
-public class VC_Aktienanalyse {
+public class VC_Rohstoffanalyse {
 
 	public Model m1;
 	public Controller c1;
@@ -96,7 +96,7 @@ public class VC_Aktienanalyse {
 	/**
 	 * The constructor. The constructor is called before the initialize() method.
 	 */
-	public VC_Aktienanalyse() {
+	public VC_Rohstoffanalyse() {
 	}
 
 	/**
@@ -116,14 +116,14 @@ public class VC_Aktienanalyse {
 		/////////////////Liste füllen		
 		/////////////////////////
 		simpleStringList= new ArrayList<>();
-		if(m1.analyseErgebnis.isEmpty()) {m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> m1.analyseErgebnis.put(k, new Boolean(true)));
+		if(m1.analyseErgebnis2.isEmpty()) {m1.currentPortfoliosRohstoffeMitKursen.forEach( (k,v) -> m1.analyseErgebnis2.put(k, new Boolean(true)));
 		}
 		
-		m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> 
-		{if(m1.analyseErgebnis.isEmpty() || (m1.analyseErgebnis.containsKey(k) ? m1.analyseErgebnis.get(k).booleanValue() : false) == true) //0.0 != m1.currentPortfoliosAktienProzente.get(k))
-		{simpleStringList.add(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosAktienProzente.get(k) + "% )");}});
+		m1.currentPortfoliosRohstoffeMitKursen.forEach( (k,v) -> 
+		{if(m1.analyseErgebnis2.isEmpty() || (m1.analyseErgebnis2.containsKey(k) ? m1.analyseErgebnis2.get(k).booleanValue() : false) == true) //0.0 != m1.currentPortfoliosAktienProzente.get(k))
+		{simpleStringList.add(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosRohstoffeProzente.get(k) + "% )");}});
 
-	   // simpleStringList.add("CNH");
+	   //simpleStringList.add("CNH");
 
 		listView1.itemsProperty().bind(listProperty);
 		listProperty.set(FXCollections.observableArrayList(simpleStringList));        
@@ -133,14 +133,14 @@ public class VC_Aktienanalyse {
 		    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 		        System.out.println("ListView selection changed from oldValue = " 
 		                + oldValue + " to newValue = " + newValue);
-		        m1.selectedCurrentSharesStringAnalyse1 = newValue;
+		        m1.selectedCurrentCommoditiesStringAnalyse1 = newValue;
 		    }
 		});
 		//Liste füllen		
 		simpleStringList2= new ArrayList<>();
-		m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> 
-		{if(! m1.analyseErgebnis.isEmpty() && (m1.analyseErgebnis.get(k) == null ||m1.analyseErgebnis.get(k).booleanValue() == false))
-		{simpleStringList2.add(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosAktienProzente.get(k) + "% )");}});
+		m1.currentPortfoliosRohstoffeMitKursen.forEach( (k,v) -> 
+		{if(! m1.analyseErgebnis2.isEmpty() && (m1.analyseErgebnis2.get(k) == null ||m1.analyseErgebnis2.get(k).booleanValue() == false))
+		{simpleStringList2.add(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosRohstoffeProzente.get(k) + "% )");}});
 
 	    //simpleStringList2.add("CNH");
 
@@ -152,7 +152,7 @@ public class VC_Aktienanalyse {
 		    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 		        System.out.println("ListView2 selection changed from oldValue = " 
 		                + oldValue + " to newValue = " + newValue);
-		        m1.selectedCurrentSharesStringAnalyse1 = newValue;
+		        m1.selectedCurrentCommoditiesStringAnalyse1 = newValue;
 		    }
 		});
 		/////////////////Liste füllen ENDE	
@@ -289,10 +289,7 @@ public class VC_Aktienanalyse {
 		
 		//zusammenrechnen
 		List<Double> doubleList= new ArrayList<>();
-	if(!m1.currentPortfoliosAktienProzente.isEmpty()) {
-
-		m1.currentPortfoliosAktienProzente.forEach( (k,v) -> {if (m1.analyseErgebnis.get(k) == true) {doubleList.add(new Double(v.doubleValue()));}});
-	}
+		m1.currentPortfoliosRohstoffeProzente.forEach( (k,v) -> {if (m1.analyseErgebnis2.get(k) == true) {doubleList.add(new Double(v.doubleValue()));}});
 		double prozentSumme = doubleList.stream().collect(Collectors.summingDouble(Double::doubleValue));;
 		if(prozentSumme == 100.0) {
 			//in db speichern und aus datenbank rauslöschen die aussortierten
@@ -301,38 +298,36 @@ public class VC_Aktienanalyse {
 		///////////////////////////////////////
 			
 			//aussortierte Aktien-Prozentwerte auf 0.0 setzen
-			m1.analyseErgebnis.forEach((i,boolean1) -> {if(boolean1==false)m1.currentPortfoliosAktienProzente.put(i, 0.0);});
+			m1.analyseErgebnis2.forEach((i,boolean1) -> {if(boolean1==false)m1.currentPortfoliosRohstoffeProzente.put(i, 0.0);});
 			
 			//Alle Aktien durchlaufen und average Sigma und Rendite berechnen.
 			List<Double> risk_shareL = new ArrayList<Double>();
 			List<Double> sigma_shareL = new ArrayList<Double>();
 			List<Double> risk_commL = new ArrayList<Double>();
 			List<Double> sigma_commL = new ArrayList<Double>();
-			m1.currentPortfoliosAktienMitKursen.forEach ((i,aktie1) -> {
-				risk_shareL.add(aktie1.getRisk() * m1.currentPortfoliosAktienProzente.get(i) ); //ohne Teilen durch 100. Im Exceldokument lagen bereits Prozentwerte vor.
-				sigma_shareL.add(aktie1.getSigma() * m1.currentPortfoliosAktienProzente.get(i) );//ohne Teilen durch 100. Im Exceldokument lagen bereits Prozentwerte vor.
+			m1.currentPortfoliosRohstoffeMitKursen.forEach ((i,aktie1) -> {
+				risk_shareL.add(aktie1.getRisk() * m1.currentPortfoliosRohstoffeProzente.get(i) ); //ohne Teilen durch 100. Im Exceldokument lagen bereits Prozentwerte vor.
+				sigma_shareL.add(aktie1.getSigma() * m1.currentPortfoliosRohstoffeProzente.get(i) );//ohne Teilen durch 100. Im Exceldokument lagen bereits Prozentwerte vor.
 
 			} );
 			Double sigma_shareValue = sigma_shareL.stream().reduce(0.0, Double::sum);
 			Double risk_shareValue = risk_shareL.stream().reduce(0.0, Double::sum);
 			m1.usedPortfolio.setSigma_share(sigma_shareValue);
 			m1.usedPortfolio.setRisk_share(risk_shareValue);
-			m1.updatePB_PORTF_SHAREwithPercents();
-			this.c1.setSceneToV_Commodities();}
+			m1.updatePB_PORTF_COMMwithPercents();
+			this.c1.setSceneToV_CompletePortfolio();}
 
 		else {
-			
-			if(m1.currentPortfoliosAktienMitKursen.isEmpty()) {
-			this.c1.setSceneToV_Commodities();} 
-			else {
+			if(m1.currentPortfoliosRohstoffeMitKursen.isEmpty()) {
+				this.c1.setSceneToV_CompletePortfolio();} 
+				else {
 			// Show a predefined Warning notification
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information Dialog");
-			alert.setHeaderText("Die Summe der Prozentzahlen der nicht aussortierten Aktien beträgt nicht 100%. (" + prozentSumme + ")" );
+			alert.setHeaderText("Die Summe der Prozentzahlen der nicht aussortierten Rohstoffe beträgt nicht 100%. (" + prozentSumme + ")" );
 			alert.setContentText("");
 			alert.showAndWait();
-			}
-		}
+		}}
 
 	}
 	
@@ -345,7 +340,7 @@ public class VC_Aktienanalyse {
 	@FXML
 	private void handleSpeichern() throws IOException {
 		System.out.println("Speichernbutton pressed!");
-		m1.currentPortfoliosAktienProzente.put(Integer.valueOf(m1.selectedCurrentSharesStringAnalyse1.substring(0, m1.selectedCurrentSharesStringAnalyse1.indexOf(" "))),Double.parseDouble(this.textFieldPercent.getText()));
+		m1.currentPortfoliosRohstoffeProzente.put(Integer.valueOf(m1.selectedCurrentCommoditiesStringAnalyse1.substring(0, m1.selectedCurrentCommoditiesStringAnalyse1.indexOf(" "))),Double.parseDouble(this.textFieldPercent.getText()));
 		this.updateData();
 	}
 
@@ -355,11 +350,11 @@ public class VC_Aktienanalyse {
 		
 		System.out.println("suedOst pressed!");
 		
-		int counter = m1.currentPortfoliosAktienMitKursen.size();
+		int counter = m1.currentPortfoliosRohstoffeMitKursen.size();
 		double [][] temp = new double [counter][4];
 		final int[] i = {0};
 
-		m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> 
+		m1.currentPortfoliosRohstoffeMitKursen.forEach( (k,v) -> 
 			{
 				temp [i[0]][0] = v.getSigma();
 				temp [i[0]][1] = v.getRisk();
@@ -433,7 +428,7 @@ public class VC_Aktienanalyse {
 		
 		String [][] Label = new String [counter][2];
 		i[0] = 0;
-		m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> 
+		m1.currentPortfoliosRohstoffeMitKursen.forEach( (k,v) -> 
 			{
 				Label [i[0]][0] = String.valueOf(v.getShare_id());
 				Label [i[0]][1] = v.getName();
@@ -456,8 +451,8 @@ public class VC_Aktienanalyse {
 		};
 		
 		for(int j = 0; j < temp.length; j++) {
-        	if(temp[j][3] == 1) {m1.analyseErgebnis.put((int)(temp[j][2]), new Boolean(true));}
-        	else {m1.analyseErgebnis.put((int)(temp[j][2]), new Boolean(false));}
+        	if(temp[j][3] == 1) {m1.analyseErgebnis2.put((int)(temp[j][2]), new Boolean(true));}
+        	else {m1.analyseErgebnis2.put((int)(temp[j][2]), new Boolean(false));}
         }		
 		
 		sn1 = new SwingNode();
@@ -533,11 +528,11 @@ public class VC_Aktienanalyse {
 		
 		String functp = this.functiontyp.getValue();
 		double averco = Double.parseDouble(this.aversionscoefficient.getText());
-		int counter = m1.currentPortfoliosAktienMitKursen.size();
+		int counter = m1.currentPortfoliosRohstoffeMitKursen.size();
 		double [][] temp = new double [counter][5];
 		final int[] i = {0};
 
-		m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> 
+		m1.currentPortfoliosRohstoffeMitKursen.forEach( (k,v) -> 
 			{
 				temp [i[0]][0] = v.getSigma();
 				temp [i[0]][1] = v.getRisk();
@@ -627,7 +622,7 @@ public class VC_Aktienanalyse {
 		
 		String [][] Label = new String [counter][2];
 		i[0] = 0;
-		m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> 
+		m1.currentPortfoliosRohstoffeMitKursen.forEach( (k,v) -> 
 			{
 				Label [i[0]][0] = String.valueOf(v.getShare_id());
 				Label [i[0]][1] = v.getName();
@@ -650,8 +645,8 @@ public class VC_Aktienanalyse {
 		};
 		
 		for(int j = 0; j < temp.length; j++) {
-        	if(temp[j][3] == 1) {m1.analyseErgebnis.put((int)(temp[j][2]), new Boolean(true));}
-        	else {m1.analyseErgebnis.put((int)(temp[j][2]), new Boolean(false));}
+        	if(temp[j][3] == 1) {m1.analyseErgebnis2.put((int)(temp[j][2]), new Boolean(true));}
+        	else {m1.analyseErgebnis2.put((int)(temp[j][2]), new Boolean(false));}
         }
 		
 		sn2 = new SwingNode();
@@ -726,7 +721,7 @@ public class VC_Aktienanalyse {
 	@FXML
 	private void handleSwitch() throws IOException {
 		System.out.println("Switchbutton pressed!");
-		m1.analyseErgebnis.put(Integer.valueOf(m1.selectedCurrentSharesStringAnalyse1.substring(0, m1.selectedCurrentSharesStringAnalyse1.indexOf(" "))),! m1.analyseErgebnis.get(Integer.valueOf(m1.selectedCurrentSharesStringAnalyse1.substring(0, m1.selectedCurrentSharesStringAnalyse1.indexOf(" ")))));
+		m1.analyseErgebnis2.put(Integer.valueOf(m1.selectedCurrentCommoditiesStringAnalyse1.substring(0, m1.selectedCurrentCommoditiesStringAnalyse1.indexOf(" "))),! m1.analyseErgebnis2.get(Integer.valueOf(m1.selectedCurrentCommoditiesStringAnalyse1.substring(0, m1.selectedCurrentCommoditiesStringAnalyse1.indexOf(" ")))));
 		this.updateData();
 	}
 }

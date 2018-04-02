@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="p2_view.VC_Portfolios">
+<AnchorPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="p2_view.VC_Portfolios">
    <children>
       <BorderPane maxHeight="4000.0" maxWidth="4000.0" prefHeight="600.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -51,7 +51,7 @@
                                     <TableColumn fx:id="InvestmentColumn" prefWidth="107.00003051757812" text="Investment" />
                                     <TableColumn fx:id="A_Column" prefWidth="59.0" text="Aktien" />
                                     <TableColumn fx:id="B_Column" prefWidth="88.0" text="Rohstoffe" />
-                                    <TableColumn fx:id="C_Column" prefWidth="119.0" text="Liquide MIttel" />
+                                    <TableColumn fx:id="C_Column" prefWidth="119.0" text="Liquide Mittel" />
                                     <TableColumn fx:id="D_Column" prefWidth="90.0" text="Immobilien" />
                                     <TableColumn fx:id="E_Column" prefWidth="64.0" text="Anleihe" />
                                 </columns>

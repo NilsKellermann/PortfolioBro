@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="p2_view.VC_Shares">
+<AnchorPane prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="p2_view.VC_Shares">
    <children>
       <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -247,10 +247,10 @@
                   </GridPane>
                   <ScatterChart fx:id="sc" legendSide="RIGHT" prefHeight="250.0" prefWidth="442.0" GridPane.columnIndex="1">
                      <xAxis>
-                        <NumberAxis autoRanging="false" lowerBound="-0.15" minorTickCount="1" minorTickLength="0.8" side="BOTTOM" tickUnit="0.1" upperBound="0.35" />
+                        <NumberAxis autoRanging="false" label="Risiko" minorTickCount="1" minorTickLength="0.8" side="BOTTOM" tickUnit="0.1" upperBound="0.7" />
                      </xAxis>
                      <yAxis>
-                        <NumberAxis autoRanging="false" lowerBound="-0.2" minorTickCount="1" minorTickLength="1.2" side="LEFT" tickUnit="0.1" upperBound="1.0" />
+                        <NumberAxis autoRanging="false" label="Rendite" lowerBound="-0.3" minorTickCount="1" minorTickLength="1.2" side="LEFT" tickUnit="0.1" upperBound="0.5" />
                      </yAxis>
                   </ScatterChart>
                </children>

@@ -207,19 +207,19 @@ public class VC_AssetClasses {
 			////////////////////////////////////////////
 			// FILL SCATTERCHART
 			////////////////////////////////////////////
-			sc.setTitle("Sigma-r Diagramm der Assetklassen");
+			sc.setTitle("Risiko-Rendite-Diagramm der Assetklassen");
 			// 5x Assetclass-Daten einfüllen
 			ObservableList<XYChart.Series<Double, Double>> scatterGraphSeries = FXCollections.observableArrayList();
 			for (AnlageKlasse ac1 : m1.assetclasses.values()) {
 				XYChart.Series<Double, Double> series1 = new XYChart.Series<Double, Double>();
-				series1.getData().add(new XYChart.Data<Double, Double>(ac1.getSigma(), ac1.getRisk()));
+				series1.getData().add(new XYChart.Data<Double, Double>(ac1.getSigma()/100, ac1.getRisk()/100));
 				series1.setName(ac1.getName());
 				scatterGraphSeries.add(series1);
 			}
 			// 1x GesamtPortfolio-Daten einfüllen
 			XYChart.Series<Double, Double> series1 = new XYChart.Series<Double, Double>();
-			series1.getData().add(new XYChart.Data<Double, Double>(m1.usedPortfolio.getSigma_full(),
-					m1.usedPortfolio.getRisk_full()));
+			series1.getData().add(new XYChart.Data<Double, Double>(m1.usedPortfolio.getSigma_full()/100,
+					m1.usedPortfolio.getRisk_full()/100));
 			series1.setName(m1.usedPortfolio.getName());
 			scatterGraphSeries.add(series1);
 

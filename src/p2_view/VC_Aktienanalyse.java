@@ -60,6 +60,7 @@ public class VC_Aktienanalyse {
 	// Nicht FXML!
 	private SwingNode sn1;
 	private SwingNode sn2;
+	
 	@FXML
 	private StackPane paneWithSwing1;
 	@FXML
@@ -77,15 +78,6 @@ public class VC_Aktienanalyse {
 	private ListView<String> listView1;
 	@FXML
 	private ListView<String> listView2;
-//	@FXML
-//	private ScatterChart<Number, Number> sc;
-//	@FXML
-//	private TableView<PortfolioTableEntry> pTable;
-//	@FXML
-//	private TableColumn<PortfolioTableEntry, Number> IdColumn;
-//	@FXML
-//	private TableColumn<PortfolioTableEntry, String> nameColumn;
-
 	@FXML
 	private TextField textFieldPercent;
 
@@ -106,15 +98,11 @@ public class VC_Aktienanalyse {
 	@FXML
 	private void initialize() {
 		functiontyp.setItems(functiontypList);
-		functiontyp.setValue("Linear");
-		//System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>"+functiontyp.getValue());
+		functiontyp.setValue("Quadratisch");
 	}
 	
 	public void updateData() {
 
-		
-		/////////////////Liste füllen		
-		/////////////////////////
 		simpleStringList= new ArrayList<>();
 		if(m1.analyseErgebnis.isEmpty()) {m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> m1.analyseErgebnis.put(k, new Boolean(true)));
 		}
@@ -155,73 +143,6 @@ public class VC_Aktienanalyse {
 		        m1.selectedCurrentSharesStringAnalyse1 = newValue;
 		    }
 		});
-		/////////////////Liste füllen ENDE	
-		/////////////////////////
-		
-		/////////////////
-		/////////////////////////
-		
-		
-		///1. Swingnode füllen mit Graph
-		
-//		sn1 = new SwingNode();
-//		paneWithSwing1.getChildren().add(sn1);
-//		updatePieChart();//selbstprogrammiert
-//		
-		///1.1 Daten aus model holen und per Schleife in die Steffenform bringen
-//		///1.2 Graph erschaffen und mit den Daten füllen. als Chartpanel panel abspeichern und wie unten einfüllen
-		
-		
-//		//updatePiechart inhalt:
-//		ChartPanel panel = new ChartPanel(chart1);
-//		panel.setPreferredSize(new java.awt.Dimension(500, 270));
-//		panel.setMouseWheelEnabled(true);
-//		sn1.setContent(panel);
-		
-		
-		
-		//2. Tabelle füllen
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-//		
-//		
-//		
-//		//Fill Portfolio-table & add listener
-//		pTable.setItems(m1.yourPortfolioTE);
-//		IdColumn.setCellValueFactory(cellData -> cellData.getValue().getPortfolio_id());
-//		nameColumn.setCellValueFactory(cellData -> cellData.getValue().getName());
-//		pTable.getSelectionModel().selectedItemProperty()
-//		.addListener((observable, oldValue, newValue) -> handleSaveSelectedAndUseSelectedToFill(newValue));
-//		
-//		// Clear person details.
-//		handleSaveSelectedAndUseSelectedToFill(null);
-//		
-//		//Fill Scatter Chart
-//		sc.setTitle("Sigma-r Diagramm der Assetklassen");
-//
-//		ObservableList<XYChart.Series<Number, Number>> scatterGraphSeries = FXCollections.observableArrayList();
-//		for (Assetclass ac1 : m1.assetclasses.values()) {
-//			XYChart.Series series1 = new XYChart.Series();
-//			series1.getData().add(new XYChart.Data<Double, Double>(ac1.getSigma(), ac1.getRisk()));
-//			series1.setName(ac1.getName());
-//			scatterGraphSeries.add(series1);
-//		}
-//		sc.setData(scatterGraphSeries);
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -247,41 +168,6 @@ public class VC_Aktienanalyse {
 		System.out.println("DeleteButton Pressed!");
 
 	}
-
-//	@FXML
-//	private void handleUnfertigesPortfolioErstellen() {
-//		try {
-//			boolean alreadyExists = m1.yourPortfolioTE.stream()
-//					.anyMatch(t -> t.get2Name().equals(this.newNameTextField.getText()));
-//			if (alreadyExists == true) {
-//				System.out.println("Portfolio name already in use.");
-//			} else {
-//				PortfolioTableEntry p1 = new PortfolioTableEntry(m1.nextPortfolio_id, this.newNameTextField.getText(),
-//						m1.loggedInUser_id, Double.parseDouble(this.newInvestmentTextField.getText()),
-//						Double.parseDouble(this.newShareDistTextField.getText()),
-//						Double.parseDouble(this.newCommDistTextField.getText()),
-//						Double.parseDouble(this.newCurrDistTextField.getText()),
-//						Double.parseDouble(this.newEstateDistTextField.getText()),
-//						Double.parseDouble(this.newBondDistTextField.getText()));
-//
-//				if (p1.get2Name() == "") {
-//					System.out.println("Das Namensfeld kann nicht leer bleiben.");
-//					return;
-//				}
-//				if (p1.get2Share_dist() + p1.get2Comm_dist() + p1.get2Curr_dist() + p1.get2Estate_dist()
-//						+ p1.get2Bond_dist() != 100) {
-//					System.out.println("Die Summe der Prozentwerte muss 100% sein.");
-//					return;
-//				}
-//				m1.nextPortfolio_id = m1.nextPortfolio_id + 1;
-//				m1.yourPortfolioTE.add(p1);
-//				m1.allPortfolioList.add(p1);
-//				System.out.println("Portfolio created.");
-//			}
-//		} catch (java.lang.NumberFormatException e) {
-//			System.out.println("Fehler. Der Inhalt der Textviews muss überprüft werden.");
-//		}
-//	}
 
 	@FXML
 	private void handleWeiter() throws IOException {
@@ -355,23 +241,24 @@ public class VC_Aktienanalyse {
 		
 		System.out.println("suedOst pressed!");
 		
+		// erstelle Array mit (Risiko, Rendite, AktienID, Effizienzbewertung)
 		int counter = m1.currentPortfoliosAktienMitKursen.size();
 		double [][] temp = new double [counter][4];
 		final int[] i = {0};
 
+		// Vorbereitung der Daten
 		m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> 
 			{
 				temp [i[0]][0] = v.getSigma();
 				temp [i[0]][1] = v.getRisk();
 				temp [i[0]][2] = v.getShare_id();
 				temp [i[0]][3] = 1;
-				//System.out.println(v.getShare_id() + " " + v.getName());
 				System.out.println(temp[i[0]][0] + " " + temp[i[0]][1] + " " + temp[i[0]][2] + " " + temp[i[0]][3]);	
 				i[0] += 1;
 			}
 		);
 		
-		//Sortierung
+		//Sortierung (geringes Risiko, hohe Rendite)
 		Arrays.sort(temp, 
         		new Comparator<double[]>() {
 		            @Override
@@ -389,7 +276,7 @@ public class VC_Aktienanalyse {
     		System.out.println(temp[j][0] + " " + temp[j][1] + " " + temp[j][2] + " " + temp[j][3]);
 		}
 		
-		//Klassifizierung
+		//Klassifizierung (Effizient/Ineffizient)
 		for(int j = 0; j < temp.length-1; j++) {
 			
 			if(temp[j][0] <= temp[j+1][0] && temp[j+1][1] <= temp[j][1] && (temp[j][3] == 1 && temp[j+1][3] == 1)) {
@@ -416,14 +303,20 @@ public class VC_Aktienanalyse {
     		System.out.println(temp[j][0] + " " + temp[j][1] + " " + temp[j][2] + " " + temp[j][3]);
 		}
 		
+		// Erstellung der Datasets
 		XYSeriesCollection dataset = new XYSeriesCollection();
+		
+		//Grenzlinie des Süd-ost-Bereichs
 		XYSeries series2 = new XYSeries("Kurve1");
 		for(int j = 0; j < temp.length; j++) {
 			if(j==0) {series2.add(temp[j][0],-1);}
 			if(temp[j][3]==1) {
 				series2.add(temp[j][0],temp[j][1]);
-				if(temp[j+1][3]==1) {
-					series2.add(temp[j+1][0],temp[j][1]);
+				if(j+1 < temp.length) {
+					if(temp[j+1][3]==1) {
+						series2.add(temp[j+1][0],temp[j][1]);
+					}
+					else series2.add(1,temp[j][1]);
 				}
 				else series2.add(1,temp[j][1]);
 			}
@@ -431,13 +324,13 @@ public class VC_Aktienanalyse {
 		dataset.addSeries(series2);
 		
 		
+		// Aktien mit Beschriftung
 		String [][] Label = new String [counter][2];
 		i[0] = 0;
 		m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> 
 			{
 				Label [i[0]][0] = String.valueOf(v.getShare_id());
 				Label [i[0]][1] = v.getName();
-				//System.out.println(v.getShare_id() + " " + v.getName());
 				System.out.println(Label[i[0]][0] + " " + Label[i[0]][1]);	
 				i[0] += 1;
 			}
@@ -445,7 +338,6 @@ public class VC_Aktienanalyse {
 		
 		for(int j = 0; j < temp.length; j++) {
 			String Info = null;
-			//Info = m1.currentPortfoliosAktienMitKursen.values(3,3);
 			for(int m = 0; m < Label.length; m++) {
 				if (temp[j][2] == Integer.valueOf(Label[m][0])) {Info = Label[m][1];}
 			}
@@ -463,32 +355,31 @@ public class VC_Aktienanalyse {
 		sn1 = new SwingNode();
 		paneWithSwing1.getChildren().add(sn1);
 		
-		// create the chart...
+		// Erstelle den chart
         JFreeChart chart = ChartFactory.createXYLineChart(
             "Süd-Ost-Bereich",      // chart title
-            "Risiko",                      // x axis label
-            "Rendite",                      // y axis label
-            dataset,                  // data
+            "Risiko",               // x axis label
+            "Rendite",              // y axis label
+            dataset,                // data
             PlotOrientation.VERTICAL,
-            false,                     // include legend
-            true,                     // tooltips
-            false                     // urls
+            false,                  // include legend
+            true,                   // tooltips
+            false                   // urls
         );
         chart.setBackgroundPaint(Color.gray);
         chart.getTitle().setPaint(Color.black);
-
         
-     // get a reference to the plot for further customisation...
+        // Customisations
         XYPlot plot = chart.getXYPlot();
         plot.setBackgroundPaint(Color.black);
         plot.setDomainGridlinePaint(Color.white);
         plot.setRangeGridlinePaint(Color.white);
         
         NumberAxis domain = (NumberAxis) plot.getDomainAxis();
-        domain.setRange(0, 1);
+        domain.setRange(0, 0.71);
         domain.setTickUnit(new NumberTickUnit(0.1));
         NumberAxis range = (NumberAxis) plot.getRangeAxis();
-        range.setRange(-0.31, 0.71);
+        range.setRange(-0.31, 0.51);
         range.setTickUnit(new NumberTickUnit(0.1));
         
         XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
@@ -498,7 +389,7 @@ public class VC_Aktienanalyse {
         renderer.setSeriesStroke(0, new BasicStroke(2.0f));
 
 		NumberFormat format = NumberFormat.getNumberInstance();
-        format.setMaximumFractionDigits(2); // etc.
+        format.setMaximumFractionDigits(2);
         
         XYItemLabelGenerator generator =
         	new StandardXYItemLabelGenerator("{0}", format, format) ;
@@ -514,52 +405,40 @@ public class VC_Aktienanalyse {
 		this.updateData();
 	}
 	
-	/*
-	@FXML
-	private void handleSuedOstNormal() throws IOException {
-		System.out.println("Weiterbutton pressed!");
-		m1.analyseErgebnis.put(6, new Boolean(true));
-		m1.analyseErgebnis.put(7, new Boolean(true));
-		m1.analyseErgebnis.put(8, new Boolean(false));
-
-				this.updateData();	
-	}
-	*/
-	
 	@FXML
 	private void handleIndifferenz() throws IOException {
-		System.out.println("Weiterbutton pressed!");
-		//this.c1.setSceneToV_Shares();
+		System.out.println("Indifferenzbutton pressed!");
 		
+		// erstelle Array mit (Risiko, Rendite, AktienID, Effizienzbewertung, Nutzenwert)
 		String functp = this.functiontyp.getValue();
 		double averco = Double.parseDouble(this.aversionscoefficient.getText());
 		int counter = m1.currentPortfoliosAktienMitKursen.size();
 		double [][] temp = new double [counter][5];
 		final int[] i = {0};
-
+		
+		// Vorbereitung der Daten
 		m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> 
 			{
 				temp [i[0]][0] = v.getSigma();
 				temp [i[0]][1] = v.getRisk();
 				temp [i[0]][2] = v.getShare_id();
 				temp [i[0]][3] = 0;
-				//System.out.println(v.getShare_id() + " " + v.getName());
 				System.out.println(temp[i[0]][0] + " " + temp[i[0]][1] + " " + temp[i[0]][2] + " " + temp[i[0]][3]+ " " + temp[i[0]][4]);	
 				i[0] += 1;
 			}
 		);
 		
+		// Berechnung der Nutzenwerte
+		// Linear
 		if(functp == "Linear") {
 			for(int j = 0; j < temp.length; j++) {
-				//System.out.println(temp[i][1] - aversionscoefficient * temp[i][0]);
 				temp[j][4] = (temp[j][1] - averco/20 * temp[j][0]);
 			}
 		};
 		
-		/*Quadratisch*/
+		// Quadratisch
 		if(functp == "Quadratisch") {
 			for(int j = 0; j < temp.length; j++) {
-				//System.out.println(temp[i][1] - aversionscoefficient * (temp[i][0] * temp[i][0]));
 				temp[j][4] = (temp[j][1] - averco/5 * (temp[j][0] * temp[j][0]));
 			}
 		};
@@ -568,7 +447,7 @@ public class VC_Aktienanalyse {
     		System.out.println(temp[j][0] + " " + temp[j][1] + " " + temp[j][2] + " " + temp[j][3] + " " + temp[j][4]);
     	}
 		
-		//Sortierung
+		//Sortierung (hoher Nutzenwert, geringes Risiko)
 				Arrays.sort(temp, 
 		        		new Comparator<double[]>() {
 				            @Override
@@ -582,20 +461,20 @@ public class VC_Aktienanalyse {
 		        		}
 		        );
 		
+		// Finde die besten Aktien, die über einem gewissen Grenzwert (30%) liegen. Berechnung erfolgt anhand des höchsten Nutzenwertes.
 		double SchwelleProzent = 0.3; 
 		double Schwellenwert = (1-SchwelleProzent)*temp[0][4];
 		
 		for(int j = 0; j<temp.length; j++) {
     		if (temp[j][4] > Schwellenwert) {temp[j][3]=1;}
-    		//System.out.println(temp[i][0] + " " + temp[i][1] + " " + temp[i][2] + " " + temp[i][3] + " " + temp[i][4]);
-    	}
-		
-		for(int j = 0; j<counter; j++) {
     		System.out.println(temp[j][0] + " " + temp[j][1] + " " + temp[j][2] + " " + temp[j][3] + " " + temp[j][4]);
     	}
+
 		
+		// Erstellung der Datasets
 		XYSeriesCollection dataset = new XYSeriesCollection();
 		
+		// Erzeugung der Indifferenzkurven
 		XYSeries series2 = new XYSeries("Kurve1");
 		XYSeries series3 = new XYSeries("Kurve2");
 		XYSeries series4 = new XYSeries("Kurve3");
@@ -603,7 +482,6 @@ public class VC_Aktienanalyse {
 		XYSeries series6 = new XYSeries("Kurve5");
 		for(double j = 0; j < 1; j+=0.01) {
 			if(functp == "Linear") {
-				//System.out.print(z[j] + aversionscoefficient * i + " ");
 				series2.add(j, (-0.20+Schwellenwert) + averco/20 * j);
 				series3.add(j, (-0.10+Schwellenwert) + averco/20 * j);
 				series4.add(j, (Schwellenwert) + averco/20 * j);
@@ -611,7 +489,6 @@ public class VC_Aktienanalyse {
 				series6.add(j, (0.20+Schwellenwert) + averco/20 * j);
 			}
 			if(functp == "Quadratisch") {
-				//System.out.print(z[j] + aversionscoefficient * (i * i) + " ");
 				series2.add(j, (-0.20+Schwellenwert) + averco/5 * (j*j));
 				series3.add(j, (-0.10+Schwellenwert) + averco/5 * (j*j));
 				series4.add(j, (Schwellenwert) + averco/5 * (j*j));
@@ -625,13 +502,13 @@ public class VC_Aktienanalyse {
 		dataset.addSeries(series5);
 		dataset.addSeries(series6);
 		
+		// Aktien mit Beschriftung
 		String [][] Label = new String [counter][2];
 		i[0] = 0;
 		m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> 
 			{
 				Label [i[0]][0] = String.valueOf(v.getShare_id());
 				Label [i[0]][1] = v.getName();
-				//System.out.println(v.getShare_id() + " " + v.getName());
 				System.out.println(Label[i[0]][0] + " " + Label[i[0]][1]);	
 				i[0] += 1;
 			}
@@ -639,7 +516,6 @@ public class VC_Aktienanalyse {
 		
 		for(int j = 0; j < temp.length; j++) {
 			String Info = null;
-			//Info = m1.currentPortfoliosAktienMitKursen.values(3,3);
 			for(int m = 0; m < Label.length; m++) {
 				if (temp[j][2] == Integer.valueOf(Label[m][0])) {Info = Label[m][1];}
 			}
@@ -649,6 +525,7 @@ public class VC_Aktienanalyse {
 			dataset.addSeries(series1);
 		};
 		
+		
 		for(int j = 0; j < temp.length; j++) {
         	if(temp[j][3] == 1) {m1.analyseErgebnis.put((int)(temp[j][2]), new Boolean(true));}
         	else {m1.analyseErgebnis.put((int)(temp[j][2]), new Boolean(false));}
@@ -657,55 +534,52 @@ public class VC_Aktienanalyse {
 		sn2 = new SwingNode();
 		paneWithSwing2.getChildren().add(sn2);
 		
-		// create the chart...
+		// Erstelle den chart
         JFreeChart chart = ChartFactory.createXYLineChart(
             "Indifferenzkurven",      // chart title
-            "Risiko",                      // x axis label
-            "Rendite",                      // y axis label
+            "Risiko",                 // x axis label
+            "Rendite",                // y axis label
             dataset,                  // data
             PlotOrientation.VERTICAL,
-            false,                     // include legend
+            false,                    // include legend
             true,                     // tooltips
             false                     // urls
         );
         chart.setBackgroundPaint(Color.gray);
         chart.getTitle().setPaint(Color.black);
         
-        
-     // get a reference to the plot for further customisation...
+        // Customisations
         XYPlot plot = chart.getXYPlot();
         plot.setBackgroundPaint(Color.black);
         plot.setDomainGridlinePaint(Color.white);
         plot.setRangeGridlinePaint(Color.white);
-        //title.setPaint(Color.red)
        
         NumberAxis domain = (NumberAxis) plot.getDomainAxis();
-        domain.setRange(0, 1);
+        domain.setRange(0, 0.71);
         domain.setTickUnit(new NumberTickUnit(0.1));
         NumberAxis range = (NumberAxis) plot.getRangeAxis();
-        range.setRange(-0.31, 0.71);
+        range.setRange(-0.31, 0.51);
         range.setTickUnit(new NumberTickUnit(0.1));
         
         XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
-        renderer.setSeriesPaint(0, Color.white);
-        renderer.setSeriesPaint(1, Color.white);
-        renderer.setSeriesPaint(2, Color.red);
-        renderer.setSeriesPaint(3, Color.white);
-        renderer.setSeriesPaint(4, Color.white);
-        renderer.setSeriesShapesVisible(0, false);//für alle Kurven
-        renderer.setSeriesShapesVisible(1, false);//für alle Kurven
-        renderer.setSeriesShapesVisible(2, false);//für alle Kurven
-        renderer.setSeriesShapesVisible(3, false);//für alle Kurven
-        renderer.setSeriesShapesVisible(4, false);//für alle Kurven
+        renderer.setSeriesPaint(0, Color.white); // Hilfslinie
+        renderer.setSeriesPaint(1, Color.white); // Hilfslinie
+        renderer.setSeriesPaint(2, Color.red); // Referenzlinie
+        renderer.setSeriesPaint(3, Color.white); // Hilfslinie
+        renderer.setSeriesPaint(4, Color.white); // Hilfslinie
+        renderer.setSeriesShapesVisible(0, false);
+        renderer.setSeriesShapesVisible(1, false);
+        renderer.setSeriesShapesVisible(2, false);
+        renderer.setSeriesShapesVisible(3, false);
+        renderer.setSeriesShapesVisible(4, false);
         renderer.setSeriesItemLabelsVisible(0,false);
         renderer.setSeriesItemLabelsVisible(1,false);
         renderer.setSeriesItemLabelsVisible(2,false);
         renderer.setSeriesItemLabelsVisible(3,false);
         renderer.setSeriesItemLabelsVisible(4,false);
         
-        
         NumberFormat format = NumberFormat.getNumberInstance();
-        format.setMaximumFractionDigits(2); // etc.
+        format.setMaximumFractionDigits(2);
         
         XYItemLabelGenerator generator =
         	new StandardXYItemLabelGenerator("{0}", format, format) ;
@@ -719,8 +593,6 @@ public class VC_Aktienanalyse {
         sn2.setContent(panel);
 
 		this.updateData();
-		
-		
 	}
 	
 	@FXML

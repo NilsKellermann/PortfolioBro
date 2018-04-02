@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
+import javafx.application.Application;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.value.ChangeListener;
@@ -25,6 +26,7 @@ import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
@@ -264,7 +266,7 @@ public class VC_Shares {
 		////////////////////////////////////////////
 		// Scattertchart füllen
 		////////////////////////////////////////////
-		sc.setTitle("Sigma-R-Diagramm der Aktien");
+		sc.setTitle("Risiko-Rendite-Diagramm der Aktien");
 		// 5x Assetclass-Daten einfüllen
 		ObservableList<XYChart.Series<Double, Double>> scatterGraphSeries = FXCollections.observableArrayList();
 		for (Aktie ac1 : m1.currentPortfoliosAktienMitKursen.values()) {
@@ -275,7 +277,7 @@ public class VC_Shares {
 		}
 
 		sc.setData(scatterGraphSeries);
-
+		
 		sn1 = new SwingNode();
 		paneWithSwing.getChildren().add(sn1);
 	}

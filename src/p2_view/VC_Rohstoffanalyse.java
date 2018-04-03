@@ -174,7 +174,9 @@ public class VC_Rohstoffanalyse {
 		
 		//zusammenrechnen
 		List<Double> doubleList= new ArrayList<>();
-		m1.currentPortfoliosRohstoffeProzente.forEach( (k,v) -> {if (m1.analyseErgebnis2.get(k) == true) {doubleList.add(new Double(v.doubleValue()));}});
+		m1.currentPortfoliosRohstoffeProzente.forEach( (k,v) -> {if (
+				m1.analyseErgebnis2.get(k) == true) {
+			doubleList.add(new Double(v.doubleValue()));}});
 		double prozentSumme = doubleList.stream().collect(Collectors.summingDouble(Double::doubleValue));;
 		if(prozentSumme == 100.0) {
 			//in db speichern und aus datenbank rauslöschen die aussortierten

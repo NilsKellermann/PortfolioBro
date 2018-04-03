@@ -10,7 +10,7 @@ public class Portfolio {
 	private double curr_dist;
 	private double estate_dist;
 	private double bond_dist;
-	private double sigma_full;
+	private double sigma_full; //sigma steht fälschlicherweise für die Rendite
 	private double risk_full;
 	private double sigma_share;
 	private double risk_share;

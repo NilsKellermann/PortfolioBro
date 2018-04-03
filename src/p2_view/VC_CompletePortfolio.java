@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.FocusEvent;
 import javax.swing.JPanel;
-
+import java.text.NumberFormat;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -26,6 +29,7 @@ import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -77,22 +81,60 @@ public class VC_CompletePortfolio {
 	@FXML
 	private StackPane paneWithSwing;
 	
-//	@FXML
-//	private TableView<AktieTableEntry> listviewshares;
+	@FXML
+	private TextField gesamtrendite;
 	
-//	protected List<String> simpleStringList ;
-//	protected ListProperty<String> listProperty = new SimpleListProperty<>();
+	@FXML
+	private TextField gesamtrisiko;
 	
-//	@FXML
-//	private TableView listviewcommodities;
+	@FXML
+	private TextField immorendite;
+	
+	@FXML
+	private TextField immorisiko;
+	
+	@FXML
+	private TextField lmittelrendite;
+	
+	@FXML
+	private TextField lmittelrisiko;
+	
+	@FXML
+	private TextField rohstofferendite;
+	
+	@FXML
+	private TextField rohstofferisiko;
+	
+	@FXML
+	private TextField aktienrendite;
+	
+	@FXML
+	private TextField aktienrisiko;
+	
+	@FXML
+	private TextField anleihenrendite;
+	
+	@FXML
+	private TextField anleihenrisiko;
 
+
+	@FXML
+	private ListView<String> listView1;
+	@FXML
+	private ListView<String> listView2;
 	
+	protected List<String> simpleStringList ;
+	protected ListProperty<String> listProperty = new SimpleListProperty<>();
+    protected List<String> simpleStringList2 ;
+	protected ListProperty<String> listProperty2 = new SimpleListProperty<>();
+
+
 	
 	/**
 	 * The constructor. The constructor is called before the initialize() method.
 	 */
 	
-	public VC_CompletePortfolio() {
+	public VC_CompletePortfolio()  {
 		
 	}
 
@@ -101,45 +143,44 @@ public class VC_CompletePortfolio {
 	 * the fxml file has been loaded.
 	 */
 	
-	private void initialize() {
+    private void initialize() {
 		
 	}
+		
+	
+	
+		
+	
 	
 	public void updateData() {
 		
 		sn1 = new SwingNode();
 		paneWithSwing.getChildren().add(sn1);
 		
-/*	textfieldname.setText("" + m1.usedPortfolio.getName());
+	textfieldname.setText("" + m1.usedPortfolio.getName());
 	textfieldinvestment.setText("" + m1.usedPortfolio.getCapital());
 	textfieldshares.setText("" + m1.usedPortfolio.getShare_dist());
 	textfieldcommodities.setText("" + m1.usedPortfolio.getComm_dist());
 	textfieldrealestates.setText("" + m1.usedPortfolio.getEstate_dist());
 	textfieldbonds.setText("" + m1.usedPortfolio.getBond_dist());
 	textfieldcash.setText("" + m1.usedPortfolio.getCurr_dist());	
-*/		
-	textfieldname.setText("test");
-	textfieldinvestment.setText("100");
-	textfieldshares.setText("1");
-	textfieldcommodities.setText("24");
-	textfieldrealestates.setText("25");
-	textfieldbonds.setText("25");
-	textfieldcash.setText("25");	
-		
-/*	m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> simpleStringList.add(v.getShare_id() + " " + v.getName() + " (" +v.getIndex() + ")"));
-	simpleStringList= new ArrayList<>();
 	
-    simpleStringList.add("CNH");
-    simpleStringList.add("JPY");
-    simpleStringList.add("HKD");
-    simpleStringList.add("KRW");
-    simpleStringList.add("SGD");
 
-    listviewshares.itemsProperty().bind(listProperty);
-	listProperty.set(FXCollections.observableArrayList(simpleStringList));    
-*/	
+
+//	aktienrendite.setText("" + m1.usedPortfolio.getRisk_share());
+//	aktienrisiko.setText("" + m1.usedPortfolio.getRisk_share());
+//	rohstofferendite.setText("" + m1.usedPortfolio.getSigma_comm());
+//	rohstofferisiko.setText("" + m1.usedPortfolio.getRisk_comm());
+	immorendite.setText("" + m1.assetclasses.get(4).getSigma());
+	immorisiko.setText("" + m1.assetclasses.get(4).getRisk());
+	lmittelrendite.setText("" + m1.assetclasses.get(0).getSigma());
+	lmittelrisiko.setText("" + m1.assetclasses.get(0).getRisk());
+	anleihenrendite.setText("" + m1.assetclasses.get(1).getSigma());
+	anleihenrisiko.setText("" + m1.assetclasses.get(1).getRisk());
+//	gesamtrendite.setText("" + m1.usedPortfolio.getSigma_full());
+//	gesamtrisiko.setText("" + m1.usedPortfolio.getRisk_full());
 	
-	   
+	
 	
 	
 	
@@ -147,7 +188,10 @@ public class VC_CompletePortfolio {
 	
 	
 		updatePieChart();
+	
 	}
+		
+	
 	
 	public void updatePieChart() {
 		if (Double.parseDouble(this.textfieldshares.getText())
@@ -200,8 +244,7 @@ public class VC_CompletePortfolio {
 		this.c1.setSceneToV_CompletePortfolioCompare();
 	}
 	
-
-  
-		
 	
+  
 }
+	

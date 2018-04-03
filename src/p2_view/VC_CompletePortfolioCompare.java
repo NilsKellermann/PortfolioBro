@@ -136,10 +136,10 @@ public class VC_CompletePortfolioCompare {
 	@FXML
 	private void handleZurueck() throws IOException {
 		System.out.println("Weiterbutton pressed!");
-		this.c1.setSceneToV_CompletePortfolio();
+		this.c1.setSceneToV_Portfolios();
 	}
 
-  
+
 		
 	
 }

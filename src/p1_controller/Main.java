@@ -30,7 +30,7 @@ public class Main extends Application {
 		Controller c1= Controller.getInstance(primaryStage, m1);
 		c1.setSceneToV_Portfolios();
 		
-//JavaFX Fenster mit erster Scene füllen
+//JavaFX Fenster mit erster Scene fï¿½llen
 		c1.setSceneToV_MainMenu();
 		// setSceneToV_Shares();
 		// setSceneTo1();

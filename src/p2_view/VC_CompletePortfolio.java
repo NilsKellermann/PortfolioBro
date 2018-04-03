@@ -167,7 +167,7 @@ public class VC_CompletePortfolio {
 	
 
 
-//	aktienrendite.setText("" + m1.usedPortfolio.getRisk_share());
+//	aktienrendite.setText("" + m1.usedPortfolio.getSigma_share());
 //	aktienrisiko.setText("" + m1.usedPortfolio.getRisk_share());
 //	rohstofferendite.setText("" + m1.usedPortfolio.getSigma_comm());
 //	rohstofferisiko.setText("" + m1.usedPortfolio.getRisk_comm());

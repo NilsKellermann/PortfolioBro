@@ -260,7 +260,7 @@ public class VC_Commodities {
 		////////////////////////////////////////////
 		// Scattertchart füllen
 		////////////////////////////////////////////
-		sc.setTitle("Sigma-R-Diagramm der Aktien");
+		sc.setTitle("Risiko-Rendite-Diagramm der Aktien");
 		// 5x Assetclass-Daten einfüllen
 		ObservableList<XYChart.Series<Double, Double>> scatterGraphSeries = FXCollections.observableArrayList();
 		for (Rohstoff ac1 : m1.currentPortfoliosRohstoffeMitKursen.values()) {

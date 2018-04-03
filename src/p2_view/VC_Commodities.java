@@ -44,10 +44,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import p0_db_objects.Rohstoff;
-import p0_db_objects.RohstoffTableEntry;
-import p0_db_objects.PortfolioTableEntry;
 import p0_model.Model;
+import p0_model.db_objects.PortfolioTableEntry;
+import p0_model.db_objects.Rohstoff;
+import p0_model.db_objects.RohstoffTableEntry;
 import p1_controller.Controller;
 
 public class VC_Commodities {
@@ -206,7 +206,7 @@ public class VC_Commodities {
 		industryColumn2.setCellValueFactory(cellData -> cellData.getValue().get2Industry());
 
 		ObservableList<RohstoffTableEntry> allAktienOhneKurseTE_MDAX = m1.allRohstoffeOhneKurseTE.stream()
-				.filter(x -> (x.getIndustry().equals("Energie")))
+				.filter(x -> (x.getIndustry().equals("Energie u. weiteres")))
 				.collect(Collectors.toCollection(FXCollections::observableArrayList));
 		tableView3.setItems(allAktienOhneKurseTE_MDAX);
 		IdColumn3.setCellValueFactory(cellData -> cellData.getValue().get2Share_id());

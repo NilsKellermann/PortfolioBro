@@ -6,7 +6,6 @@ import java.util.HashMap;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import p0_model.Model;
 import p2_view.VC_Rohstoffanalyse;
 import p2_view.VC_Shares;
 import p2_view.VC_Aktienanalyse;
@@ -21,8 +20,9 @@ import p2_view.VC_CompletePortfolioCompare;
 //import javafx.event.Event;
 //import javafx.event.EventHandler;
 import javafx.stage.Stage;
-import p0_db_objects.Aktie;
-import p0_db_objects.Rohstoff;
+import p0_model.Model;
+import p0_model.db_objects.Aktie;
+import p0_model.db_objects.Rohstoff;
 
 public class Controller {
 	public static Controller c1;

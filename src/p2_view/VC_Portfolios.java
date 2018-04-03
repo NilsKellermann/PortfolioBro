@@ -6,13 +6,13 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import p0_db_objects.Portfolio;
-import p0_db_objects.PortfolioTableEntry;
+import p0_model.Model;
+import p0_model.db_objects.Portfolio;
+import p0_model.db_objects.PortfolioTableEntry;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import p0_model.Model;
 import p1_controller.Controller;
 
 public class VC_Portfolios {

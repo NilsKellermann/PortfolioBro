@@ -42,7 +42,7 @@
                   </GridPane>
                   <ImageView fitHeight="185.0" fitWidth="535.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                    <image>
-                        <Image url="@../img/Logo.jpg" />
+                        <Image url="@../ressources_img/Logo.jpg" />
                    </image>
                   </ImageView>
                   <Text fill="#2883c6" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 26;" text="Willkommen im" textAlignment="CENTER" underline="true" wrappingWidth="234.6103515625" GridPane.halignment="CENTER" GridPane.valignment="TOP">

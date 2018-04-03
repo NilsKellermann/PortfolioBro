@@ -12,16 +12,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import p0_db_objects.AnlageKlasse;
-import p0_db_objects.PortfolioTableEntry;
+import p0_model.Model;
+import p0_model.db_objects.AnlageKlasse;
+import p0_model.db_objects.PortfolioTableEntry;
 import javafx.application.Application;
 //import javafx.scene.Scene; 
 //import javafx.scene.image.Image; 
 //import javafx.scene.image.ImageView; 
 //import javafx.scene.layout.BorderPane; 
 //import javafx.stage.Stage; 
-
-import p0_model.Model;
 import p1_controller.Controller;
 
 public class VC_MainMenu {

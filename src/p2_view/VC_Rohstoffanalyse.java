@@ -47,9 +47,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.StackPane;
-import p0_db_objects.AnlageKlasse;
-import p0_db_objects.PortfolioTableEntry;
 import p0_model.Model;
+import p0_model.db_objects.AnlageKlasse;
+import p0_model.db_objects.PortfolioTableEntry;
 import p1_controller.Controller;
 
 public class VC_Rohstoffanalyse {

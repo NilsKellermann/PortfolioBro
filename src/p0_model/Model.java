@@ -1,16 +1,17 @@
 package p0_model;
 
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import p0_db_objects.Rohstoff;
-import p0_db_objects.RohstoffTableEntry;
-import p0_db_objects.Aktie;
-import p0_db_objects.AktieTableEntry;
-import p0_db_objects.AnlageKlasse;
-import p0_db_objects.Portfolio;
-import p0_db_objects.PortfolioTableEntry;
-import p0_db_objects.Rohstoff;
-import p0_db_objects.RohstoffTableEntry;
+import p0_model.db_objects.Rohstoff;
+import p0_model.db_objects.RohstoffTableEntry;
+import p0_model.db_objects.Aktie;
+import p0_model.db_objects.AktieTableEntry;
+import p0_model.db_objects.AnlageKlasse;
+import p0_model.db_objects.Portfolio;
+import p0_model.db_objects.PortfolioTableEntry;
+import p0_model.db_objects.Rohstoff;
+import p0_model.db_objects.RohstoffTableEntry;
 import test.__________User;
 
 import java.sql.Connection;
@@ -47,7 +48,7 @@ public class Model {
 	
 		// SHARES
 	//---Portfolio bearbeiten in V_AssetClasses, V_Shares, V_Aktienanalyse---
-	public Portfolio usedPortfolio;
+	public Portfolio usedPortfolio; 
 	public HashMap<Integer, Aktie> currentPortfoliosAktienMitKursen = new HashMap<Integer, Aktie>();
 	public HashMap<Integer, Double> currentPortfoliosAktienProzente = new HashMap<Integer, Double>();
 	public ObservableList<AktieTableEntry> currentPortfoliosAktienMitKursenTE = FXCollections.observableArrayList();
@@ -119,6 +120,7 @@ public class Model {
 	public int calculateNextPortfolioID() {
 
 		final Comparator<Portfolio> comp = (p1, p2) -> Integer.compare(p1.getPortfolio_id(), p2.getPortfolio_id());
+		if (this.allPortfolios.isEmpty()) return 1;
 		Portfolio oldest = this.allPortfolios.values().stream().max(comp).get();
 		return oldest.getPortfolio_id() + 1;
 	}

@@ -2,9 +2,6 @@ package p2_view;
 
 import java.io.IOException;
 
-import p0_db_objects.Portfolio;
-import p0_db_objects.PortfolioTableEntry;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,21 +12,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import p0_db_objects.AnlageKlasse;
-import p0_db_objects.PortfolioTableEntry;
 import javafx.application.Application; 
 import java.awt.event.FocusEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-
-//import javafx.scene.Scene; 
-//import javafx.scene.image.Image; 
-//import javafx.scene.image.ImageView; 
-//import javafx.scene.layout.BorderPane; 
-//import javafx.stage.Stage; 
-
-
 import p0_model.Model;
+import p0_model.db_objects.AnlageKlasse;
+import p0_model.db_objects.Portfolio;
+import p0_model.db_objects.PortfolioTableEntry;
 import p1_controller.Controller;
 
 

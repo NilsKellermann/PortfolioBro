@@ -44,10 +44,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import p0_db_objects.Aktie;
-import p0_db_objects.AktieTableEntry;
-import p0_db_objects.PortfolioTableEntry;
 import p0_model.Model;
+import p0_model.db_objects.Aktie;
+import p0_model.db_objects.AktieTableEntry;
+import p0_model.db_objects.PortfolioTableEntry;
 import p1_controller.Controller;
 
 public class VC_Shares {

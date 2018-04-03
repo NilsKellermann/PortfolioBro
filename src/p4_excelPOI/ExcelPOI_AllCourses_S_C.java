@@ -26,9 +26,9 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import p0_db_objects.AnlageKlasse;
+import p0_model.db_objects.AnlageKlasse;
 
-public class ExcelPOI_AllCourses_S_C {
+public interface ExcelPOI_AllCourses_S_C {
 
 	public static HashMap <String, HashMap<Date, Double>> readExcelData(String fileName) {
 		HashMap <String, HashMap<Date, Double>> result= new HashMap <String, HashMap<Date, Double>>();

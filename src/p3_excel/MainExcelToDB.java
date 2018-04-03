@@ -11,10 +11,11 @@ import java.util.Iterator;
 import java.util.Map;
 import p4_excelPOI.ExcelPOI_Headerdata_S_C;
 import p4_excelPOI.ExcelPOI_AllCourses_S_C;
+import p4_excelPOI.ExcelPOI_AssetClasses;
 import p4_excelPOI.ExcelPOI_HalfyearCourses_S_C;
 import p4_excelPOI.ExcelPOI_Headerdata2_S_C;
 
-public class MainExcelToDB {
+public class MainExcelToDB implements ExcelPOI_AllCourses_S_C, ExcelPOI_AssetClasses, ExcelPOI_HalfyearCourses_S_C, ExcelPOI_Headerdata_S_C, ExcelPOI_Headerdata2_S_C {
 	 static HashMap<String, HashMap<String, String>> ShareDaten;
 	 static HashMap<String, HashMap<String, Double>> allSharesRisRen;
 	 static HashMap<String, HashMap<Date, Double>> allSharesHalfyearCourses;
@@ -69,10 +70,10 @@ public class MainExcelToDB {
 				Double rendite = null;
 				Double risk = null;
 				if (allSharesRisRen.get(pair.getKey()) != null) {
-					rendite = allSharesRisRen.get(pair.getKey()).get("Risikopa"); //!!Stimmt so, Name vertauscht beim ExcelImport
+					rendite = allSharesRisRen.get(pair.getKey()).get("Renditepa"); //!!Stimmt so, Name vertauscht beim ExcelImport
 				}
 				if (allSharesRisRen.get(pair.getKey()) != null) {
-					risk = allSharesRisRen.get(pair.getKey()).get("Renditepa"); // " " "
+					risk = allSharesRisRen.get(pair.getKey()).get("Risikopa"); // " " "
 				}
 				////////////////////////////////////////
 				//////////////////////////////////////// DB UPLOAD

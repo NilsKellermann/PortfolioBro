@@ -2,9 +2,9 @@ package p1_controller;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import p0_db_objects.Portfolio;
-import p0_db_objects.PortfolioTableEntry;
 import p0_model.Model;
+import p0_model.db_objects.Portfolio;
+import p0_model.db_objects.PortfolioTableEntry;
 
 public class Main extends Application {
 

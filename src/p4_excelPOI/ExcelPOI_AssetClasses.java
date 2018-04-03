@@ -13,9 +13,9 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import p0_db_objects.AnlageKlasse;
+import p0_model.db_objects.AnlageKlasse;
 
-public class ExcelPOI_AssetClasses {
+public interface ExcelPOI_AssetClasses {
 
 	public static HashMap <String, HashMap<Integer, AnlageKlasse>> readExcelData(String fileName) {
 		

@@ -29,12 +29,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.StackPane;
-import p0_db_objects.AnlageKlasse;
-import p0_db_objects.Portfolio;
-import p0_db_objects.PortfolioTableEntry;
 import p0_model.Model;
+import p0_model.db_objects.AnlageKlasse;
+import p0_model.db_objects.Portfolio;
+import p0_model.db_objects.PortfolioTableEntry;
 import p1_controller.Controller;
-import p2_view.charts.PieChart3DDemo3;
+import p2_view.chart_objects.PieChart3D;
 
 public class VC_AssetClasses {
 
@@ -174,7 +174,7 @@ public class VC_AssetClasses {
 			plot.setDirection(Rotation.CLOCKWISE);
 			plot.setForegroundAlpha(0.5f);
 			plot.setNoDataMessage("No data to display");
-			plot.setLabelGenerator(new PieChart3DDemo3.CustomLabelGenerator());
+			plot.setLabelGenerator(new PieChart3D.CustomLabelGenerator());
 
 			ChartPanel panel = new ChartPanel(chart);
 			panel.setMouseWheelEnabled(true);

@@ -183,10 +183,6 @@ public class VC_CompletePortfolio {
 	
 	
 	
-	
-	
-	
-	
 		updatePieChart();
 	
 	}

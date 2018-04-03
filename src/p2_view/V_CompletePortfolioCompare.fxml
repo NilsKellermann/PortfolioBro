@@ -27,7 +27,7 @@
                   <RowConstraints maxHeight="467.0" minHeight="10.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <GridPane gridLinesVisible="true" GridPane.rowIndex="1">
+                  <GridPane GridPane.rowIndex="1">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -72,9 +72,9 @@
                       <RowConstraints maxHeight="153.0" minHeight="10.0" prefHeight="153.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" onAction="#handleZurueck" text="Zurück">
+                        <Button mnemonicParsing="false" onAction="#handleZurueck" text="Zurück zum Hauptmenü" GridPane.halignment="RIGHT">
                            <GridPane.margin>
-                              <Insets left="10.0" />
+                              <Insets right="10.0" />
                            </GridPane.margin>
                         </Button>
                      </children>

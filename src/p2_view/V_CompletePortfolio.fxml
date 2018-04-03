@@ -196,7 +196,7 @@
                               <Label layoutX="10.0" layoutY="59.0" text="Risiko" GridPane.columnIndex="4" GridPane.rowIndex="2" />
                               <Label layoutX="10.0" layoutY="59.0" text="Rendite" GridPane.columnIndex="4" GridPane.rowIndex="1" />
                               <Label layoutX="10.0" layoutY="59.0" text="Immobilen" GridPane.columnIndex="4" />
-                              <TextField fx:id="aktierendite" editable="false" maxWidth="-Infinity" prefWidth="100.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                              <TextField fx:id="aktienrendite" editable="false" maxWidth="-Infinity" prefWidth="100.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets left="5.0" />
                                  </GridPane.margin>
@@ -211,7 +211,7 @@
                               <TextField fx:id="lmittelrendite" editable="false" layoutX="60.0" layoutY="91.0" maxWidth="-Infinity" prefWidth="100.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                               <TextField fx:id="rohstofferisiko" editable="false" layoutX="60.0" layoutY="91.0" maxWidth="-Infinity" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                               <TextField fx:id="rohstofferendite" editable="false" layoutX="60.0" layoutY="91.0" maxWidth="-Infinity" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                              <TextField fx:id="aktierisiko" editable="false" layoutX="60.0" layoutY="91.0" maxWidth="-Infinity" prefWidth="100.0" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                              <TextField fx:id="aktienrisiko" editable="false" layoutX="60.0" layoutY="91.0" maxWidth="-Infinity" prefWidth="100.0" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                                  <GridPane.margin>
                                     <Insets left="5.0" />
                                  </GridPane.margin>

@@ -197,8 +197,8 @@ public class VC_Rohstoffanalyse {
 			} );
 			Double sigma_shareValue = sigma_shareL.stream().reduce(0.0, Double::sum);
 			Double risk_shareValue = risk_shareL.stream().reduce(0.0, Double::sum);
-			m1.usedPortfolio.setSigma_share(sigma_shareValue);
-			m1.usedPortfolio.setRisk_share(risk_shareValue);
+			m1.usedPortfolio.setSigma_comm(sigma_shareValue);
+			m1.usedPortfolio.setRisk_comm(risk_shareValue);
 			m1.updatePB_PORTF_COMMwithPercents();
 			this.c1.setSceneToV_CompletePortfolio();}
 

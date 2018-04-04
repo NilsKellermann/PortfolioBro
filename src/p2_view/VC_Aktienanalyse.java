@@ -219,7 +219,7 @@ public class VC_Aktienanalyse {
 			alert.showAndWait();
 			}
 		}
-
+		
 	}
 	
 	@FXML

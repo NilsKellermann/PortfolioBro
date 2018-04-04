@@ -190,7 +190,7 @@ public class VC_Shares {
 		// Initiale Anpassungen von UI-Elementen
 		tabPane1.getStyleClass().add("floating");
 
-		// Tabellen füllen
+		// Tabellen fï¿½llen
 		ObservableList<AktieTableEntry> allAktienOhneKurseTE_DAX = m1.allAktienOhneKurseTE.stream()
 				.filter(x -> (x.getIndex().equals("DAX")))
 				.collect(Collectors.toCollection(FXCollections::observableArrayList));
@@ -245,7 +245,7 @@ public class VC_Shares {
 		tableView5.getSelectionModel().selectedItemProperty()
 				.addListener((observable, oldValue, newValue) -> handleSaveSelected(newValue));
 
-		// Liste füllen
+		// Liste fï¿½llen
 		simpleStringList = new ArrayList<>();
 		m1.currentPortfoliosAktienMitKursen.forEach(
 				(k, v) -> simpleStringList.add(v.getShare_id() + " " + v.getName() + " (" + v.getIndex() + ")"));
@@ -264,14 +264,14 @@ public class VC_Shares {
 		});
 
 		////////////////////////////////////////////
-		// Scattertchart füllen
+		// Scattertchart fï¿½llen
 		////////////////////////////////////////////
 		sc.setTitle("Risiko-Rendite-Diagramm der Aktien");
-		// 5x Assetclass-Daten einfüllen
+		// 5x Assetclass-Daten einfï¿½llen
 		ObservableList<XYChart.Series<Double, Double>> scatterGraphSeries = FXCollections.observableArrayList();
 		for (Aktie ac1 : m1.currentPortfoliosAktienMitKursen.values()) {
 			XYChart.Series<Double, Double> series1 = new XYChart.Series<Double, Double>();
-			series1.getData().add(new XYChart.Data<Double, Double>(ac1.getSigma(), ac1.getRisk()));
+			series1.getData().add(new XYChart.Data<Double, Double>(ac1.getRisk(), ac1.getSigma()));
 			series1.setName(ac1.getName());
 			scatterGraphSeries.add(series1);
 		}

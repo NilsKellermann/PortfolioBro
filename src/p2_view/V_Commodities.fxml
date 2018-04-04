@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="p2_view.VC_Commodities">
+<AnchorPane prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="p2_view.VC_Commodities">
    <children>
       <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -28,8 +28,8 @@
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="834.0" minWidth="0.0" prefWidth="775.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="558.0" minHeight="10.0" prefHeight="408.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="400.0" minHeight="0.0" prefHeight="192.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="558.0" minHeight="10.0" prefHeight="388.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="400.0" minHeight="0.0" prefHeight="212.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="193.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
@@ -42,8 +42,8 @@
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                                  </columnConstraints>
                                  <rowConstraints>
-                                    <RowConstraints maxHeight="314.0" minHeight="10.0" prefHeight="300.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="37.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="314.0" minHeight="10.0" prefHeight="280.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="37.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
                                 <AnchorPane>

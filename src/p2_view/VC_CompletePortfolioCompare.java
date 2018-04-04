@@ -165,9 +165,8 @@ public class VC_CompletePortfolioCompare {
 				// Clear person details.
 				handleSaveSelectedAndUseSelectedToFill2(null);
 				
-				updatePieChart1();
 				
-				updatePieChart2();
+	
 		 
 	}
 
@@ -252,6 +251,10 @@ public class VC_CompletePortfolioCompare {
 			m1.selectedPortfolio = null;
 			nameLabel1.setText("Portfolio auswählen");
 		}
+		getData1(portf1);
+		updatePieChart1();
+		
+		
 	}
 	
 	private void handleSaveSelectedAndUseSelectedToFill2(PortfolioTableEntry portf2) {
@@ -263,6 +266,8 @@ public class VC_CompletePortfolioCompare {
 			m1.selectedPortfolio = null;
 			nameLabel2.setText("Portfolio auswählen");
 	}	
+		getData2(portf2);
+		updatePieChart2();
 	}
 	
 	

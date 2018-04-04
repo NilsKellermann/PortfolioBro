@@ -124,7 +124,7 @@ public class VC_Aktienanalyse {
 		        m1.selectedCurrentSharesStringAnalyse1 = newValue;
 		    }
 		});
-		//Liste füllen		
+		//Liste fï¿½llen		
 		simpleStringList2= new ArrayList<>();
 		m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> 
 		{if(! m1.analyseErgebnis.isEmpty() && (m1.analyseErgebnis.get(k) == null ||m1.analyseErgebnis.get(k).booleanValue() == false))
@@ -181,7 +181,7 @@ public class VC_Aktienanalyse {
 	}
 		double prozentSumme = doubleList.stream().collect(Collectors.summingDouble(Double::doubleValue));;
 		if(prozentSumme == 100.0) {
-			//in db speichern und aus datenbank rauslöschen die aussortierten
+			//in db speichern und aus datenbank rauslï¿½schen die aussortierten
 		//TODOOOO	//////////777777777777777777777777777777
 		////////////////////////////////////////
 		///////////////////////////////////////
@@ -201,8 +201,8 @@ public class VC_Aktienanalyse {
 			} );
 			Double sigma_shareValue = sigma_shareL.stream().reduce(0.0, Double::sum);
 			Double risk_shareValue = risk_shareL.stream().reduce(0.0, Double::sum);
-			m1.usedPortfolio.setSigma_share(sigma_shareValue);
-			m1.usedPortfolio.setRisk_share(risk_shareValue);
+			m1.usedPortfolio.setYield_share((double)Math.round(sigma_shareValue*1000)/1000);
+			m1.usedPortfolio.setRisk_share((double)Math.round(risk_shareValue*1000)/1000);
 			m1.updatePB_PORTF_SHAREwithPercents();
 			this.c1.setSceneToV_Commodities();}
 
@@ -214,7 +214,7 @@ public class VC_Aktienanalyse {
 			// Show a predefined Warning notification
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information Dialog");
-			alert.setHeaderText("Die Summe der Prozentzahlen der nicht aussortierten Aktien beträgt nicht 100%. (" + prozentSumme + ")" );
+			alert.setHeaderText("Die Summe der Prozentzahlen der nicht aussortierten Aktien betrï¿½gt nicht 100%. (" + prozentSumme + ")" );
 			alert.setContentText("");
 			alert.showAndWait();
 			}
@@ -249,8 +249,8 @@ public class VC_Aktienanalyse {
 		// Vorbereitung der Daten
 		m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> 
 			{
-				temp [i[0]][0] = v.getSigma();
-				temp [i[0]][1] = v.getRisk();
+				temp [i[0]][0] = v.getRisk();
+				temp [i[0]][1] = v.getSigma();
 				temp [i[0]][2] = v.getShare_id();
 				temp [i[0]][3] = 1;
 				System.out.println(temp[i[0]][0] + " " + temp[i[0]][1] + " " + temp[i[0]][2] + " " + temp[i[0]][3]);	
@@ -306,7 +306,7 @@ public class VC_Aktienanalyse {
 		// Erstellung der Datasets
 		XYSeriesCollection dataset = new XYSeriesCollection();
 		
-		//Grenzlinie des Süd-ost-Bereichs
+		//Grenzlinie des Sued-ost-Bereichs
 		XYSeries series2 = new XYSeries("Kurve1");
 		for(int j = 0; j < temp.length; j++) {
 			if(j==0) {series2.add(temp[j][0],-1);}
@@ -357,7 +357,7 @@ public class VC_Aktienanalyse {
 		
 		// Erstelle den chart
         JFreeChart chart = ChartFactory.createXYLineChart(
-            "Süd-Ost-Bereich",      // chart title
+            "Sued-Ost-Bereich",      // chart title
             "Risiko",               // x axis label
             "Rendite",              // y axis label
             dataset,                // data
@@ -419,8 +419,8 @@ public class VC_Aktienanalyse {
 		// Vorbereitung der Daten
 		m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> 
 			{
-				temp [i[0]][0] = v.getSigma();
-				temp [i[0]][1] = v.getRisk();
+				temp [i[0]][0] = v.getRisk();
+				temp [i[0]][1] = v.getSigma();
 				temp [i[0]][2] = v.getShare_id();
 				temp [i[0]][3] = 0;
 				System.out.println(temp[i[0]][0] + " " + temp[i[0]][1] + " " + temp[i[0]][2] + " " + temp[i[0]][3]+ " " + temp[i[0]][4]);	
@@ -461,7 +461,7 @@ public class VC_Aktienanalyse {
 		        		}
 		        );
 		
-		// Finde die besten Aktien, die über einem gewissen Grenzwert (30%) liegen. Berechnung erfolgt anhand des höchsten Nutzenwertes.
+		// Finde die besten Aktien, die ï¿½ber einem gewissen Grenzwert (30%) liegen. Berechnung erfolgt anhand des hï¿½chsten Nutzenwertes.
 		double SchwelleProzent = 0.3; 
 		double Schwellenwert = (1-SchwelleProzent)*temp[0][4];
 		

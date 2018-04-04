@@ -112,7 +112,7 @@ public class Portfolio {
 		return bond_dist;
 	}
 
-	public double getSigma_full() {
+	public double getYield_full() {
 		return yield_full;
 	}
 
@@ -120,7 +120,7 @@ public class Portfolio {
 		return risk_full;
 	}
 
-	public double getSigma_share() {
+	public double getYield_share() {
 		return yield_share;
 	}
 
@@ -128,7 +128,7 @@ public class Portfolio {
 		return risk_share;
 	}
 
-	public double getSigma_comm() {
+	public double getYield_comm() {
 		return yield_comm;
 	}
 
@@ -172,7 +172,7 @@ public class Portfolio {
 		this.bond_dist = bond_dist;
 	}
 
-	public void setSigma_full(double sigma_full) {
+	public void setYield_full(double sigma_full) {
 		this.yield_full = sigma_full;
 	}
 
@@ -180,7 +180,7 @@ public class Portfolio {
 		this.risk_full = risk_full;
 	}
 
-	public void setSigma_share(double sigma_share) {
+	public void setYield_share(double sigma_share) {
 		this.yield_share = sigma_share;
 	}
 
@@ -188,7 +188,7 @@ public class Portfolio {
 		this.risk_share = risk_share;
 	}
 
-	public void setSigma_comm(double sigma_comm) {
+	public void setYield_comm(double sigma_comm) {
 		this.yield_comm = sigma_comm;
 	}
 

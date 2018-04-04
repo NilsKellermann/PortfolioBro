@@ -232,7 +232,7 @@ public class Model {
 	// -->Beim View-Wechsel von V_PORTFOLIO zu V_ASSETCLASS (Wenn neues Portf.
 	//////erschaffen wird passiert nichts (die Schleife wird
 	//////erst garnicht betreten))
-	// -->Bei jeder Änderung der usedPortfolio-Shares
+	// -->Bei jeder ï¿½nderung der usedPortfolio-Shares
 	//////////////////////////
 	// DB AKTIEN DES USEDPORTFOLIOS LADEN
 	//////////////////////////
@@ -257,14 +257,14 @@ public class Model {
 				this.currentPortfoliosRohstoffeProzente.put(rs.getInt("COMM_ID"), rs.getDouble("PERCENT"));
 				System.out.println("" + shareList);
 			}
-			//// 2. SELECT-Befehl-String der nur diese Aktien-header aus der DB läd
+			//// 2. SELECT-Befehl-String der nur diese Aktien-header aus der DB lï¿½d
 			//// zusammensetzen
 			String chosenSharesString = "COMM_ID=0";
 			for (Integer i : shareList) {
 				chosenSharesString = chosenSharesString + " OR COMM_ID =" + i.intValue() + " ";
 			}
 			System.out.println(chosenSharesString);
-			//// 3. SELECT-Befehl asuführen
+			//// 3. SELECT-Befehl asufï¿½hren
 			rs = stmt.executeQuery("SELECT * FROM PB_COMM_HEAD WHERE " + chosenSharesString + ";");// selectedPortfolio.getPortfolio_ID;
 			while (rs.next()) {
 				this.currentPortfoliosRohstoffeMitKursen.put(rs.getInt("COMM_ID"),
@@ -304,14 +304,14 @@ public class Model {
 				this.currentPortfoliosAktienProzente.put(rs2.getInt("SHARE_ID"), rs2.getDouble("PERCENT"));
 				System.out.println("" + shareList2);
 			}
-			//// 2. SELECT-Befehl-String der nur diese Aktien-header aus der DB läd
+			//// 2. SELECT-Befehl-String der nur diese Aktien-header aus der DB lï¿½d
 			//// zusammensetzen
 			String chosenSharesString2 = "SHARE_ID=0";
 			for (Integer i : shareList2) {
 				chosenSharesString2 = chosenSharesString2 + " OR SHARE_ID =" + i.intValue() + " ";
 			}
 			System.out.println(chosenSharesString2);
-			//// 3. SELECT-Befehl asuführen
+			//// 3. SELECT-Befehl asufï¿½hren
 			rs2 = stmt.executeQuery("SELECT * FROM PB_SHARE_HEAD WHERE " + chosenSharesString2 + ";");// selectedPortfolio.getPortfolio_ID;
 			while (rs2.next()) {
 				this.currentPortfoliosAktienMitKursen.put(rs2.getInt("SHARE_ID"),
@@ -395,16 +395,16 @@ public class Model {
 			String String1 = "REPLACE INTO `PB_PORTFOLIO` VALUES (" + portf1.getPortfolio_id() + "," + portf1.getName()
 					+ "," + portf1.getUser_id() + "," + portf1.getCapital() + "," + portf1.getShare_dist() + ","
 					+ portf1.getComm_dist() + "," + portf1.getCurr_dist() + "," + portf1.getEstate_dist() + ","
-					+ portf1.getBond_dist() + "," + portf1.getSigma_full() + "," + portf1.getRisk_full() + ","
-					+ portf1.getSigma_share() + "," + portf1.getRisk_share() + "," + portf1.getSigma_comm() + ","
+					+ portf1.getBond_dist() + "," + portf1.getYield_full() + "," + portf1.getRisk_full() + ","
+					+ portf1.getYield_share() + "," + portf1.getRisk_share() + "," + portf1.getYield_comm() + ","
 					+ portf1.getRisk_comm() + ");";
 			System.out.println(String1);
 			statement = connection.prepareStatement("REPLACE INTO `PB_PORTFOLIO` VALUES (" + portf1.getPortfolio_id()
 					+ ",'" + portf1.getName() + "'," + portf1.getUser_id() + "," + portf1.getCapital() + ","
 					+ portf1.getShare_dist() + "," + portf1.getComm_dist() + "," + portf1.getCurr_dist() + ","
-					+ portf1.getEstate_dist() + "," + portf1.getBond_dist() + "," + portf1.getSigma_full() + ","
-					+ portf1.getRisk_full() + "," + portf1.getSigma_share() + "," + portf1.getRisk_share() + ","
-					+ portf1.getSigma_comm() + "," + portf1.getRisk_comm() + ");");
+					+ portf1.getEstate_dist() + "," + portf1.getBond_dist() + "," + portf1.getYield_full() + ","
+					+ portf1.getRisk_full() + "," + portf1.getYield_share() + "," + portf1.getRisk_share() + ","
+					+ portf1.getYield_comm() + "," + portf1.getRisk_comm() + ");");
 			statement.execute();
 			// }
 		} catch (SQLException e) {

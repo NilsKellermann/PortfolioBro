@@ -68,7 +68,7 @@ public class VC_Portfolios {
 	}
 
 	public void updateData() {
-		// Portfolio-Tabelle füllen
+		// Portfolio-Tabelle fï¿½llen
 		pTable.setItems(m1.allPortfolioTE);
 		IdColumn.setCellValueFactory(cellData -> cellData.getValue().getPortfolio_id());
 		nameColumn.setCellValueFactory(cellData -> cellData.getValue().getName());
@@ -93,11 +93,11 @@ public class VC_Portfolios {
 		if (portf1 != null) {
 			m1.selectedPortfolio = portf1;
 //			idLabel.setText("" + m1.selectedPortfolio.get2Portfolio_id());
-			nameLabel.setText(m1.selectedPortfolio.get2Name());
+//			nameLabel.setText(m1.selectedPortfolio.get2Name());
 		} else {
 			m1.selectedPortfolio = null;
 //			idLabel.setText("");
-			nameLabel.setText("");
+//			nameLabel.setText("");
 		}
 	}
 
@@ -134,7 +134,7 @@ public class VC_Portfolios {
 			// Show a predefined Warning notification
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information Dialog");
-			alert.setHeaderText("Sie haben kein Portfolio ausgewählt.");
+			alert.setHeaderText("Sie haben kein Portfolio ausgewï¿½hlt.");
 			alert.setContentText("");
 			alert.showAndWait();
 		}

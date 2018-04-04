@@ -154,6 +154,31 @@ public class VC_CompletePortfolio {
 	
 	public void updateData() {
 		
+		//Berechnung Gesamtrendite und Gesamtrisiko des Portfolios
+		
+		m1.usedPortfolio.setRisk_full( 
+				(double)Math.round((m1.usedPortfolio.getShare_dist()/100 * m1.usedPortfolio.getRisk_share() + 
+				m1.usedPortfolio.getComm_dist()/100 * m1.usedPortfolio.getRisk_comm() + 
+				m1.usedPortfolio.getEstate_dist()/100 * m1.assetclasses.get(4).getRisk() + 
+ 				m1.usedPortfolio.getBond_dist()/100 * m1.assetclasses.get(1).getRisk() + 
+				m1.usedPortfolio.getCurr_dist()/100 * m1.assetclasses.get(0).getRisk()) *1000)/1000);
+		
+		m1.usedPortfolio.setYield_full( 
+				(double)Math.round(( m1.usedPortfolio.getShare_dist()/100 *  m1.usedPortfolio.getYield_share() + 
+				m1.usedPortfolio.getComm_dist()/100 *  m1.usedPortfolio.getYield_comm() +
+				m1.usedPortfolio.getEstate_dist() /100*  m1.assetclasses.get(4).getSigma() + 
+		 		m1.usedPortfolio.getBond_dist()/100 *  m1.assetclasses.get(1).getSigma() + 
+				m1.usedPortfolio.getCurr_dist()/100 *  m1.assetclasses.get(0).getSigma()) *1000)/1000 );
+				
+				
+			
+		
+		
+		
+		
+		
+		
+		
 		sn1 = new SwingNode();
 		paneWithSwing.getChildren().add(sn1);
 		
@@ -167,9 +192,9 @@ public class VC_CompletePortfolio {
 	
 
 
-	aktienrendite.setText("" + m1.usedPortfolio.getSigma_share());
+	aktienrendite.setText("" + m1.usedPortfolio.getYield_share());
 	aktienrisiko.setText("" + m1.usedPortfolio.getRisk_share());
-	rohstofferendite.setText("" + m1.usedPortfolio.getSigma_comm());
+	rohstofferendite.setText("" + m1.usedPortfolio.getYield_comm());
 	rohstofferisiko.setText("" + m1.usedPortfolio.getRisk_comm());
 	immorendite.setText("" + m1.assetclasses.get(4).getSigma());
 	immorisiko.setText("" + m1.assetclasses.get(4).getRisk());
@@ -177,10 +202,34 @@ public class VC_CompletePortfolio {
 	lmittelrisiko.setText("" + m1.assetclasses.get(0).getRisk());
 	anleihenrendite.setText("" + m1.assetclasses.get(1).getSigma());
 	anleihenrisiko.setText("" + m1.assetclasses.get(1).getRisk());
-//	gesamtrendite.setText("" + m1.usedPortfolio.getSigma_full());
-//	gesamtrisiko.setText("" + m1.usedPortfolio.getRisk_full());
+	gesamtrendite.setText("" + m1.usedPortfolio.getYield_full());
+	gesamtrisiko.setText("" + m1.usedPortfolio.getRisk_full());
 	
-	
+	//Aktienendstand
+		simpleStringList= new ArrayList<>();
+		m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> 
+				{if(m1.currentPortfoliosAktienProzente.get(k)!=0)
+					{
+						System.out.println(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosAktienProzente.get(k) + "% )");
+						simpleStringList.add(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosAktienProzente.get(k) + "% )");
+					}
+				}
+			);
+		listView1.itemsProperty().bind(listProperty);
+		listProperty.set(FXCollections.observableArrayList(simpleStringList));
+				
+		//Rohstoffendstand
+		simpleStringList2= new ArrayList<>();
+		m1.currentPortfoliosRohstoffeMitKursen.forEach( (k,v) -> 
+				{if(m1.currentPortfoliosRohstoffeProzente.get(k)!=0)
+					{
+						System.out.println(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosRohstoffeProzente.get(k) + "% )");
+						simpleStringList2.add(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosRohstoffeProzente.get(k) + "% )");
+					}
+				}
+			);
+		listView2.itemsProperty().bind(listProperty2);
+		listProperty2.set(FXCollections.observableArrayList(simpleStringList2));
 	
 	
 		updatePieChart();

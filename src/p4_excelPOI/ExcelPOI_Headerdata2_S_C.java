@@ -11,7 +11,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class ExcelPOI_Headerdata2_S_C {
+public interface ExcelPOI_Headerdata2_S_C {
 	
 	public static HashMap <String, HashMap<String, Double>> readExcelData(String fileName) {
 		HashMap <String, HashMap<String, Double>> result= new HashMap <String, HashMap<String, Double>>();

@@ -29,12 +29,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.StackPane;
-import p0_db_objects.AnlageKlasse;
-import p0_db_objects.Portfolio;
-import p0_db_objects.PortfolioTableEntry;
 import p0_model.Model;
+import p0_model.db_objects.AnlageKlasse;
+import p0_model.db_objects.Portfolio;
+import p0_model.db_objects.PortfolioTableEntry;
 import p1_controller.Controller;
-import p2_view.charts.PieChart3DDemo3;
+import p2_view.chart_objects.PieChart3D;
 
 public class VC_AssetClasses {
 
@@ -99,7 +99,7 @@ public class VC_AssetClasses {
 	}
 
 	public void updateData() {
-		// Tabellen-Elemente (Nur während Testing visible==true)
+		// Tabellen-Elemente (Nur wï¿½hrend Testing visible==true)
 		pTable.setItems(m1.allPortfolioTE);
 		IdColumn.setCellValueFactory(cellData -> cellData.getValue().getPortfolio_id());
 		nameColumn.setCellValueFactory(cellData -> cellData.getValue().getName());
@@ -174,7 +174,7 @@ public class VC_AssetClasses {
 			plot.setDirection(Rotation.CLOCKWISE);
 			plot.setForegroundAlpha(0.5f);
 			plot.setNoDataMessage("No data to display");
-			plot.setLabelGenerator(new PieChart3DDemo3.CustomLabelGenerator());
+			plot.setLabelGenerator(new PieChart3D.CustomLabelGenerator());
 
 			ChartPanel panel = new ChartPanel(chart);
 			panel.setMouseWheelEnabled(true);
@@ -200,7 +200,7 @@ public class VC_AssetClasses {
 				// ;
 			}
 			m1.usedPortfolio.setRisk_full(risk_full);
-			m1.usedPortfolio.setSigma_full(sigma_full);
+			m1.usedPortfolio.setYield_full(sigma_full);
 			m1.updateDB_PORTFOLIO_updatePortfolioTE(m1.usedPortfolio);
 			m1.loadSelectedPortfolioData();
 
@@ -208,7 +208,7 @@ public class VC_AssetClasses {
 			// FILL SCATTERCHART
 			////////////////////////////////////////////
 			sc.setTitle("Risiko-Rendite-Diagramm der Assetklassen");
-			// 5x Assetclass-Daten einfüllen
+			// 5x Assetclass-Daten einfï¿½llen
 			ObservableList<XYChart.Series<Double, Double>> scatterGraphSeries = FXCollections.observableArrayList();
 			for (AnlageKlasse ac1 : m1.assetclasses.values()) {
 				XYChart.Series<Double, Double> series1 = new XYChart.Series<Double, Double>();
@@ -216,11 +216,11 @@ public class VC_AssetClasses {
 				series1.setName(ac1.getName());
 				scatterGraphSeries.add(series1);
 			}
-			// 1x GesamtPortfolio-Daten einfüllen
+			// 1x GesamtPortfolio-Daten einfï¿½llen
 			XYChart.Series<Double, Double> series1 = new XYChart.Series<Double, Double>();
-			series1.getData().add(new XYChart.Data<Double, Double>(m1.usedPortfolio.getSigma_full()/100,
+			series1.getData().add(new XYChart.Data<Double, Double>(m1.usedPortfolio.getYield_full()/100,
 					m1.usedPortfolio.getRisk_full()/100));
-			series1.setName(m1.usedPortfolio.getName());
+			series1.setName("aktuelles Portfolio");
 			scatterGraphSeries.add(series1);
 
 			sc.setData(scatterGraphSeries);
@@ -339,7 +339,7 @@ public class VC_AssetClasses {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information Dialog");
 			alert.setHeaderText("");
-			alert.setContentText("Fehler. Der Inhalt der Textviews muss überprüft werden.");
+			alert.setContentText("Fehler. Der Inhalt der Textviews muss ï¿½berprï¿½ft werden.");
 			alert.showAndWait();
 		}
 	}

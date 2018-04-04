@@ -1,12 +1,18 @@
 package p2_view;
 
 import java.io.IOException;
+import javax.swing.JPanel;
 
-import p0_db_objects.Portfolio;
-import p0_db_objects.PortfolioTableEntry;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.util.Rotation;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
@@ -15,53 +21,69 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import p0_db_objects.AnlageKlasse;
-import p0_db_objects.PortfolioTableEntry;
 import javafx.application.Application; 
 import java.awt.event.FocusEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-
-//import javafx.scene.Scene; 
-//import javafx.scene.image.Image; 
-//import javafx.scene.image.ImageView; 
-//import javafx.scene.layout.BorderPane; 
-//import javafx.stage.Stage; 
-
-
+import javafx.scene.layout.StackPane;
 import p0_model.Model;
+import p0_model.db_objects.AnlageKlasse;
+import p0_model.db_objects.Portfolio;
+import p0_model.db_objects.PortfolioTableEntry;
 import p1_controller.Controller;
+import p2_view.chart_objects.PieChart3D;
+
+
 
 
 public class VC_CompletePortfolioCompare {
 
 	public Model m1;
 	public Controller c1;
+	private SwingNode sn2;
+	private SwingNode sn3;
+	
+	@FXML
+	private StackPane paneWithSwing1;
+	
+	@FXML
+	private StackPane paneWithSwing2;
 
 	@FXML
 	private TextField WelcomeTextField;
 	
-		@FXML
-		private TableView<PortfolioTableEntry> pTable1;
+	@FXML
+	private TableView<PortfolioTableEntry> pTable1;
 
-@FXML
+    @FXML
 	private TableView<PortfolioTableEntry> pTable2;
 	
-		@FXML
-		private TableColumn<PortfolioTableEntry, Number> idColumn1;
-		@FXML
-		private TableColumn<PortfolioTableEntry, String> nameColumn1;
+    @FXML
+	private TableColumn<PortfolioTableEntry, Number> idColumn1;
+	@FXML
+	private TableColumn<PortfolioTableEntry, String> nameColumn1;
 	
 	@FXML
 	private TableColumn<PortfolioTableEntry, Number> idColumn2;
 	@FXML
 	private TableColumn<PortfolioTableEntry, String> nameColumn2;
 	
-		@FXML
-		private Label nameLabel1;
+	@FXML
+	private Label nameLabel1;
 	
 	@FXML
 	private Label nameLabel2;
+	
+	private Double aktien1;
+	private Double rohstoffe1;
+	private Double liquidemittel1;
+	private Double anleihen1;
+	private Double immobilien1;
+	private Double aktien2;
+	private Double rohstoffe2;
+	private Double liquidemittel2;
+	private Double anleihen2;
+	private Double immobilien2;
 
 	/**
 	 * The constructor. The constructor is called before the initialize() method.
@@ -80,7 +102,45 @@ public class VC_CompletePortfolioCompare {
 		
 	}
 	
+	public void getData1 (PortfolioTableEntry portf1) {
+		if (portf1 != null) {
+			m1.selectedPortfolio = portf1;
+			aktien1 =  m1.selectedPortfolio.get2Share_dist();
+			rohstoffe1 = m1.selectedPortfolio.get2Comm_dist();
+			anleihen1 = m1.selectedPortfolio.get2Bond_dist();
+			liquidemittel1 = m1.selectedPortfolio.get2Curr_dist();
+			immobilien1 = m1.selectedPortfolio.get2Estate_dist();
+					
+		} else {
+			//
+			m1.selectedPortfolio = null;
+		}
+	}
+	
+	public void getData2 (PortfolioTableEntry portf2) {
+		if (portf2 != null) {
+			m1.selectedPortfolio = portf2;
+			aktien2 =  m1.selectedPortfolio.get2Share_dist();
+			rohstoffe2 = m1.selectedPortfolio.get2Comm_dist();
+			anleihen2 = m1.selectedPortfolio.get2Bond_dist();
+			liquidemittel2 = m1.selectedPortfolio.get2Curr_dist();
+			immobilien2 = m1.selectedPortfolio.get2Estate_dist();
+					
+		} else {
+			//
+			m1.selectedPortfolio = null;
+		}
+	}
+	
+	
 	public void updateData() {
+		
+		sn2 = new SwingNode();
+		paneWithSwing1.getChildren().add(sn2);
+		
+		sn3 = new SwingNode();
+		paneWithSwing2.getChildren().add(sn3);
+		
 		
 		//Fill Portfolio-tables & add listeners
 				pTable1.setItems(m1.allPortfolioTE);
@@ -104,32 +164,110 @@ public class VC_CompletePortfolioCompare {
 				
 				// Clear person details.
 				handleSaveSelectedAndUseSelectedToFill2(null);
+				
+				
+	
 		 
 	}
 
+	
+		
+	
+	public void updatePieChart1() {
+		
+			DefaultPieDataset result = new DefaultPieDataset();
+			result.setValue("Aktien", aktien1);
+			result.setValue("Rohstoffe", rohstoffe1);
+			result.setValue("Liquide Mittel", liquidemittel1);
+			result.setValue("Immobilien", immobilien1);
+			result.setValue("Anleihen", anleihen1);
+
+			JFreeChart chart = ChartFactory.createPieChart3D("Verteilung auf die Anlageklassen", // chart title
+					result, // data
+					true, // include legend
+					true, false);
+
+			PiePlot3D plot = (PiePlot3D) chart.getPlot();
+			plot.setStartAngle(290);
+			plot.setDirection(Rotation.CLOCKWISE);
+			plot.setForegroundAlpha(0.5f);
+			plot.setNoDataMessage("No data to display");
+			plot.setLabelGenerator(new PieChart3D.CustomLabelGenerator());
+
+			JFreeChart chart1 = chart;
+			JPanel chartPanel = new ChartPanel(chart1);
+			chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
+
+			ChartPanel panel = new ChartPanel(chart);
+			panel.setMouseWheelEnabled(true);
+			sn2.setContent(panel);
+			System.out.println("Hallo");
+		}
+	
+	
+	
+	public void updatePieChart2() {
+		
+		DefaultPieDataset result = new DefaultPieDataset();
+		result.setValue("Aktien", aktien2);
+		result.setValue("Rohstoffe", rohstoffe2);
+		result.setValue("Liquide Mittel", liquidemittel2);
+		result.setValue("Immobilien", immobilien2);
+		result.setValue("Anleihen", anleihen2);
+		
+		JFreeChart chart = ChartFactory.createPieChart3D("Verteilung auf die Anlageklassen", // chart title
+				result, // data
+				true, // include legend
+				true, false);
+
+		PiePlot3D plot = (PiePlot3D) chart.getPlot();
+		plot.setStartAngle(290);
+		plot.setDirection(Rotation.CLOCKWISE);
+		plot.setForegroundAlpha(0.5f);
+		plot.setNoDataMessage("No data to display");
+		plot.setLabelGenerator(new PieChart3D.CustomLabelGenerator());
+
+		JFreeChart chart1 = chart;
+		JPanel chartPanel = new ChartPanel(chart1);
+		chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
+
+		ChartPanel panel = new ChartPanel(chart);
+		panel.setMouseWheelEnabled(true);
+		sn3.setContent(panel);
+		System.out.println("Hallo");
+	}
+
+	
+	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Handle-Methoden
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private void handleSaveSelectedAndUseSelectedToFill1(PortfolioTableEntry portf1) {
 		if (portf1 != null) {
 			m1.selectedPortfolio = portf1;
-			nameLabel1.setText(m1.selectedPortfolio.get2Name());
+			nameLabel1.setText("" + m1.selectedPortfolio.get2Capital());
 		} else {
 			//
 			m1.selectedPortfolio = null;
-			nameLabel1.setText("");
+			nameLabel1.setText("Portfolio auswählen");
 		}
+		getData1(portf1);
+		updatePieChart1();
+		
+		
 	}
 	
 	private void handleSaveSelectedAndUseSelectedToFill2(PortfolioTableEntry portf2) {
 		if (portf2 != null) {
 			m1.selectedPortfolio = portf2;
-			nameLabel2.setText(m1.selectedPortfolio.get2Name());
+			nameLabel2.setText("" + m1.selectedPortfolio.get2Capital());
 		} else {
 			//
 			m1.selectedPortfolio = null;
-			nameLabel2.setText("");
+			nameLabel2.setText("Portfolio auswählen");
 	}	
+		getData2(portf2);
+		updatePieChart2();
 	}
 	
 	

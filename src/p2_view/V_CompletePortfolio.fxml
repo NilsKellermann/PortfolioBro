@@ -31,6 +31,11 @@
                   <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
+                  <Label text="Sehr gut! Hier ist dein fertiges Portfolio :)" GridPane.halignment="CENTER">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
                   <ImageView fitHeight="80.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                    <image>
                         <Image url="@../img/Logo.jpg" />
@@ -41,7 +46,7 @@
                         <Insets right="80.0" />
                      </GridPane.margin>
                   </Button>
-                  <Text fill="#2883c6" strokeType="OUTSIDE" strokeWidth="0.0" text="Erstelltes Portfolio:" underline="true">
+                  <Text fill="#2883c6" strokeType="OUTSIDE" strokeWidth="0.0" text="Erstelltes Portfolio:" underline="true" GridPane.halignment="LEFT">
                      <font>
                         <Font size="26.0" />
                      </font>
@@ -107,13 +112,22 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Label text="Portfolio Name" />
-                                    <Label text="Investment (in €)" GridPane.rowIndex="1" />
+                                    <Label text="Portfolio Name">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" />
+                                       </GridPane.margin></Label>
+                                    <Label text="Investment (in €)" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" />
+                                       </GridPane.margin></Label>
                                     <TextField fx:id="textfieldname" editable="false" maxWidth="-Infinity" prefWidth="190.0" GridPane.columnIndex="1" />
                                     <TextField fx:id="textfieldinvestment" editable="false" maxWidth="-Infinity" prefWidth="190.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
-                              <Label text="Prozentuale Verteilung auf die Anlageklassen" GridPane.rowIndex="1" />
+                              <Label text="Prozentuale Verteilung auf die Anlageklassen" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" />
+                                 </GridPane.margin></Label>
                            </children>
                         </GridPane>
                         <StackPane fx:id="paneWithSwing" prefHeight="321.0" prefWidth="313.0" GridPane.columnIndex="1" />
@@ -196,7 +210,7 @@
                               <Label layoutX="10.0" layoutY="59.0" text="Risiko" GridPane.columnIndex="4" GridPane.rowIndex="2" />
                               <Label layoutX="10.0" layoutY="59.0" text="Rendite" GridPane.columnIndex="4" GridPane.rowIndex="1" />
                               <Label layoutX="10.0" layoutY="59.0" text="Immobilen" GridPane.columnIndex="4" />
-                              <TextField fx:id="aktierendite" editable="false" maxWidth="-Infinity" prefWidth="100.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                              <TextField fx:id="aktienrendite" editable="false" maxWidth="-Infinity" prefWidth="100.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets left="5.0" />
                                  </GridPane.margin>
@@ -211,7 +225,7 @@
                               <TextField fx:id="lmittelrendite" editable="false" layoutX="60.0" layoutY="91.0" maxWidth="-Infinity" prefWidth="100.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                               <TextField fx:id="rohstofferisiko" editable="false" layoutX="60.0" layoutY="91.0" maxWidth="-Infinity" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                               <TextField fx:id="rohstofferendite" editable="false" layoutX="60.0" layoutY="91.0" maxWidth="-Infinity" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                              <TextField fx:id="aktierisiko" editable="false" layoutX="60.0" layoutY="91.0" maxWidth="-Infinity" prefWidth="100.0" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                              <TextField fx:id="aktienrisiko" editable="false" layoutX="60.0" layoutY="91.0" maxWidth="-Infinity" prefWidth="100.0" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                                  <GridPane.margin>
                                     <Insets left="5.0" />
                                  </GridPane.margin>

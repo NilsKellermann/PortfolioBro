@@ -297,11 +297,7 @@ public class VC_CompletePortfolio {
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-	@FXML
-	private void handleGo() throws IOException {
-		 
-		this.c1.setSceneToV_CompletePortfolioCompare();
-	}
+	
 	
 	@FXML
 	private void handleZuPortf() throws IOException {

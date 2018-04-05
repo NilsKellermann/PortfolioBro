@@ -85,7 +85,7 @@
                                  <children>
                                     <Label text="Aktien (in %)" />
                                     <Label text="Rohstoffe (in %)" GridPane.rowIndex="1" />
-                                    <Label text="Währung (in %)" GridPane.rowIndex="2" />
+                                    <Label text="Liquide Mittel (in %)" GridPane.rowIndex="2" />
                                     <Label text="Immobilien (in %)" GridPane.rowIndex="3" />
                                     <Label text="Anleihen (in %)" GridPane.rowIndex="4" />
                                     <TextField fx:id="newShareDistTextField" maxWidth="80.0" text="25" GridPane.columnIndex="1" />

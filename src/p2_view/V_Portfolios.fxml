@@ -139,6 +139,14 @@
                                     <Insets right="5.0" />
                                  </GridPane.margin>
                               </Button>
+                              <Label text="Gespeicherte Portfolios:" textFill="#2883c6" GridPane.valignment="BOTTOM">
+                                 <font>
+                                    <Font name="System Bold" size="22.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets bottom="20.0" />
+                                 </GridPane.margin>
+                              </Label>
                            </children>
                            <GridPane.margin>
                               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

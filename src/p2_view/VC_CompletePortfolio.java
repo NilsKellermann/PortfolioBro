@@ -154,8 +154,7 @@ public class VC_CompletePortfolio {
 	
 	public void updateData() {
 		
-<<<<<<< HEAD
-=======
+
 		//Berechnung Gesamtrendite und Gesamtrisiko des Portfolios
 		
 		m1.usedPortfolio.setRisk_full( 
@@ -183,8 +182,8 @@ public class VC_CompletePortfolio {
 		
 		sn1 = new SwingNode();
 		paneWithSwing.getChildren().add(sn1);
+
 		
->>>>>>> refs/remotes/GroupProject/master
 	textfieldname.setText("" + m1.usedPortfolio.getName());
 	textfieldinvestment.setText("" + m1.usedPortfolio.getCapital());
 	textfieldshares.setText("" + m1.usedPortfolio.getShare_dist());
@@ -205,51 +204,22 @@ public class VC_CompletePortfolio {
 	lmittelrisiko.setText("" + m1.assetclasses.get(0).getRisk());
 	anleihenrendite.setText("" + m1.assetclasses.get(1).getSigma());
 	anleihenrisiko.setText("" + m1.assetclasses.get(1).getRisk());
-<<<<<<< HEAD
-//	gesamtrendite.setText("" + m1.usedPortfolio.getSigma_full());
-//	gesamtrisiko.setText("" + m1.usedPortfolio.getRisk_full());
-		
-	//Aktienendstand
-	simpleStringList= new ArrayList<>();
-	m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> 
-			{if(m1.currentPortfoliosAktienProzente.get(k)!=0)
-				{
-					System.out.println(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosAktienProzente.get(k) + "% )");
-					simpleStringList.add(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosAktienProzente.get(k) + "% )");
-				}
-			}
-		);
-	listView1.itemsProperty().bind(listProperty);
-	listProperty.set(FXCollections.observableArrayList(simpleStringList));
-			
-	//Rohstoffendstand
-	simpleStringList2= new ArrayList<>();
-	m1.currentPortfoliosRohstoffeMitKursen.forEach( (k,v) -> 
-			{if(m1.currentPortfoliosRohstoffeProzente.get(k)!=0)
-				{
-					System.out.println(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosRohstoffeProzente.get(k) + "% )");
-					simpleStringList2.add(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosRohstoffeProzente.get(k) + "% )");
-				}
-			}
-		);
-	listView2.itemsProperty().bind(listProperty2);
-	listProperty2.set(FXCollections.observableArrayList(simpleStringList2));
-=======
+
+	
 	gesamtrendite.setText("" + m1.usedPortfolio.getYield_full());
 	gesamtrisiko.setText("" + m1.usedPortfolio.getRisk_full());
->>>>>>> refs/remotes/GroupProject/master
-	
-<<<<<<< HEAD
-	this.updatePieChart();
-=======
+
+
 	//Aktienendstand
 		simpleStringList= new ArrayList<>();
 		m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> 
-				{if(m1.currentPortfoliosAktienProzente.get(k)!=0)
-					{
-						System.out.println(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosAktienProzente.get(k) + "% )");
-						simpleStringList.add(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosAktienProzente.get(k) + "% )");
-					}
+				{
+					if(m1.currentPortfoliosAktienProzente.get(k)>0)
+						{
+							System.out.println(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosAktienProzente.get(k) + "% )");
+							simpleStringList.add(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosAktienProzente.get(k) + "% )");
+						}
+					//else m1.currentPortfoliosAktienMitKursen.remove(k);
 				}
 			);
 		listView1.itemsProperty().bind(listProperty);
@@ -258,11 +228,13 @@ public class VC_CompletePortfolio {
 		//Rohstoffendstand
 		simpleStringList2= new ArrayList<>();
 		m1.currentPortfoliosRohstoffeMitKursen.forEach( (k,v) -> 
-				{if(m1.currentPortfoliosRohstoffeProzente.get(k)!=0)
-					{
-						System.out.println(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosRohstoffeProzente.get(k) + "% )");
-						simpleStringList2.add(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosRohstoffeProzente.get(k) + "% )");
-					}
+				{
+					if(m1.currentPortfoliosRohstoffeProzente.get(k)>0)
+						{
+							System.out.println(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosRohstoffeProzente.get(k) + "% )");
+							simpleStringList2.add(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosRohstoffeProzente.get(k) + "% )");
+						}
+					//else m1.currentPortfoliosRohstoffeMitKursen.remove(k);				
 				}
 			);
 		listView2.itemsProperty().bind(listProperty2);
@@ -270,7 +242,6 @@ public class VC_CompletePortfolio {
 	
 	
 		updatePieChart();
->>>>>>> refs/remotes/GroupProject/master
 	
 	}
 		

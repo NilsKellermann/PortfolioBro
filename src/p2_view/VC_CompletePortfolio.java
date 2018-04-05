@@ -170,10 +170,10 @@ public class VC_CompletePortfolio {
 		 		m1.usedPortfolio.getBond_dist()/100 *  m1.assetclasses.get(1).getSigma() + 
 				m1.usedPortfolio.getCurr_dist()/100 *  m1.assetclasses.get(0).getSigma()) *1000)/1000 );
 				
-				
-			
+		m1.updateDB_PORTFOLIO_updatePortfolioTE(m1.usedPortfolio);	
+		m1.loadSelectedPortfolioData();
 		
-		
+	
 		
 		
 		
@@ -232,7 +232,8 @@ public class VC_CompletePortfolio {
 		listProperty2.set(FXCollections.observableArrayList(simpleStringList2));
 	
 	
-		updatePieChart();
+		updatePieChart();		
+		
 	
 	}
 		

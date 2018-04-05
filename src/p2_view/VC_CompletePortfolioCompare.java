@@ -358,7 +358,7 @@ public class VC_CompletePortfolioCompare {
 		if (portf2 != null) {
 			m1.selectedPortfolio = portf2;
 			nameLabel2.setText("" + m1.selectedPortfolio.get2Capital());
-			labelrendite2.setText("" + m1.selectedPortfolio.get2Sigma_comm());
+			labelrendite2.setText("" + m1.selectedPortfolio.get2Sigma_full());
 			labelrisiko2.setText("" + m1.selectedPortfolio.get2Risk_full());
 			
 		} else {

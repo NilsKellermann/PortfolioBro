@@ -34,6 +34,7 @@ public class Main extends Application {
 		c1.setSceneToV_MainMenu();
 		// setSceneToV_Shares();
 		// setSceneTo1();
+		
 
 	}
 

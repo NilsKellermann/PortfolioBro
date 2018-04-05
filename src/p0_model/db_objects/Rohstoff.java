@@ -33,10 +33,10 @@ public HashMap<Date, Double> getHashOfHalfYear() {
 //
 //}
 public void addToHashOfHalfYear(Date date1, Double double1) {
-	System.out.println("abc");
+	 
 	this.hashOfHalfYear
 	.put(date1, double1);
-	System.out.println("abc");
+	 
 	return;
 }
 

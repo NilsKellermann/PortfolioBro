@@ -210,7 +210,7 @@ public class VC_CompletePortfolio {
 		m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> 
 				{if(m1.currentPortfoliosAktienProzente.get(k)!=0)
 					{
-						System.out.println(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosAktienProzente.get(k) + "% )");
+						 
 						simpleStringList.add(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosAktienProzente.get(k) + "% )");
 					}
 				}
@@ -223,7 +223,7 @@ public class VC_CompletePortfolio {
 		m1.currentPortfoliosRohstoffeMitKursen.forEach( (k,v) -> 
 				{if(m1.currentPortfoliosRohstoffeProzente.get(k)!=0)
 					{
-						System.out.println(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosRohstoffeProzente.get(k) + "% )");
+						 
 						simpleStringList2.add(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosRohstoffeProzente.get(k) + "% )");
 					}
 				}
@@ -244,7 +244,7 @@ public class VC_CompletePortfolio {
 				+ Double.parseDouble(this.textfieldcash.getText())
 				+ Double.parseDouble(this.textfieldrealestates.getText())
 				+ Double.parseDouble(this.textfieldbonds.getText()) != 100) {
-			System.out.println("Die Summe der Prozentwerte muss 100% sein.");
+			 
 		} else {
 
 			DefaultPieDataset result = new DefaultPieDataset();
@@ -273,7 +273,7 @@ public class VC_CompletePortfolio {
 			ChartPanel panel = new ChartPanel(chart);
 			panel.setMouseWheelEnabled(true);
 			sn1.setContent(panel);
-			System.out.println("Hallo");
+			 
 		}
 	
 	}
@@ -285,11 +285,15 @@ public class VC_CompletePortfolio {
 
 	@FXML
 	private void handleGo() throws IOException {
-		System.out.println("Weiterbutton pressed!");
+		 
 		this.c1.setSceneToV_CompletePortfolioCompare();
 	}
 	
-	
+	@FXML
+	private void handleZuPortf() throws IOException {
+		 
+		this.c1.setSceneToV_Portfolios();
+	}
   
 }
 	

@@ -17,7 +17,7 @@ public interface ExcelPOI_HalfyearCourses_S_C {
 	
 	public static HashMap <String, HashMap<Date, Double>> readExcelData(String fileName) {
 		HashMap <String, HashMap<Date, Double>> result= new HashMap <String, HashMap<Date, Double>>();
-		System.out.println("start");
+		 
 		try {
 			//Create the input stream from the xlsx/xls file
 			FileInputStream fis = new FileInputStream(fileName);
@@ -35,7 +35,7 @@ public interface ExcelPOI_HalfyearCourses_S_C {
 			//loop through each of the sheets
 			for(int i=0; i < numberOfSheets; i++){
 				Sheet sheet = workbook.getSheetAt(i);
-				System.out.println("start2");
+				 
 //////////////////////////////				
 				Iterator<Row> rowIterator = sheet.iterator();
 				HashMap<Date, Double> countriesList = new HashMap<Date, Double>();
@@ -45,7 +45,7 @@ public interface ExcelPOI_HalfyearCourses_S_C {
 //				rowIterator.next();
 				while (rowIterator.hasNext()) 
 		        {
-					System.out.println("start3");
+					 
 					Double halfYearCourse = 0.0;
 					Date halfYearDate = null;
 					
@@ -70,19 +70,19 @@ public interface ExcelPOI_HalfyearCourses_S_C {
 
 	public static HashMap <String, HashMap<Date, Double>> getListS() {
 		File f = new File("file1");
-		System.out.println(f.getAbsolutePath());
+		 
 		HashMap <String, HashMap<Date, Double>> list = readExcelData("Files/ImportsheetShares.xlsx");
-		System.out.println("Assetclass List\n"+list);
-		System.out.println("abc");
+		 
+		 
 		return list;
 	}
 
 	public static HashMap <String, HashMap<Date, Double>> getListC() {
 		File f = new File("file1");
-		System.out.println(f.getAbsolutePath());
+		 
 		HashMap <String, HashMap<Date, Double>> list = readExcelData("Files/ImportsheetCommodities.xlsx");
-		System.out.println("Assetclass List\n"+list);
-		System.out.println("abc");
+		 
+		 
 		return list;
 	}
 	

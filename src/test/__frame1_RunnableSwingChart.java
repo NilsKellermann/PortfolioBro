@@ -22,7 +22,7 @@ public class __frame1_RunnableSwingChart extends Application{
 	 
 	            @Override
 	            public void handle(ActionEvent event) {
-	                System.out.println("Hello World!");
+	                 
 	            }
 	        });
 	        SwingNode sn1= new SwingNode();

@@ -74,7 +74,7 @@ public interface ExcelPOI_AssetClasses {
 //		            			name = cell.getNumericCellValue();
 		            		}else{
 		            			//random data, leave it
-		            			System.out.println("Random data::"+cell.getStringCellValue());
+		            			 
 		            		}
 		            		break;
 		            	case Cell.CELL_TYPE_NUMERIC:
@@ -87,7 +87,7 @@ public interface ExcelPOI_AssetClasses {
 //		            			name = cell.getNumericCellValue();
 		            		}else{
 		            			//random data, leave it
-		            			System.out.println("Random data::"+cell.getNumericCellValue());
+		            			 
 		            		}
 		            	}
 		            	
@@ -111,9 +111,9 @@ public interface ExcelPOI_AssetClasses {
 	
 	public static void main(String args[]){
 		File f = new File("file1");
-		System.out.println(f.getAbsolutePath());
+		 
 		HashMap <String, HashMap<Integer, AnlageKlasse>> list = readExcelData("Files/Assetklassen.xlsx");
-		System.out.println("Assetclass List\n"+list);
+		 
 	}
 
 }

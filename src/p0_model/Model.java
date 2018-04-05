@@ -105,7 +105,7 @@ public class Model {
 
 	public void transferAllPortfolioHashmapToObservableList() {
 		this.allPortfolioTE = FXCollections.observableArrayList();
-		System.out.println("Liste wird in Tabellenform gebracht:" + this.allPortfolios);
+		 
 		this.allPortfolios.forEach((k,
 				v) -> this.allPortfolioTE.add(new PortfolioTableEntry(v.getPortfolio_id(), v.getName(), v.getUser_id(),
 						v.getCapital(), v.getShare_dist(), v.getComm_dist(), v.getCurr_dist(), v.getEstate_dist(),
@@ -113,7 +113,7 @@ public class Model {
 											 * , v.getSigma_full(), v.getRisk_full(), v.getSigma_share(),
 											 * v.getRisk_share(), v.getSigma_comm(), v.getRisk_comm()
 											 */)));
-		System.out.println("Liste wurde in Tabellenform gebracht:" + this.allPortfolioTE);
+		 
 	}
 
 //Methoden zur Bearbeitung der Model-Daten
@@ -149,10 +149,10 @@ public class Model {
 		String url = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11225625";
 		String username = "sql11225625";
 		String password = "WNjKXk31lH";
-		System.out.println("Connecting database...");
+		 
 
 		try (Connection connection = DriverManager.getConnection(url, username, password)) {
-			System.out.println("Database connected!");
+			 
 			Statement stmt = connection.createStatement();
 			//////////////////////////////////////////////
 			// LOAD FROM DATABASE: ALLE AKTIENHEADER IN ALL-AKTIENOHNEKURSE
@@ -162,9 +162,9 @@ public class Model {
 				Rohstoff a1 = new Rohstoff(rs.getInt("COMM_ID"), rs.getString("NAME"), rs.getString("CATEGORY")
 					, rs.getDouble("SIGMA"), rs.getDouble("RISK"), null);
 				this.allRohstoffeOhneKurse.put(rs.getInt("COMM_ID"), a1);
-				System.out.println(a1.toString());
+				 
 			}
-			System.out.println("Aktien geladen, Anzahl:" + this.allRohstoffeOhneKurse.size());
+			 
 
 			//////////////////////////////////////////////
 			// LOAD FROM DATABASE: FILL ALL-PORTFOLIOS
@@ -177,7 +177,7 @@ public class Model {
 						rs.getDouble("SIGMA_FULL"), rs.getDouble("RISK_FULL"), rs.getDouble("SIGMA_SHARE"),
 						rs.getDouble("RISK_SHARE"), rs.getDouble("SIGMA_COMM"), rs.getDouble("RISK_COMM"));
 				this.allPortfolios.put(rs.getInt("PORTFOLIO_ID"), p1);
-				System.out.println(p1.toString());
+				 
 			}
 
 			this.transferAllPortfolioHashmapToObservableList();
@@ -190,9 +190,9 @@ public class Model {
 				Aktie a1 = new Aktie(rs2.getInt("SHARE_ID"), rs2.getString("NAME"), rs2.getString("INDUSTRY"),
 						rs2.getString("INDEX"), rs2.getDouble("SIGMA"), rs2.getDouble("RISK"), null);
 				this.allAktienOhneKurse.put(rs2.getInt("SHARE_ID"), a1);
-				System.out.println(a1.toString());
+				 
 			}
-			System.out.println("Aktien geladen, Anzahl:" + this.allAktienOhneKurse.size());
+			 
 
 			//////////////////////////////////////////////
 			// LOAD FROM DATABASE: FILL ALL-PORTFOLIOS
@@ -205,7 +205,7 @@ public class Model {
 						rs2.getDouble("SIGMA_FULL"), rs2.getDouble("RISK_FULL"), rs2.getDouble("SIGMA_SHARE"),
 						rs2.getDouble("RISK_SHARE"), rs2.getDouble("SIGMA_COMM"), rs2.getDouble("RISK_COMM"));
 				this.allPortfolios.put(rs2.getInt("PORTFOLIO_ID"), p1);
-				System.out.println(p1.toString());
+				 
 			}
 
 			this.transferAllPortfolioHashmapToObservableList();
@@ -218,9 +218,9 @@ public class Model {
 				AnlageKlasse ac1 = new AnlageKlasse(rs.getInt("AC_ID"), rs.getString("NAME"), rs.getDouble("SIGMA"),
 						rs.getDouble("RISK"));
 				model1.assetclasses.put(rs.getInt("AC_ID"), ac1);
-				System.out.println(ac1.toString());
+				 
 			}
-			System.out.println("Assetclasses geladen, Anzahl:" + model1.assetclasses.size());
+			 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -240,10 +240,10 @@ public class Model {
 		String url = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11225625";
 		String username = "sql11225625";
 		String password = "WNjKXk31lH";
-		System.out.println("Connecting database...");
+		 
 
 		try (Connection connection = DriverManager.getConnection(url, username, password)) {
-			System.out.println("Database connected!");
+			 
 			Statement stmt = connection.createStatement();
 			//////////////////////////////////////////////
 			// Alle Aktien von Portfolio Nr 1 Laden.
@@ -255,7 +255,7 @@ public class Model {
 			while (rs.next()) {
 				shareList.add(rs.getInt("COMM_ID"));
 				this.currentPortfoliosRohstoffeProzente.put(rs.getInt("COMM_ID"), rs.getDouble("PERCENT"));
-				System.out.println("" + shareList);
+				 
 			}
 			//// 2. SELECT-Befehl-String der nur diese Aktien-header aus der DB l�d
 			//// zusammensetzen
@@ -263,13 +263,13 @@ public class Model {
 			for (Integer i : shareList) {
 				chosenSharesString = chosenSharesString + " OR COMM_ID =" + i.intValue() + " ";
 			}
-			System.out.println(chosenSharesString);
+			 
 			//// 3. SELECT-Befehl asuf�hren
 			rs = stmt.executeQuery("SELECT * FROM PB_COMM_HEAD WHERE " + chosenSharesString + ";");// selectedPortfolio.getPortfolio_ID;
 			while (rs.next()) {
 				this.currentPortfoliosRohstoffeMitKursen.put(rs.getInt("COMM_ID"),
 						new Rohstoff(rs.getInt("COMM_ID"), rs.getString("NAME"), rs.getString("CATEGORY"), rs.getDouble("SIGMA"), rs.getDouble("RISK"), null));
-				System.out.println("111111111111111111currentPortAkt" + currentPortfoliosRohstoffeMitKursen);
+				 
 			}
 			//////////////////////////////////////////////
 			// ZU JEDER AKTIE DIE ERSTELLT WURDE AUCH DIE KURSLISTE LADEN UND ERSTELLEN.
@@ -277,7 +277,7 @@ public class Model {
 			Iterator<Entry<Integer, Rohstoff>> it = currentPortfoliosRohstoffeMitKursen.entrySet().iterator();
 			while (it.hasNext()) {
 				Map.Entry<Integer, Rohstoff> pair = it.next();
-				System.out.println(pair.getKey() + " = " + pair.getValue());
+				 
 
 				rs = stmt.executeQuery("SELECT * FROM PB_COMM_COURSE WHERE COMM_ID=" + pair.getKey() + ";");// selectedPortfolio.getPortfolio_ID;
 				while (rs.next()) {
@@ -285,7 +285,7 @@ public class Model {
 							rs.getDouble("COURSE"));
 				}
 				// it.remove(); // avoids a ConcurrentModificationException
-				System.out.println("Aktuelles Portfolio und Aktien darin:" + this.currentPortfoliosRohstoffeMitKursen);
+				 
 			}
 			sortBothCurrentPortfoliosRohstoffe();
 			//////////////////////////////////////////////
@@ -302,7 +302,7 @@ public class Model {
 			while (rs2.next()) {
 				shareList2.add(rs2.getInt("SHARE_ID"));
 				this.currentPortfoliosAktienProzente.put(rs2.getInt("SHARE_ID"), rs2.getDouble("PERCENT"));
-				System.out.println("" + shareList2);
+				 
 			}
 			//// 2. SELECT-Befehl-String der nur diese Aktien-header aus der DB l�d
 			//// zusammensetzen
@@ -310,14 +310,14 @@ public class Model {
 			for (Integer i : shareList2) {
 				chosenSharesString2 = chosenSharesString2 + " OR SHARE_ID =" + i.intValue() + " ";
 			}
-			System.out.println(chosenSharesString2);
+			 
 			//// 3. SELECT-Befehl asuf�hren
 			rs2 = stmt.executeQuery("SELECT * FROM PB_SHARE_HEAD WHERE " + chosenSharesString2 + ";");// selectedPortfolio.getPortfolio_ID;
 			while (rs2.next()) {
 				this.currentPortfoliosAktienMitKursen.put(rs2.getInt("SHARE_ID"),
 						new Aktie(rs2.getInt("SHARE_ID"), rs2.getString("NAME"), rs2.getString("INDUSTRY"),
 								rs2.getString("INDEX"), rs2.getDouble("SIGMA"), rs2.getDouble("RISK"), null));
-				System.out.println("111111111111111111currentPortAkt" + currentPortfoliosAktienMitKursen);
+				 
 			}
 			//////////////////////////////////////////////
 			// ZU JEDER AKTIE DIE ERSTELLT WURDE AUCH DIE KURSLISTE LADEN UND ERSTELLEN.
@@ -325,7 +325,7 @@ public class Model {
 			Iterator<Entry<Integer, Aktie>> it2 = currentPortfoliosAktienMitKursen.entrySet().iterator();
 			while (it2.hasNext()) {
 				Map.Entry<Integer, Aktie> pair = it2.next();
-				System.out.println(pair.getKey() + " = " + pair.getValue());
+				 
 
 				rs2 = stmt.executeQuery("SELECT * FROM PB_SHARE_COURSE WHERE SHARE_ID=" + pair.getKey() + ";");// selectedPortfolio.getPortfolio_ID;
 				while (rs2.next()) {
@@ -333,7 +333,7 @@ public class Model {
 							rs2.getDouble("COURSE"));
 				}
 				// it.remove(); // avoids a ConcurrentModificationException
-				System.out.println("Aktuelles Portfolio und Aktien darin:" + this.currentPortfoliosAktienMitKursen);
+				 
 			}
 			sortBothCurrentPortfoliosAktien();
 			//////////////////////////////////////////////
@@ -353,21 +353,17 @@ public class Model {
 		String url = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11225625";
 		String username = "sql11225625";
 		String password = "WNjKXk31lH";
-		System.out.println("Connecting database...");
-
+		 
 		try (Connection connection = DriverManager.getConnection(url, username, password)) {
-			System.out.println("Database connected!");
-
+			 
 			PreparedStatement statement;
 			statement = connection.prepareStatement(
-					"DELETE FROM PB_PORTF_COMM WHERE PORTFOLIO_ID =" + this.usedPortfolio.getPortfolio_id() + ";");
-			System.out.println(
 					"DELETE FROM PB_PORTF_COMM WHERE PORTFOLIO_ID =" + this.usedPortfolio.getPortfolio_id() + ";");
 			statement.execute();
 			for (Entry<Integer, Rohstoff> entry : this.currentPortfoliosRohstoffeMitKursen.entrySet()) {
 				Rohstoff value = entry.getValue();
 
-				System.out.println("REPLACE INTO `PB_PORTF_COMM` VALUES (1,neu,12);");
+				 
 				statement = connection.prepareStatement("REPLACE INTO `PB_PORTF_COMM` VALUES ("
 						+ this.usedPortfolio.getPortfolio_id() + "," + value.getShare_id() + ","
 						+ (this.currentPortfoliosRohstoffeProzente.get(entry.getKey()) == null ? "0.0"
@@ -387,10 +383,9 @@ public class Model {
 		String url = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11225625";
 		String username = "sql11225625";
 		String password = "WNjKXk31lH";
-		System.out.println("Connecting database...");
+		 
 		try (Connection connection = DriverManager.getConnection(url, username, password)) {
-			System.out.println("Database connected!");
-
+			 
 			PreparedStatement statement;
 			String String1 = "REPLACE INTO `PB_PORTFOLIO` VALUES (" + portf1.getPortfolio_id() + "," + portf1.getName()
 					+ "," + portf1.getUser_id() + "," + portf1.getCapital() + "," + portf1.getShare_dist() + ","
@@ -398,7 +393,7 @@ public class Model {
 					+ portf1.getBond_dist() + "," + portf1.getYield_full() + "," + portf1.getRisk_full() + ","
 					+ portf1.getYield_share() + "," + portf1.getRisk_share() + "," + portf1.getYield_comm() + ","
 					+ portf1.getRisk_comm() + ");";
-			System.out.println(String1);
+			 
 			statement = connection.prepareStatement("REPLACE INTO `PB_PORTFOLIO` VALUES (" + portf1.getPortfolio_id()
 					+ ",'" + portf1.getName() + "'," + portf1.getUser_id() + "," + portf1.getCapital() + ","
 					+ portf1.getShare_dist() + "," + portf1.getComm_dist() + "," + portf1.getCurr_dist() + ","
@@ -422,12 +417,12 @@ public class Model {
 		String url = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11225625";
 		String username = "sql11225625";
 		String password = "WNjKXk31lH";
-		System.out.println("Connecting database...");
+		 
 		try (Connection connection = DriverManager.getConnection(url, username, password)) {
-			System.out.println("Database connected!");
+			 
 			PreparedStatement statement;
 			String String1 = "DELETE from `PB_PORTFOLIO` where id=11111111111;";
-			System.out.println(String1);
+			 
 			statement = connection.prepareStatement(
 					"DELETE from `PB_PORTFOLIO` where `PORTFOLIO_ID`=" + portfEntry1.get2Portfolio_id() + ";");
 			statement.execute();
@@ -448,7 +443,6 @@ public class Model {
 		this.currentPortfoliosRohstoffeProzente = this.currentPortfoliosRohstoffeProzente.entrySet().stream()
 				.sorted(Map.Entry.comparingByKey()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
 						(oldValue, newValue) -> oldValue, LinkedHashMap::new));
-
 	}
 	
 	//TabellenEntry-Listen konvertieren	
@@ -480,21 +474,17 @@ public class Model {
 			String url = "jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11225625";
 			String username = "sql11225625";
 			String password = "WNjKXk31lH";
-			System.out.println("Connecting database...");
 
 			try (Connection connection = DriverManager.getConnection(url, username, password)) {
-				System.out.println("Database connected!");
 
 				PreparedStatement statement;
 				statement = connection.prepareStatement(
-						"DELETE FROM PB_PORTF_SHARE WHERE PORTFOLIO_ID =" + this.usedPortfolio.getPortfolio_id() + ";");
-				System.out.println(
 						"DELETE FROM PB_PORTF_SHARE WHERE PORTFOLIO_ID =" + this.usedPortfolio.getPortfolio_id() + ";");
 				statement.execute();
 				for (Entry<Integer, Aktie> entry : this.currentPortfoliosAktienMitKursen.entrySet()) {
 					Aktie value = entry.getValue();
 
-					System.out.println("REPLACE INTO `PB_PORTF_SHARE` VALUES (1,neu,12);");
+					 
 					statement = connection.prepareStatement("REPLACE INTO `PB_PORTF_SHARE` VALUES ("
 							+ this.usedPortfolio.getPortfolio_id() + "," + value.getShare_id() + ","
 							+ (this.currentPortfoliosAktienProzente.get(entry.getKey()) == null ? "0.0"
@@ -507,8 +497,6 @@ public class Model {
 			}
 		}
 
-
-
 		////////////////////////////////////////
 		// AKTIEN DES USED PORTFOLIOS -SORTIEREN METHODEN
 		////////////////////////////////////////
@@ -519,7 +507,5 @@ public class Model {
 			this.currentPortfoliosAktienProzente = this.currentPortfoliosAktienProzente.entrySet().stream()
 					.sorted(Map.Entry.comparingByKey()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
 							(oldValue, newValue) -> oldValue, LinkedHashMap::new));
-
 		}
-
 }

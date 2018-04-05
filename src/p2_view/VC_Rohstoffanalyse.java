@@ -164,13 +164,13 @@ public class VC_Rohstoffanalyse {
 
 	@FXML
 	private void handleDelete() {
-		System.out.println("DeleteButton Pressed!");
+		 
 
 	}
 
 	@FXML
 	private void handleWeiter() throws IOException {
-		System.out.println("Weiterbutton pressed!");
+		 
 		
 		//zusammenrechnen
 		List<Double> doubleList= new ArrayList<>();
@@ -220,13 +220,13 @@ public class VC_Rohstoffanalyse {
 	
 	@FXML
 	private void handleZurueck() throws IOException {
-		System.out.println("Weiterbutton pressed!");
-		this.c1.setSceneToV_Shares();
+		 
+		this.c1.setSceneToV_Commodities();
 	}
 	
 	@FXML
 	private void handleSpeichern() throws IOException {
-		System.out.println("Speichernbutton pressed!");
+		 
 		m1.currentPortfoliosRohstoffeProzente.put(Integer.valueOf(m1.selectedCurrentCommoditiesStringAnalyse1.substring(0, m1.selectedCurrentCommoditiesStringAnalyse1.indexOf(" "))),Double.parseDouble(this.textFieldPercent.getText()));
 		this.updateData();
 	}
@@ -235,7 +235,7 @@ public class VC_Rohstoffanalyse {
 	@FXML
 	private void handleSuedOstStreng() throws IOException {
 		
-		System.out.println("suedOst pressed!");
+		 
 		
 		// erstelle Array mit (Risiko, Rendite, AktienID, Effizienzbewertung)
 		int counter = m1.currentPortfoliosRohstoffeMitKursen.size();
@@ -249,7 +249,7 @@ public class VC_Rohstoffanalyse {
 				temp [i[0]][1] = v.getSigma();
 				temp [i[0]][2] = v.getShare_id();
 				temp [i[0]][3] = 1;
-				System.out.println(temp[i[0]][0] + " " + temp[i[0]][1] + " " + temp[i[0]][2] + " " + temp[i[0]][3]);	
+				 	
 				i[0] += 1;
 			}
 		);
@@ -269,7 +269,7 @@ public class VC_Rohstoffanalyse {
         );
 		
 		for(int j = 0; j<counter; j++) {
-    		System.out.println(temp[j][0] + " " + temp[j][1] + " " + temp[j][2] + " " + temp[j][3]);
+    		 
 		}
 		
 		//Klassifizierung (Effizient/Ineffizient)
@@ -296,7 +296,7 @@ public class VC_Rohstoffanalyse {
 		};
 		
 		for(int j = 0; j<counter; j++) {
-    		System.out.println(temp[j][0] + " " + temp[j][1] + " " + temp[j][2] + " " + temp[j][3]);
+    		 
 		}
 		
 		// Erstellung der Datasets
@@ -326,7 +326,7 @@ public class VC_Rohstoffanalyse {
 			{
 				Label [i[0]][0] = String.valueOf(v.getShare_id());
 				Label [i[0]][1] = v.getName();
-				System.out.println(Label[i[0]][0] + " " + Label[i[0]][1]);	
+				 	
 				i[0] += 1;
 			}
 		);
@@ -402,7 +402,7 @@ public class VC_Rohstoffanalyse {
 	
 	@FXML
 	private void handleIndifferenz() throws IOException {
-		System.out.println("Indifferenzbutton pressed!");
+		 
 		
 		// erstelle Array mit (Risiko, Rendite, AktienID, Effizienzbewertung, Nutzenwert)
 		String functp = this.functiontyp.getValue();
@@ -418,7 +418,7 @@ public class VC_Rohstoffanalyse {
 				temp [i[0]][1] = v.getSigma();
 				temp [i[0]][2] = v.getShare_id();
 				temp [i[0]][3] = 0;
-				System.out.println(temp[i[0]][0] + " " + temp[i[0]][1] + " " + temp[i[0]][2] + " " + temp[i[0]][3]+ " " + temp[i[0]][4]);	
+				 	
 				i[0] += 1;
 			}
 		);
@@ -439,7 +439,7 @@ public class VC_Rohstoffanalyse {
 		};
 		
 		for(int j = 0; j<counter; j++) {
-    		System.out.println(temp[j][0] + " " + temp[j][1] + " " + temp[j][2] + " " + temp[j][3] + " " + temp[j][4]);
+    		 
     	}
 		
 		//Sortierung (hoher Nutzenwert, geringes Risiko)
@@ -462,7 +462,7 @@ public class VC_Rohstoffanalyse {
 		
 		for(int j = 0; j<temp.length; j++) {
     		if (temp[j][4] > Schwellenwert) {temp[j][3]=1;}
-    		System.out.println(temp[j][0] + " " + temp[j][1] + " " + temp[j][2] + " " + temp[j][3] + " " + temp[j][4]);
+    		 
     	}
 		
 
@@ -504,7 +504,7 @@ public class VC_Rohstoffanalyse {
 			{
 				Label [i[0]][0] = String.valueOf(v.getShare_id());
 				Label [i[0]][1] = v.getName();
-				System.out.println(Label[i[0]][0] + " " + Label[i[0]][1]);	
+				 	
 				i[0] += 1;
 			}
 		);
@@ -592,7 +592,7 @@ public class VC_Rohstoffanalyse {
 	
 	@FXML
 	private void handleSwitch() throws IOException {
-		System.out.println("Switchbutton pressed!");
+		 
 		m1.analyseErgebnis2.put(Integer.valueOf(m1.selectedCurrentCommoditiesStringAnalyse1.substring(0, m1.selectedCurrentCommoditiesStringAnalyse1.indexOf(" "))),! m1.analyseErgebnis2.get(Integer.valueOf(m1.selectedCurrentCommoditiesStringAnalyse1.substring(0, m1.selectedCurrentCommoditiesStringAnalyse1.indexOf(" ")))));
 		this.updateData();
 	}

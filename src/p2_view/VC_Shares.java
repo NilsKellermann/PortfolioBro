@@ -378,10 +378,6 @@ public class VC_Shares {
 		chart.getData().add(s2);
 		chart.setAnimated(false);
 
-		final int dayRange = 60;
-		LocalDate today = LocalDate.now();
-		Random rng = new Random();
-
 		try {
 			for (Map.Entry<Date, Double> entry : m1.currentPortfoliosAktienMitKursen
 					.get(new Integer(Integer.valueOf(
@@ -397,7 +393,7 @@ public class VC_Shares {
 						.getName());
 			}
 		} catch (NullPointerException e) {
-			System.out.print("Caught the NullPointerException");
+			System.out.print(" ");
 		}
 		// for (int i = 0; i < 20; i++) {
 		// LocalDate date7 = today.minusDays(rng.nextInt(dayRange));

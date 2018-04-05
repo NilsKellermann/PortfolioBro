@@ -347,7 +347,7 @@ m1.updatePB_PORTF_COMMwithPercents();
 
 	@FXML
 	private void handleZurueck() throws IOException {
-		this.c1.setSceneToV_AssetType();
+		this.c1.setSceneToV_Aktienanalyse();
 	}
 
 	@FXML
@@ -391,7 +391,7 @@ m1.updatePB_PORTF_COMMwithPercents();
 						.getName());
 			}
 		} catch (NullPointerException e) {
-			System.out.print("Caught the NullPointerException");
+			System.out.print(" ");
 		}
 		// for (int i = 0; i < 20; i++) {
 		// LocalDate date7 = today.minusDays(rng.nextInt(dayRange));

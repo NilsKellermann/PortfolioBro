@@ -139,7 +139,8 @@ public class Controller {
 		vc1.m1 = getInstance().model;
 
 		vc1.updateData();
-
+	pane1.getStylesheets().add("p2_view/Stylesheet_Graph.css");	
+	
 		Stage prim=getInstance().prim;
 		prim.setScene(new Scene(pane1, 1200, 600));
 		prim.setMinWidth(800);
@@ -178,6 +179,8 @@ public class Controller {
 
 		vc1.updateData();
 
+	pane1.getStylesheets().add("p2_view/Stylesheet_Graph.css");	
+		
 		Stage prim=getInstance().prim;
 		prim.setScene(new Scene(pane1, 1200, 600));
 		prim.setMinWidth(800);
@@ -214,8 +217,6 @@ public class Controller {
 		vc1.m1 = getInstance().model;
 
 		vc1.updateData();
-			
-		pane1.getStylesheets().add("p2_view/cssfilepath.css");	
 		
 		Stage prim=getInstance().prim;
 		prim.setScene(new Scene(pane1, 1200, 600));

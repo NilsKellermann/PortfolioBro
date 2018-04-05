@@ -213,21 +213,27 @@ public class VC_Commodities {
 		nameColumn3.setCellValueFactory(cellData -> cellData.getValue().get2Name());
 		industryColumn3.setCellValueFactory(cellData -> cellData.getValue().get2Industry());
 
-//		ObservableList<RohstoffTableEntry> allAktienOhneKurseTE_Nikkei = m1.allRohstoffeOhneKurseTE.stream()
-//				.filter(x -> (x.getIndex().equals("Nikkei 225")))
-//				.collect(Collectors.toCollection(FXCollections::observableArrayList));
-//		tableView4.setItems(allAktienOhneKurseTE_Nikkei);
-//		IdColumn4.setCellValueFactory(cellData -> cellData.getValue().get2Share_id());
-//		nameColumn4.setCellValueFactory(cellData -> cellData.getValue().get2Name());
-//		industryColumn4.setCellValueFactory(cellData -> cellData.getValue().get2Industry());
-//
-//		ObservableList<RohstoffTableEntry> allAktienOhneKurseTE_DowJones = m1.allRohstoffeOhneKurseTE.stream()
-//				.filter(x -> (x.getIndex().equals("Dow Jones")))
-//				.collect(Collectors.toCollection(FXCollections::observableArrayList));
-//		tableView5.setItems(allAktienOhneKurseTE_DowJones);
-//		IdColumn5.setCellValueFactory(cellData -> cellData.getValue().get2Share_id());
-//		nameColumn5.setCellValueFactory(cellData -> cellData.getValue().get2Name());
-//		industryColumn5.setCellValueFactory(cellData -> cellData.getValue().get2Industry());
+		// ObservableList<RohstoffTableEntry> allAktienOhneKurseTE_Nikkei =
+		// m1.allRohstoffeOhneKurseTE.stream()
+		// .filter(x -> (x.getIndex().equals("Nikkei 225")))
+		// .collect(Collectors.toCollection(FXCollections::observableArrayList));
+		// tableView4.setItems(allAktienOhneKurseTE_Nikkei);
+		// IdColumn4.setCellValueFactory(cellData ->
+		// cellData.getValue().get2Share_id());
+		// nameColumn4.setCellValueFactory(cellData -> cellData.getValue().get2Name());
+		// industryColumn4.setCellValueFactory(cellData ->
+		// cellData.getValue().get2Industry());
+		//
+		// ObservableList<RohstoffTableEntry> allAktienOhneKurseTE_DowJones =
+		// m1.allRohstoffeOhneKurseTE.stream()
+		// .filter(x -> (x.getIndex().equals("Dow Jones")))
+		// .collect(Collectors.toCollection(FXCollections::observableArrayList));
+		// tableView5.setItems(allAktienOhneKurseTE_DowJones);
+		// IdColumn5.setCellValueFactory(cellData ->
+		// cellData.getValue().get2Share_id());
+		// nameColumn5.setCellValueFactory(cellData -> cellData.getValue().get2Name());
+		// industryColumn5.setCellValueFactory(cellData ->
+		// cellData.getValue().get2Industry());
 
 		///////////////////////
 		// 5x Table Listener
@@ -281,9 +287,9 @@ public class VC_Commodities {
 	////////////////////////////////////////////////////////
 	@FXML
 	private void handleDeleteSelected() {
-		m1.deleteFromCurrentPRohstoffe(Integer
-				.valueOf(m1.selectedCurrentCommodityString.substring(0, m1.selectedCurrentCommodityString.indexOf(" "))));
-m1.updatePB_PORTF_COMMwithPercents();
+		m1.deleteFromCurrentPRohstoffe(Integer.valueOf(
+				m1.selectedCurrentCommodityString.substring(0, m1.selectedCurrentCommodityString.indexOf(" "))));
+		m1.updatePB_PORTF_COMMwithPercents();
 		updateData();
 	}
 
@@ -304,7 +310,6 @@ m1.updatePB_PORTF_COMMwithPercents();
 		m1.sortBothCurrentPortfoliosRohstoffe();
 		m1.loadSelectedPortfolioData();
 		updateData();
-
 	}
 
 	@FXML
@@ -366,10 +371,10 @@ m1.updatePB_PORTF_COMMwithPercents();
 		SortedList<Data<String, Number>> sortedData2 = new SortedList<>(data7,
 				(data1, data2) -> data1.getXValue().compareTo(data2.getXValue()));
 		LineChart<String, Number> chart = new LineChart<>(xAxis, yAxis);
-		Series<String, Number> s1 = new Series<>(sortedData);
-		Series<String, Number> s2 = new Series<>(sortedData2);
-		chart.getData().add(s1);
-		chart.getData().add(s2);
+		Series<String, Number> series1 = new Series<>(sortedData);
+		Series<String, Number> series2 = new Series<>(sortedData2);
+		chart.getData().add(series1);
+//		chart.getData().add(series2);
 		chart.setAnimated(false);
 
 		final int dayRange = 60;
@@ -377,19 +382,20 @@ m1.updatePB_PORTF_COMMwithPercents();
 		Random rng = new Random();
 
 		try {
-			for (Map.Entry<Date, Double> entry : m1.currentPortfoliosRohstoffeMitKursen
-					.get(new Integer(Integer.valueOf(
-							m1.selectedCurrentCommodityString.substring(0, m1.selectedCurrentCommodityString.indexOf(" ")))))
+			for (Map.Entry<Date, Double> entry : m1.currentPortfoliosRohstoffeMitKursen.get(new Integer(Integer.valueOf(
+					m1.selectedCurrentCommodityString.substring(0, m1.selectedCurrentCommodityString.indexOf(" ")))))
 					.getHashOfHalfYear().entrySet()) {
 				Date key = entry.getKey();
 				Double value = entry.getValue();
 				LocalDate dateA = Instant.ofEpochMilli(key.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
 				String formattedDateA = formatter.format(dateA);
 				addData(data, formattedDateA, value);
-				s1.setName(m1.currentPortfoliosRohstoffeMitKursen.get(new Integer(Integer.valueOf(
-						m1.selectedCurrentCommodityString.substring(0, m1.selectedCurrentCommodityString.indexOf(" ")))))
+				series1.setName(m1.currentPortfoliosRohstoffeMitKursen
+						.get(new Integer(Integer.valueOf(m1.selectedCurrentCommodityString.substring(0,
+								m1.selectedCurrentCommodityString.indexOf(" ")))))
 						.getName());
 			}
+			
 		} catch (NullPointerException e) {
 			System.out.print(" ");
 		}

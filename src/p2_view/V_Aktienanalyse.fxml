@@ -133,7 +133,7 @@
                                                       <ChoiceBox fx:id="functiontyp" prefWidth="150.0" GridPane.columnIndex="1" />
                                                       <Label text="Funktionstyp:" />
                                                       <Label text="Aversionskoeffizient:" GridPane.rowIndex="1" />
-                                                      <TextField fx:id="aversionscoefficient" maxWidth="80.0" text="20" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                      <TextField fx:id="aversionscoefficient" maxWidth="80.0" text="15" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                       <Button mnemonicParsing="false" onAction="#handleIndifferenz" text="Analyse starten" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                       <Label text="(Bitte gebe einen Wert zwischen" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                                                       <Label text="0= risikoneutral &amp; 100=risikoscheu ein!)" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />

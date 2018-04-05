@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="p2_view.VC_CompletePortfolioCompare">
    <children>
@@ -40,28 +41,24 @@
                       <RowConstraints maxHeight="304.0" minHeight="10.0" prefHeight="293.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TableView fx:id="pTable1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" GridPane.halignment="CENTER">
+                        <TableView fx:id="pTable1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" GridPane.halignment="LEFT">
                           <columns>
                             <TableColumn fx:id="idColumn1" prefWidth="75.0" text="Id" />
                             <TableColumn fx:id="nameColumn1" prefWidth="200.0" text="Name" />
                           </columns>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
                         </TableView>
-                        <TableView fx:id="pTable2" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                        <TableView fx:id="pTable2" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.halignment="LEFT">
                           <columns>
                             <TableColumn fx:id="idColumn2" prefWidth="75.0" text="Id" />
                             <TableColumn fx:id="nameColumn2" prefWidth="200.0" text="Name" />
                           </columns>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
                         </TableView>
-                        <Label text="Portfolio Details:" underline="true" GridPane.rowIndex="1" GridPane.valignment="TOP">
-                           <GridPane.margin>
-                              <Insets left="10.0" top="10.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Label text="Portfolio Details:" underline="true" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
-                           <GridPane.margin>
-                              <Insets left="10.0" top="10.0" />
-                           </GridPane.margin>
-                        </Label>
                         <GridPane GridPane.rowIndex="2">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="432.0" minWidth="10.0" prefWidth="391.0" />
@@ -87,15 +84,36 @@
                                  <children>
                                     <Label fx:id="nameLabel1" text="Label" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                        <GridPane.margin>
-                                          <Insets />
+                                          <Insets left="5.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <Label text="Rendite" GridPane.rowIndex="2" />
-                                    <Label layoutX="10.0" layoutY="90.0" text="Investment" />
-                                    <Label fx:id="labelrisiko1" layoutX="10.0" layoutY="90.0" text="Label" GridPane.rowIndex="5" />
-                                    <Label layoutX="10.0" layoutY="90.0" text="Risiko" GridPane.rowIndex="4" />
-                                    <Label fx:id="labelrendite1" layoutX="10.0" layoutY="90.0" text="Label" GridPane.rowIndex="3" />
+                                    <Label text="Rendite" GridPane.rowIndex="2">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" />
+                                       </GridPane.margin></Label>
+                                    <Label layoutX="10.0" layoutY="90.0" text="Investment">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" />
+                                       </GridPane.margin>
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font></Label>
+                                    <Label fx:id="labelrisiko1" layoutX="10.0" layoutY="90.0" text="Label" GridPane.rowIndex="5">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" />
+                                       </GridPane.margin></Label>
+                                    <Label layoutX="10.0" layoutY="90.0" text="Risiko" GridPane.rowIndex="4">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" />
+                                       </GridPane.margin></Label>
+                                    <Label fx:id="labelrendite1" layoutX="10.0" layoutY="90.0" text="Label" GridPane.rowIndex="3">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" />
+                                       </GridPane.margin></Label>
                                  </children>
+                                 <GridPane.margin>
+                                    <Insets left="5.0" />
+                                 </GridPane.margin>
                               </GridPane>
                            </children>
                         </GridPane>
@@ -122,12 +140,30 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Label fx:id="labelrisiko2" text="Label" GridPane.rowIndex="5" />
-                                    <Label fx:id="labelrendite2" layoutX="10.0" layoutY="31.0" text="Label" GridPane.rowIndex="3" />
-                                    <Label layoutX="10.0" layoutY="31.0" text="Rendite" GridPane.rowIndex="2" />
-                                    <Label layoutX="10.0" layoutY="31.0" text="Risiko" GridPane.rowIndex="4" />
-                                    <Label layoutX="10.0" layoutY="90.0" text="Investment" />
-                                    <Label fx:id="nameLabel2" text="Label" GridPane.rowIndex="1" />
+                                    <Label fx:id="labelrisiko2" text="Label" GridPane.rowIndex="5">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" />
+                                       </GridPane.margin></Label>
+                                    <Label fx:id="labelrendite2" layoutX="10.0" layoutY="31.0" text="Label" GridPane.rowIndex="3">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" />
+                                       </GridPane.margin></Label>
+                                    <Label layoutX="10.0" layoutY="31.0" text="Rendite" GridPane.rowIndex="2">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" />
+                                       </GridPane.margin></Label>
+                                    <Label layoutX="10.0" layoutY="31.0" text="Risiko" GridPane.rowIndex="4">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" />
+                                       </GridPane.margin></Label>
+                                    <Label layoutX="10.0" layoutY="90.0" text="Investment">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" />
+                                       </GridPane.margin></Label>
+                                    <Label fx:id="nameLabel2" text="Label" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" />
+                                       </GridPane.margin></Label>
                                  </children>
                               </GridPane>
                            </children>
@@ -143,6 +179,9 @@
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
+                     <font>
+                        <Font size="19.0" />
+                     </font>
                   </Label>
                   <Button mnemonicParsing="false" onAction="#handleZurueck" text="Zurück zum Hauptmenü" GridPane.halignment="RIGHT">
                      <GridPane.margin>
@@ -181,7 +220,7 @@
                         </Label>
                         <ListView fx:id="listview2comm" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                         <ListView fx:id="listview2share" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <ListView maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                        <ListView fx:id="listview1comm" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin></ListView>

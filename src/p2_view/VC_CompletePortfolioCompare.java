@@ -1,7 +1,11 @@
 package p2_view;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -9,7 +13,7 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.util.Rotation;
-
+import javafx.scene.control.ListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingNode;
@@ -21,7 +25,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.application.Application; 
+import javafx.application.Application;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
 import java.awt.event.FocusEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -68,11 +79,40 @@ public class VC_CompletePortfolioCompare {
 	@FXML
 	private TableColumn<PortfolioTableEntry, String> nameColumn2;
 	
+	
+	
 	@FXML
 	private Label nameLabel1;
 	
 	@FXML
 	private Label nameLabel2;
+	
+	@FXML 
+	private ListView<String> listview1shares;
+	@FXML 
+	private ListView<String> listview2shares;
+	@FXML 
+	private ListView<String> listview1comm;
+	@FXML 
+	private ListView<String> listview2comm;
+	
+	protected List<String> simpleStringList1 ;
+	protected ListProperty<String> listProperty1 = new SimpleListProperty<>();
+    protected List<String> simpleStringList2 ;
+	protected ListProperty<String> listProperty2 = new SimpleListProperty<>();
+	protected List<String> simpleStringList3 ;
+	protected ListProperty<String> listProperty3 = new SimpleListProperty<>();
+    protected List<String> simpleStringList4 ;
+	protected ListProperty<String> listProperty4 = new SimpleListProperty<>();
+	
+	@FXML
+	private Label labelrendite1;
+	@FXML
+	private Label labelrendite2;
+	@FXML
+	private Label labelrisiko1;
+	@FXML
+	private Label labelrisiko2;
 	
 	private Double aktien1;
 	private Double rohstoffe1;
@@ -194,6 +234,7 @@ public class VC_CompletePortfolioCompare {
 			plot.setNoDataMessage("No data to display");
 			plot.setLabelGenerator(new PieChart3D.CustomLabelGenerator());
 
+
 			JFreeChart chart1 = chart;
 			JPanel chartPanel = new ChartPanel(chart1);
 			chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
@@ -201,8 +242,14 @@ public class VC_CompletePortfolioCompare {
 			ChartPanel panel = new ChartPanel(chart);
 			panel.setMouseWheelEnabled(true);
 			sn2.setContent(panel);
-			 
+
+			
+			final Rotator rotator = new Rotator(plot);
+	        rotator.start();
+
 		}
+	
+	
 	
 	
 	
@@ -234,11 +281,73 @@ public class VC_CompletePortfolioCompare {
 		ChartPanel panel = new ChartPanel(chart);
 		panel.setMouseWheelEnabled(true);
 		sn3.setContent(panel);
-		 
+
+		
+		final Rotator rotator = new Rotator(plot);
+        rotator.start();
+
 	}
 
+
+	public void displaysharesandcommodities1 () {
+		
+	//////verwendete Rohstoffe eintragen////
+/*	simpleStringList2= new ArrayList<>();
+	m1.currentPortfoliosRohstoffeMitKursen.forEach( (k,v) -> 
+			{if(m1.currentPortfoliosRohstoffeProzente.get(k)!=0)
+				{
+					System.out.println(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosRohstoffeProzente.get(k) + "% )");
+					simpleStringList2.add(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosRohstoffeProzente.get(k) + "% )");
+				}
+			}
+		);
+	listview1comm.itemsProperty().bind(listProperty2);
+	listProperty2.set(FXCollections.observableArrayList(simpleStringList2));
+
+	///////verwendete Aktien eintragen /////
+	simpleStringList1= new ArrayList<>();
+	m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> 
+			{if(m1.currentPortfoliosAktienProzente.get(k)!=0)
+				{
+					System.out.println(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosAktienProzente.get(k) + "% )");
+					simpleStringList1.add(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosAktienProzente.get(k) + "% )");
+				}
+			}
+		);
+	listview1shares.itemsProperty().bind(listProperty1);
+	listProperty1.set(FXCollections.observableArrayList(simpleStringList1));
+*/	}
+
 	
+	public void displaysharesandcommodities2() {
+		
+	//////verwendete Rohstoffe eintragen////
+/*		simpleStringList3= new ArrayList<>();
+		m1.currentPortfoliosRohstoffeMitKursen.forEach( (k,v) -> 
+				{if(m1.currentPortfoliosRohstoffeProzente.get(k)!=0)
+					{
+						System.out.println(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosRohstoffeProzente.get(k) + "% )");
+						simpleStringList3.add(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosRohstoffeProzente.get(k) + "% )");
+					}
+				}
+			);
+		listview2comm.itemsProperty().bind(listProperty2);
+		listProperty3.set(FXCollections.observableArrayList(simpleStringList3));
+
+		///////verwendete Aktien eintragen /////
+		simpleStringList4= new ArrayList<>();
+		m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> 
+				{if(m1.currentPortfoliosAktienProzente.get(k)!=0)
+					{
+						System.out.println(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosAktienProzente.get(k) + "% )");
+						simpleStringList4.add(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosAktienProzente.get(k) + "% )");
+					}
+				}
+			);
+		listview2shares.itemsProperty().bind(listProperty4);
+		listProperty4.set(FXCollections.observableArrayList(simpleStringList4));
 	
+*/	}
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Handle-Methoden
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -246,14 +355,17 @@ public class VC_CompletePortfolioCompare {
 		if (portf1 != null) {
 			m1.selectedPortfolio = portf1;
 			nameLabel1.setText("" + m1.selectedPortfolio.get2Capital());
+			labelrendite1.setText("" + m1.selectedPortfolio.get2Sigma_full());
+			labelrisiko1.setText(""+ m1.selectedPortfolio.get2Risk_comm());
+			
 		} else {
 			//
 			m1.selectedPortfolio = null;
-			nameLabel1.setText("Portfolio auswählen");
+			nameLabel1.setText("Portfolio auswaehlen");
 		}
 		getData1(portf1);
 		updatePieChart1();
-		
+		displaysharesandcommodities1();
 		
 	}
 	
@@ -261,13 +373,17 @@ public class VC_CompletePortfolioCompare {
 		if (portf2 != null) {
 			m1.selectedPortfolio = portf2;
 			nameLabel2.setText("" + m1.selectedPortfolio.get2Capital());
+			labelrendite2.setText("" + m1.selectedPortfolio.get2Sigma_full());
+			labelrisiko2.setText("" + m1.selectedPortfolio.get2Risk_full());
+			
 		} else {
 			//
 			m1.selectedPortfolio = null;
-			nameLabel2.setText("Portfolio auswählen");
+			nameLabel2.setText("Portfolio auswaehlen");
 	}	
 		getData2(portf2);
 		updatePieChart2();
+		displaysharesandcommodities2();
 	}
 	
 	
@@ -276,8 +392,30 @@ public class VC_CompletePortfolioCompare {
 		 
 		this.c1.setSceneToV_Portfolios();
 	}
+}
 
+class Rotator extends Timer implements ActionListener {
 
-		
-	
+	private static final long serialVersionUID = 1L;
+
+	/** The plot. */
+    private PiePlot3D plot;
+
+    /** The angle. */
+    private int angle = 270;
+
+    Rotator(final PiePlot3D plot) {
+        super(100, null);
+        this.plot = plot;
+        addActionListener(this);
+    }
+
+    public void actionPerformed(final ActionEvent event) {
+        this.plot.setStartAngle(this.angle);
+        this.angle = this.angle + 1;
+        if (this.angle == 360) {
+            this.angle = 0;
+        }
+    }
+
 }

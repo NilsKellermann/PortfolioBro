@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="p2_view.VC_Rohstoffanalyse">
+<AnchorPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="p2_view.VC_Rohstoffanalyse">
    <children>
       <BorderPane maxHeight="4000.0" maxWidth="4000.0" prefHeight="600.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -32,7 +32,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+                  <TabPane fx:id="tabPane3" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
                       <Tab text="Süd-Ost-Bereich">
                         <content>
@@ -55,18 +55,26 @@
                                               <RowConstraints maxHeight="225.0" minHeight="10.0" prefHeight="225.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <GridPane GridPane.rowIndex="1">
-                                                  <columnConstraints>
-                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                  </columnConstraints>
-                                                  <rowConstraints>
-                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                  </rowConstraints>
+                                                <Label text="Anmerkung: Zeichne ein Rechteck in die Grafiken um die Zoomfunktion zu aktivieren." textFill="#e00404" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                                                   <GridPane.margin>
+                                                      <Insets bottom="20.0" left="40.0" right="20.0" top="20.0" />
+                                                   </GridPane.margin>
+                                                </Label>
+                                                <GridPane prefHeight="102.0" prefWidth="451.0" GridPane.rowIndex="1">
+                                                   <columnConstraints>
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                   </columnConstraints>
+                                                   <rowConstraints>
+                                                      <RowConstraints maxHeight="26.0" minHeight="10.0" prefHeight="14.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints maxHeight="50.0" minHeight="0.0" prefHeight="12.0" vgrow="SOMETIMES" />
+                                                   </rowConstraints>
                                                    <children>
                                                       <Button mnemonicParsing="false" onAction="#handleSuedOstStreng" text="Analyse starten" />
+                                                      <Label text="(Welche Aktien sind im Hinblick auf Risiko/Rendite effizienter als andere?" GridPane.rowIndex="1" />
+                                                      <Label text="Starte die Analyse und finde es heraus!)" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
                                                    </children>
                                                    <GridPane.margin>
-                                                      <Insets bottom="150.0" left="40.0" right="40.0" top="20.0" />
+                                                      <Insets bottom="100.0" left="40.0" right="40.0" top="20.0" />
                                                    </GridPane.margin>
                                                 </GridPane>
                                                 <StackPane fx:id="paneWithSwing1" prefHeight="350.0" prefWidth="500.0">
@@ -109,30 +117,6 @@
                                               <RowConstraints maxHeight="240.0" minHeight="10.0" prefHeight="225.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <GridPane prefHeight="200.0" prefWidth="451.0" GridPane.rowIndex="1">
-                                                  <columnConstraints>
-                                                    <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="243.0" minWidth="10.0" prefWidth="120.0" />
-                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="369.0" minWidth="10.0" prefWidth="158.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="369.0" minWidth="10.0" prefWidth="218.0" />
-                                                  </columnConstraints>
-                                                  <rowConstraints>
-                                                    <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                                                    <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                  </rowConstraints>
-                                                   <children>
-                                                      <ChoiceBox fx:id="functiontyp" prefWidth="150.0" GridPane.columnIndex="1" />
-                                                      <Label text="Funktionstyp:" />
-                                                      <Label text="Aversionskoeffizient:" GridPane.rowIndex="1" />
-                                                      <TextField fx:id="aversionscoefficient" maxWidth="80.0" text="20" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                      <Button mnemonicParsing="false" onAction="#handleIndifferenz" text="Analyse starten" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                      <Label text="(Bitte geben Sie einen Wert zwischen 0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                                                      <Label text="und 100 ein!)" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-                                                   </children>
-                                                   <GridPane.margin>
-                                                      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                                   </GridPane.margin>
-                                                </GridPane>
                                                 <StackPane fx:id="paneWithSwing2" prefHeight="350.0" prefWidth="500.0">
                                                    <children>
                                                       <ScatterChart>
@@ -144,6 +128,31 @@
                                                         </yAxis>
                                                       </ScatterChart>
                                                    </children></StackPane>
+                                                <GridPane prefHeight="200.0" prefWidth="451.0" GridPane.rowIndex="1">
+                                                   <columnConstraints>
+                                                      <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="243.0" minWidth="10.0" prefWidth="133.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="369.0" minWidth="10.0" prefWidth="139.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="369.0" minWidth="10.0" prefWidth="259.0" />
+                                                   </columnConstraints>
+                                                   <rowConstraints>
+                                                      <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                   </rowConstraints>
+                                                   <children>
+                                                      <ChoiceBox fx:id="functiontyp" prefWidth="150.0" GridPane.columnIndex="1" />
+                                                      <Label text="Funktionstyp:" />
+                                                      <Label text="Aversionskoeffizient:" GridPane.rowIndex="1" />
+                                                      <TextField fx:id="aversionscoefficient" maxWidth="80.0" text="20" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                      <Button mnemonicParsing="false" onAction="#handleIndifferenz" text="Analyse starten" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                      <Label text="(Bitte gebe einen Wert zwischen" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                                      <Label text="0= risikoneutral &amp; 100=risikoscheu ein!)" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+                                                      <Label text="(Welchen Renditezuwachs erwartest du?)" GridPane.columnIndex="2" />
+                                                   </children>
+                                                   <GridPane.margin>
+                                                      <Insets bottom="20.0" top="20.0" />
+                                                   </GridPane.margin>
+                                                </GridPane>
                                              </children>
                                           </GridPane>
                                        </children>
@@ -168,69 +177,93 @@
                       <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="174.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ListView fx:id="listView1" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: LightGreen;" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin></ListView>
-                        <ListView fx:id="listView2" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: Red;" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin></ListView>
                         <GridPane GridPane.rowIndex="2">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
                            <children>
                               <Label text="Ausgewählte Aktie ändern" underline="true" GridPane.columnSpan="2147483647">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
-                              </Label>
-                              <TextField fx:id="textFieldPercent" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label text="Prozente:" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                              <Button mnemonicParsing="false" onAction="#handleSwitch" prefHeight="31.0" prefWidth="189.0" text="Effizienz-Status ändern" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
                                  <GridPane.margin>
-                                    <Insets left="34.0" />
+                                    <Insets left="5.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <TextField fx:id="textFieldPercent" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="3.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <Label prefHeight="17.0" prefWidth="170.0" text="Prozentwert anpassen:" GridPane.columnSpan="2147483647" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" onAction="#handleSwitch" prefHeight="31.0" prefWidth="249.0" text="In Effizient/Ineffizent verschieben" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="3.0" />
                                  </GridPane.margin>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#handleSpeichern" prefHeight="31.0" prefWidth="175.0" text="Prozente abspeichern" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                              <Button mnemonicParsing="false" onAction="#handleSpeichern" prefHeight="31.0" prefWidth="94.0" text="Speichern" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                            </children>
                            <GridPane.margin>
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </GridPane.margin>
                         </GridPane>
+                        <ListView fx:id="listView1" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: LightGreen; -fx-border-width: 3;" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </GridPane.margin></ListView>
+                        <ListView fx:id="listView2" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: Red; -fx-border-width: 3;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </GridPane.margin>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets></ListView>
+                        <Label text="Enthaltene Aktien (eher effizient)" underline="true" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label text="Ausgeschlossene Aktien (eher ineffizient)" underline="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
                         <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="87.0" minHeight="10.0" prefHeight="82.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="72.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
                            <children>
-                              <Button mnemonicParsing="false" onAction="#handleZurueck" text="Zurück" GridPane.halignment="CENTER" />
-                              <Button mnemonicParsing="false" onAction="#handleWeiter" text="Weiter" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                              <Button mnemonicParsing="false" onAction="#handleZurueck" text="Zurück" GridPane.halignment="LEFT">
+                                 <GridPane.margin>
+                                    <Insets left="20.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#handleWeiter" text="Weiter" GridPane.halignment="RIGHT">
+                                 <GridPane.margin>
+                                    <Insets right="20.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Label text="mit Prozentwerten über 0" GridPane.rowIndex="1" />
+                              <Label alignment="BOTTOM_LEFT" text="werden in das Portfolio übernommen." GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+                              <Label text="Achtung: Nur enthaltene Aktien" GridPane.rowIndex="1" GridPane.valignment="TOP" />
                            </children>
                            <GridPane.margin>
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </GridPane.margin>
                         </GridPane>
-                        <Label text="Effizient" underline="true" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
-                           <font>
-                              <Font size="14.0" />
-                           </font></Label>
-                        <Label text="Ineffizient" underline="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
-                           <font>
-                              <Font size="14.0" />
-                           </font></Label>
                      </children>
                   </GridPane>
                </children>

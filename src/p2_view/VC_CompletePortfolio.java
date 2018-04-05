@@ -154,6 +154,7 @@ public class VC_CompletePortfolio {
 	
 	public void updateData() {
 		
+
 		//Berechnung Gesamtrendite und Gesamtrisiko des Portfolios
 		
 		m1.usedPortfolio.setRisk_full( 
@@ -170,10 +171,10 @@ public class VC_CompletePortfolio {
 		 		m1.usedPortfolio.getBond_dist()/100 *  m1.assetclasses.get(1).getSigma() + 
 				m1.usedPortfolio.getCurr_dist()/100 *  m1.assetclasses.get(0).getSigma()) *1000)/1000 );
 				
-				
-			
+		m1.updateDB_PORTFOLIO_updatePortfolioTE(m1.usedPortfolio);	
+		m1.loadSelectedPortfolioData();
 		
-		
+	
 		
 		
 		
@@ -181,6 +182,7 @@ public class VC_CompletePortfolio {
 		
 		sn1 = new SwingNode();
 		paneWithSwing.getChildren().add(sn1);
+
 		
 	textfieldname.setText("" + m1.usedPortfolio.getName());
 	textfieldinvestment.setText("" + m1.usedPortfolio.getCapital());
@@ -202,17 +204,22 @@ public class VC_CompletePortfolio {
 	lmittelrisiko.setText("" + m1.assetclasses.get(0).getRisk());
 	anleihenrendite.setText("" + m1.assetclasses.get(1).getSigma());
 	anleihenrisiko.setText("" + m1.assetclasses.get(1).getRisk());
+
+	
 	gesamtrendite.setText("" + m1.usedPortfolio.getYield_full());
 	gesamtrisiko.setText("" + m1.usedPortfolio.getRisk_full());
-	
+
+
 	//Aktienendstand
 		simpleStringList= new ArrayList<>();
 		m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> 
+
 				{if(m1.currentPortfoliosAktienProzente.get(k)!=0)
 					{
 						 
 						simpleStringList.add(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosAktienProzente.get(k) + "% )");
 					}
+
 				}
 			);
 		listView1.itemsProperty().bind(listProperty);
@@ -221,18 +228,21 @@ public class VC_CompletePortfolio {
 		//Rohstoffendstand
 		simpleStringList2= new ArrayList<>();
 		m1.currentPortfoliosRohstoffeMitKursen.forEach( (k,v) -> 
+
 				{if(m1.currentPortfoliosRohstoffeProzente.get(k)!=0)
 					{
 						 
 						simpleStringList2.add(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosRohstoffeProzente.get(k) + "% )");
 					}
+
 				}
 			);
 		listView2.itemsProperty().bind(listProperty2);
 		listProperty2.set(FXCollections.observableArrayList(simpleStringList2));
 	
 	
-		updatePieChart();
+		updatePieChart();		
+
 	
 	}
 		
@@ -253,7 +263,11 @@ public class VC_CompletePortfolio {
 			result.setValue("Liquide Mittel", Double.parseDouble(this.textfieldcash.getText()));
 			result.setValue("Immobilien", Double.parseDouble(this.textfieldrealestates.getText()));
 			result.setValue("Anleihen", Double.parseDouble(this.textfieldbonds.getText()));
-
+			
+			sn1 = new SwingNode();
+			paneWithSwing.getChildren().add(sn1);
+			
+			
 			JFreeChart chart = ChartFactory.createPieChart3D("Verteilung auf die Anlageklassen", // chart title
 					result, // data
 					true, // include legend

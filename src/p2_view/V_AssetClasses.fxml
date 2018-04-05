@@ -15,6 +15,8 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="p2_view.VC_AssetClasses">
    <children>
@@ -206,6 +208,14 @@
                               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                            </GridPane.margin>
                         </ScatterChart>
+                        <Text fill="#2883c6" strokeType="OUTSIDE" strokeWidth="0.0" text="Die Renditen der Anlageklassen sind Erwartungswerte des Bankhaus Lampe (Frankfurt am Main, 2017) und die Risikowerte Berechnungen aus den Jahren 1990 bis 2016." wrappingWidth="208.19482421875">
+                           <GridPane.margin>
+                              <Insets bottom="40.0" left="30.0" />
+                           </GridPane.margin>
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Text>
                      </children>
                      <GridPane.margin>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

@@ -88,9 +88,9 @@ public class VC_CompletePortfolioCompare {
 	private Label nameLabel2;
 	
 	@FXML 
-	private ListView<String> listview1shares;
+	private ListView<String> listview1sharestest;
 	@FXML 
-	private ListView<String> listview2shares;
+	private ListView<String> listview2sharestest;
 	@FXML 
 	private ListView<String> listview1comm;
 	@FXML 
@@ -292,7 +292,8 @@ public class VC_CompletePortfolioCompare {
 	public void displaysharesandcommodities1 () {
 		
 	//////verwendete Rohstoffe eintragen////
-/*	simpleStringList2= new ArrayList<>();
+	simpleStringList2= new ArrayList<>();
+	
 	m1.currentPortfoliosRohstoffeMitKursen.forEach( (k,v) -> 
 			{if(m1.currentPortfoliosRohstoffeProzente.get(k)!=0)
 				{
@@ -314,40 +315,41 @@ public class VC_CompletePortfolioCompare {
 				}
 			}
 		);
-	listview1shares.itemsProperty().bind(listProperty1);
+	listview1sharestest.itemsProperty().bind(listProperty1);
 	listProperty1.set(FXCollections.observableArrayList(simpleStringList1));
-*/	}
+	}
 
 	
 	public void displaysharesandcommodities2() {
 		
 	//////verwendete Rohstoffe eintragen////
-/*		simpleStringList3= new ArrayList<>();
-		m1.currentPortfoliosRohstoffeMitKursen.forEach( (k,v) -> 
-				{if(m1.currentPortfoliosRohstoffeProzente.get(k)!=0)
+		simpleStringList3= new ArrayList<>();
+		
+		m1.currentPortfoliosRohstoffeMitKursen2.forEach( (k,v) -> 
+				{if(m1.currentPortfoliosRohstoffeProzente2.get(k)!=0)
 					{
-						System.out.println(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosRohstoffeProzente.get(k) + "% )");
-						simpleStringList3.add(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosRohstoffeProzente.get(k) + "% )");
+						System.out.println(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosRohstoffeProzente2.get(k) + "% )");
+						simpleStringList3.add(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosRohstoffeProzente2.get(k) + "% )");
 					}
 				}
 			);
-		listview2comm.itemsProperty().bind(listProperty2);
+		listview2comm.itemsProperty().bind(listProperty3);
 		listProperty3.set(FXCollections.observableArrayList(simpleStringList3));
 
 		///////verwendete Aktien eintragen /////
 		simpleStringList4= new ArrayList<>();
-		m1.currentPortfoliosAktienMitKursen.forEach( (k,v) -> 
-				{if(m1.currentPortfoliosAktienProzente.get(k)!=0)
+		m1.currentPortfoliosAktienMitKursen2.forEach( (k,v) -> 
+				{if(m1.currentPortfoliosAktienProzente2.get(k)!=0)
 					{
-						System.out.println(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosAktienProzente.get(k) + "% )");
-						simpleStringList4.add(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosAktienProzente.get(k) + "% )");
+						System.out.println(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosAktienProzente2.get(k) + "% )");
+						simpleStringList4.add(v.getShare_id() + " " + v.getName() + "     (" +m1.currentPortfoliosAktienProzente2.get(k) + "% )");
 					}
 				}
 			);
-		listview2shares.itemsProperty().bind(listProperty4);
+		listview2sharestest.itemsProperty().bind(listProperty4);
 		listProperty4.set(FXCollections.observableArrayList(simpleStringList4));
 	
-*/	}
+	}
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Handle-Methoden
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -358,9 +360,9 @@ public class VC_CompletePortfolioCompare {
 			m1.usedPortfolio = m1.allPortfolios.get(m1.selectedPortfolio.get2Portfolio_id());
 			m1.loadSelectedPortfolioData();
 			
-			nameLabel2.setText("" + m1.usedPortfolio.getName());
-			labelrendite2.setText("" + m1.usedPortfolio.getYield_full());
-			labelrisiko2.setText("" + m1.usedPortfolio.getRisk_full());
+			nameLabel1.setText("" + m1.usedPortfolio.getCapital());
+			labelrendite1.setText("" + m1.usedPortfolio.getYield_full());
+			labelrisiko1.setText("" + m1.usedPortfolio.getRisk_full());
 			}
 
 		} else {
@@ -381,7 +383,7 @@ public class VC_CompletePortfolioCompare {
 			m1.usedPortfolio2 = m1.allPortfolios.get(m1.selectedPortfolio2.get2Portfolio_id());
 			m1.loadSelectedPortfolioData2();
 		
-			nameLabel2.setText("" + m1.usedPortfolio2.getName());
+			nameLabel2.setText("" + m1.usedPortfolio2.getCapital());
 			labelrendite2.setText("" + m1.usedPortfolio2.getYield_full());
 			labelrisiko2.setText("" + m1.usedPortfolio2.getRisk_full());
 			}	

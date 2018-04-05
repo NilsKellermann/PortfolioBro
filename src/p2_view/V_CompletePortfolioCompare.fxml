@@ -84,31 +84,31 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Label fx:id="nameLabel1" text="Label" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                    <Label fx:id="nameLabel1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <Label text="Rendite" GridPane.rowIndex="2">
+                                    <Label text="Rendite (%)" underline="true" GridPane.rowIndex="2">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
                                        </GridPane.margin></Label>
-                                    <Label layoutX="10.0" layoutY="90.0" text="Investment">
+                                    <Label layoutX="10.0" layoutY="90.0" text="Investment (€)" underline="true">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
                                        </GridPane.margin>
                                        <font>
                                           <Font name="System Bold" size="13.0" />
                                        </font></Label>
-                                    <Label fx:id="labelrisiko1" layoutX="10.0" layoutY="90.0" text="Label" GridPane.rowIndex="5">
+                                    <Label fx:id="labelrisiko1" layoutX="10.0" layoutY="90.0" GridPane.rowIndex="5">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
                                        </GridPane.margin></Label>
-                                    <Label layoutX="10.0" layoutY="90.0" text="Risiko" GridPane.rowIndex="4">
+                                    <Label layoutX="10.0" layoutY="90.0" text="Risiko (%)" underline="true" GridPane.rowIndex="4">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
                                        </GridPane.margin></Label>
-                                    <Label fx:id="labelrendite1" layoutX="10.0" layoutY="90.0" text="Label" GridPane.rowIndex="3">
+                                    <Label fx:id="labelrendite1" layoutX="10.0" layoutY="90.0" GridPane.rowIndex="3">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
                                        </GridPane.margin></Label>
@@ -142,27 +142,27 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Label fx:id="labelrisiko2" text="Label" GridPane.rowIndex="5">
+                                    <Label fx:id="labelrisiko2" GridPane.rowIndex="5">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
                                        </GridPane.margin></Label>
-                                    <Label fx:id="labelrendite2" layoutX="10.0" layoutY="31.0" text="Label" GridPane.rowIndex="3">
+                                    <Label fx:id="labelrendite2" layoutX="10.0" layoutY="31.0" GridPane.rowIndex="3">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
                                        </GridPane.margin></Label>
-                                    <Label layoutX="10.0" layoutY="31.0" text="Rendite" GridPane.rowIndex="2">
+                                    <Label layoutX="10.0" layoutY="31.0" text="Rendite (%)" underline="true" GridPane.rowIndex="2">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
                                        </GridPane.margin></Label>
-                                    <Label layoutX="10.0" layoutY="31.0" text="Risiko" GridPane.rowIndex="4">
+                                    <Label layoutX="10.0" layoutY="31.0" text="Risiko (%)" underline="true" GridPane.rowIndex="4">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
                                        </GridPane.margin></Label>
-                                    <Label layoutX="10.0" layoutY="90.0" text="Investment">
+                                    <Label layoutX="10.0" layoutY="90.0" text="Investment (€)" underline="true">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
                                        </GridPane.margin></Label>
-                                    <Label fx:id="nameLabel2" text="Label" GridPane.rowIndex="1">
+                                    <Label fx:id="nameLabel2" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets left="5.0" />
                                        </GridPane.margin></Label>
@@ -191,7 +191,7 @@
 
                   <ImageView fitHeight="80.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                    <image>
-                        <Image url="@../img/Logo.jpg" />
+                        <Image url="@../ressources_img/Logo.jpg" />
                    </image>
                   </ImageView>
                   <Label text="Wähle jeweils ein Portfolio aus und vergleiche sie!">
@@ -238,12 +238,12 @@
                            </padding>
                         </Label>
                         <ListView fx:id="listview2comm" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                        <ListView fx:id="listview2share" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ListView fx:id="listview2sharestest" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <ListView fx:id="listview1comm" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin></ListView>
-                        <ListView fx:id="listview1share" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" GridPane.rowIndex="1" />
+                        <ListView fx:id="listview1sharestest" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                </children>

@@ -1,0 +1,98 @@
+ /* 
+ .root {
+  -fx-background-color: #111fff;
+} 
+*/
+.series0.chart-symbol { /* solid triangle */
+    -fx-background-color: #013ADF;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-shape: "M5,0 L10,8 L0,8 Z";
+}
+.series1.chart-symbol { /* hollow circle */
+    -fx-background-color: #64FE2E,#64FE2E;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+}
+.series2.chart-symbol { /* hollow square */
+    -fx-background-color: #81F7F3, #81F7F3;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 0;
+}
+.series3.chart-symbol { /* hollow diamond */
+    -fx-background-color: #FFFF00, #FFFF00;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0, 2.5;
+    -fx-padding: 7px 5px 7px 5px;
+    -fx-shape: "M5,0 L10,9 L5,18 L0,9 Z";
+}
+
+.series4.chart-symbol { /* solid triangle */
+    -fx-background-color: #B40486;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-shape: "M5,0 L10,8 L0,8 Z";
+}
+.series5.chart-symbol { /* hollow circle */
+    -fx-background-color: #FF8000, white;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+}
+.series6.chart-symbol { /* hollow square */
+    -fx-background-color: #FF8000, #FF8000;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 0;
+}
+.series7.chart-symbol { /* hollow diamond */
+    -fx-background-color: #2f357f, #2f357f;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0, 2.5;
+    -fx-padding: 7px 5px 7px 5px;
+    -fx-shape: "M5,0 L10,9 L5,18 L0,9 Z";
+}
+
+.series8.chart-symbol { /* solid triangle */
+    -fx-background-color: #faa2bb;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-shape: "M5,0 L10,8 L0,8 Z";
+}
+.series9.chart-symbol { /* hollow circle */
+    -fx-background-color: #c6aa00, #c62b00;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+}
+.series10.chart-symbol { /* hollow square */
+    -fx-background-color: #cfff00, white;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 0;
+}
+.series11.chart-symbol { /* hollow diamond */
+    -fx-background-color: #ff5700, white;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0, 2.5;
+    -fx-padding: 7px 5px 7px 5px;
+    -fx-shape: "M5,0 L10,9 L5,18 L0,9 Z";
+}
+
+.series12.chart-symbol { /* hollow circle */
+    -fx-background-color: #c6aa00, black;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+}
+.series13.chart-symbol { /* hollow square */
+    -fx-background-color: #cfff00, black;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 0;
+}
+.series14.chart-symbol { /* hollow diamond */
+    -fx-background-color: #ff5700, black;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0, 2.5;
+    -fx-padding: 7px 5px 7px 5px;
+    -fx-shape: "M5,0 L10,9 L5,18 L0,9 Z";
+}

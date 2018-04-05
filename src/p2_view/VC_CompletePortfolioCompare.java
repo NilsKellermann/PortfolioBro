@@ -191,8 +191,8 @@ public class VC_CompletePortfolioCompare {
 				pTable1.getSelectionModel().selectedItemProperty()
 				.addListener((observable, oldValue, newValue) -> handleSaveSelectedAndUseSelectedToFill1(newValue));
 				
-				// Clear person details.
-				handleSaveSelectedAndUseSelectedToFill1(null);
+//				// Clear person details.
+//				handleSaveSelectedAndUseSelectedToFill1(newValue);
 		
 			pTable2.setItems(m1.allPortfolioTE);
 				idColumn2.setCellValueFactory(cellData -> cellData.getValue().getPortfolio_id());
@@ -202,8 +202,8 @@ public class VC_CompletePortfolioCompare {
 				pTable2.getSelectionModel().selectedItemProperty()
 				.addListener((observable, oldValue, newValue) -> handleSaveSelectedAndUseSelectedToFill2(newValue));
 				
-				// Clear person details.
-				handleSaveSelectedAndUseSelectedToFill2(null);
+//				// Clear person details.
+//				handleSaveSelectedAndUseSelectedToFill2(null);
 				
 				
 	
@@ -354,10 +354,15 @@ public class VC_CompletePortfolioCompare {
 	private void handleSaveSelectedAndUseSelectedToFill1(PortfolioTableEntry portf1) {
 		if (portf1 != null) {
 			m1.selectedPortfolio = portf1;
-			nameLabel1.setText("" + m1.selectedPortfolio.get2Capital());
-			labelrendite1.setText("" + m1.selectedPortfolio.get2Sigma_full());
-			labelrisiko1.setText(""+ m1.selectedPortfolio.get2Risk_comm());
+			if (m1.selectedPortfolio != null) {
+			m1.usedPortfolio = m1.allPortfolios.get(m1.selectedPortfolio.get2Portfolio_id());
+			m1.loadSelectedPortfolioData();
 			
+			nameLabel2.setText("" + m1.usedPortfolio.getName());
+			labelrendite2.setText("" + m1.usedPortfolio.getYield_full());
+			labelrisiko2.setText("" + m1.usedPortfolio.getRisk_full());
+			}
+
 		} else {
 			//
 			m1.selectedPortfolio = null;
@@ -371,11 +376,15 @@ public class VC_CompletePortfolioCompare {
 	
 	private void handleSaveSelectedAndUseSelectedToFill2(PortfolioTableEntry portf2) {
 		if (portf2 != null) {
-			m1.selectedPortfolio = portf2;
-			nameLabel2.setText("" + m1.selectedPortfolio.get2Capital());
-			labelrendite2.setText("" + m1.selectedPortfolio.get2Sigma_full());
-			labelrisiko2.setText("" + m1.selectedPortfolio.get2Risk_full());
-			
+			m1.selectedPortfolio2 = portf2;
+			if (m1.selectedPortfolio2 != null) {
+			m1.usedPortfolio2 = m1.allPortfolios.get(m1.selectedPortfolio2.get2Portfolio_id());
+			m1.loadSelectedPortfolioData2();
+		
+			nameLabel2.setText("" + m1.usedPortfolio2.getName());
+			labelrendite2.setText("" + m1.usedPortfolio2.getYield_full());
+			labelrisiko2.setText("" + m1.usedPortfolio2.getRisk_full());
+			}	
 		} else {
 			//
 			m1.selectedPortfolio = null;

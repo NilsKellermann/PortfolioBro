@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="p2_view.VC_Aktienanalyse">
+<AnchorPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="p2_view.VC_Aktienanalyse">
    <children>
       <BorderPane maxHeight="4000.0" maxWidth="4000.0" prefHeight="600.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -32,7 +32,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+                  <TabPane fx:id="tabPane2" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
                       <Tab text="Süd-Ost-Bereich">
                         <content>
@@ -83,6 +83,11 @@
                                                         </yAxis>
                                                       </ScatterChart>
                                                    </children></StackPane>
+                                                <Label text="Anmerkung: Zeichne ein Rechteck in die Grafiken um die Zoomfunktion zu aktivieren." textFill="#e00404" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                                                   <GridPane.margin>
+                                                      <Insets bottom="20.0" left="40.0" right="20.0" top="20.0" />
+                                                   </GridPane.margin>
+                                                </Label>
                                              </children>
                                           </GridPane>
                                        </children>
@@ -130,7 +135,7 @@
                                                       <TextField fx:id="aversionscoefficient" maxWidth="80.0" text="20" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                       <Button mnemonicParsing="false" onAction="#handleIndifferenz" text="Analyse starten" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                       <Label text="(Bitte gebe einen Wert zwischen" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                                                      <Label text="0= reisikoneutral &amp; 100=risikoscheu ein!)" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+                                                      <Label text="0= risikoneutral &amp; 100=risikoscheu ein!)" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
                                                       <Label text="(Welchen Renditezuwachs erwartest du?)" GridPane.columnIndex="2" />
                                                    </children>
                                                    <GridPane.margin>
@@ -172,11 +177,11 @@
                       <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="174.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ListView fx:id="listView1" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: LightGreen;" GridPane.rowIndex="1">
+                        <ListView fx:id="listView1" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: LightGreen; -fx-border-width: 3;" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin></ListView>
-                        <ListView fx:id="listView2" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: Red;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <ListView fx:id="listView2" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: Red; -fx-border-width: 3;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </GridPane.margin></ListView>

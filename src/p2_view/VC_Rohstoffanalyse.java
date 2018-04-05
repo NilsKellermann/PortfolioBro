@@ -65,7 +65,7 @@ public class VC_Rohstoffanalyse {
 	@FXML
 	private StackPane paneWithSwing2;
 	@FXML
-	private TabPane tabPane1;
+	private TabPane tabPane3;
 	
 	@FXML
 	private TextField aversionscoefficient;
@@ -101,6 +101,9 @@ public class VC_Rohstoffanalyse {
 	}
 	
 	public void updateData() {
+		
+		// Initiale Anpassungen von UI-Elementen
+		tabPane3.getStyleClass().add("floating");
 
 		simpleStringList= new ArrayList<>();
 		if(m1.analyseErgebnis2.isEmpty()) {m1.currentPortfoliosRohstoffeMitKursen.forEach( (k,v) -> m1.analyseErgebnis2.put(k, new Boolean(true)));
@@ -123,7 +126,7 @@ public class VC_Rohstoffanalyse {
 		        m1.selectedCurrentCommoditiesStringAnalyse1 = newValue;
 		    }
 		});
-		//Liste f�llen		
+		//Liste fuellen		
 		simpleStringList2= new ArrayList<>();
 		m1.currentPortfoliosRohstoffeMitKursen.forEach( (k,v) -> 
 		{if(! m1.analyseErgebnis2.isEmpty() && (m1.analyseErgebnis2.get(k) == null ||m1.analyseErgebnis2.get(k).booleanValue() == false))
@@ -179,10 +182,6 @@ public class VC_Rohstoffanalyse {
 			doubleList.add(new Double(v.doubleValue()));}});
 		double prozentSumme = doubleList.stream().collect(Collectors.summingDouble(Double::doubleValue));;
 		if(prozentSumme == 100.0) {
-			//in db speichern und aus datenbank rausl�schen die aussortierten
-		//TODOOOO	//////////777777777777777777777777777777
-		////////////////////////////////////////
-		///////////////////////////////////////
 			
 			//aussortierte Aktien-Prozentwerte auf 0.0 setzen
 			m1.analyseErgebnis2.forEach((i,boolean1) -> {if(boolean1==false)m1.currentPortfoliosRohstoffeProzente.put(i, 0.0);});
@@ -211,7 +210,7 @@ public class VC_Rohstoffanalyse {
 			// Show a predefined Warning notification
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information Dialog");
-			alert.setHeaderText("Die Summe der Prozentzahlen der nicht aussortierten Rohstoffe betr�gt nicht 100%. (" + prozentSumme + ")" );
+			alert.setHeaderText("Die Summe der Prozentzahlen der nicht aussortierten Rohstoffe betraegt nicht 100%. (" + prozentSumme + ")" );
 			alert.setContentText("");
 			alert.showAndWait();
 		}}
@@ -384,7 +383,7 @@ public class VC_Rohstoffanalyse {
         renderer.setSeriesStroke(0, new BasicStroke(2.0f));
 
 		NumberFormat format = NumberFormat.getNumberInstance();
-        format.setMaximumFractionDigits(2); // etc.
+        format.setMaximumFractionDigits(2);
         
         XYItemLabelGenerator generator =
         	new StandardXYItemLabelGenerator("{0}", format, format) ;
@@ -434,7 +433,7 @@ public class VC_Rohstoffanalyse {
 		// Quadratisch
 		if(functp == "Quadratisch") {
 			for(int j = 0; j < temp.length; j++) {
-				temp[j][4] = (temp[j][1] - averco/5 * (temp[j][0] * temp[j][0]));
+				temp[j][4] = (temp[j][1] - averco/10 * (temp[j][0] * temp[j][0]));
 			}
 		};
 		
@@ -456,9 +455,9 @@ public class VC_Rohstoffanalyse {
 		        		}
 		        );
 		
-		// Finde die besten Aktien, die �ber einem gewissen Grenzwert (30%) liegen. Berechnung erfolgt anhand des h�chsten Nutzenwertes.
+		// Finde die besten Aktien, die ueber einem gewissen Grenzwert (30%) liegen. Berechnung erfolgt anhand des hoechsten Nutzenwertes.
 		double SchwelleProzent = 0.3; 
-		double Schwellenwert = (1-SchwelleProzent)*temp[0][4];
+		double Schwellenwert = temp[0][4] - Math.abs(SchwelleProzent * temp[0][4]);
 		
 		for(int j = 0; j<temp.length; j++) {
     		if (temp[j][4] > Schwellenwert) {temp[j][3]=1;}
@@ -484,11 +483,11 @@ public class VC_Rohstoffanalyse {
 				series6.add(j, (0.10+Schwellenwert) + averco/20 * j);
 			}
 			if(functp == "Quadratisch") {
-				series2.add(j, (-0.10+Schwellenwert) + averco/5 * (j*j));
-				series3.add(j, (-0.05+Schwellenwert) + averco/5 * (j*j));
-				series4.add(j, (Schwellenwert) + averco/5 * (j*j));
-				series5.add(j, (0.05+Schwellenwert) + averco/5 * (j*j));
-				series6.add(j, (0.10+Schwellenwert) + averco/5 * (j*j));
+				series2.add(j, (-0.10+Schwellenwert) + averco/10 * (j*j));
+				series3.add(j, (-0.05+Schwellenwert) + averco/10 * (j*j));
+				series4.add(j, (Schwellenwert) + averco/10 * (j*j));
+				series5.add(j, (0.05+Schwellenwert) + averco/10 * (j*j));
+				series6.add(j, (0.10+Schwellenwert) + averco/10 * (j*j));
 			}
 		}
 		dataset.addSeries(series2);

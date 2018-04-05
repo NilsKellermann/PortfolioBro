@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -25,6 +26,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.application.Application;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.ListProperty;
@@ -230,6 +234,7 @@ public class VC_CompletePortfolioCompare {
 			plot.setNoDataMessage("No data to display");
 			plot.setLabelGenerator(new PieChart3D.CustomLabelGenerator());
 
+
 			JFreeChart chart1 = chart;
 			JPanel chartPanel = new ChartPanel(chart1);
 			chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
@@ -238,7 +243,12 @@ public class VC_CompletePortfolioCompare {
 			panel.setMouseWheelEnabled(true);
 			sn2.setContent(panel);
 			System.out.println("Hallo");
+			
+			final Rotator rotator = new Rotator(plot);
+	        rotator.start();
 		}
+	
+	
 	
 	
 	
@@ -271,6 +281,9 @@ public class VC_CompletePortfolioCompare {
 		panel.setMouseWheelEnabled(true);
 		sn3.setContent(panel);
 		System.out.println("Hallo");
+		
+		final Rotator rotator = new Rotator(plot);
+        rotator.start();
 	}
 
 
@@ -346,7 +359,7 @@ public class VC_CompletePortfolioCompare {
 		} else {
 			//
 			m1.selectedPortfolio = null;
-			nameLabel1.setText("Portfolio auswählen");
+			nameLabel1.setText("Portfolio auswaehlen");
 		}
 		getData1(portf1);
 		updatePieChart1();
@@ -364,7 +377,7 @@ public class VC_CompletePortfolioCompare {
 		} else {
 			//
 			m1.selectedPortfolio = null;
-			nameLabel2.setText("Portfolio auswählen");
+			nameLabel2.setText("Portfolio auswaehlen");
 	}	
 		getData2(portf2);
 		updatePieChart2();
@@ -377,8 +390,30 @@ public class VC_CompletePortfolioCompare {
 		System.out.println("Weiterbutton pressed!");
 		this.c1.setSceneToV_Portfolios();
 	}
+}
 
+class Rotator extends Timer implements ActionListener {
 
-		
-	
+	private static final long serialVersionUID = 1L;
+
+	/** The plot. */
+    private PiePlot3D plot;
+
+    /** The angle. */
+    private int angle = 270;
+
+    Rotator(final PiePlot3D plot) {
+        super(100, null);
+        this.plot = plot;
+        addActionListener(this);
+    }
+
+    public void actionPerformed(final ActionEvent event) {
+        this.plot.setStartAngle(this.angle);
+        this.angle = this.angle + 1;
+        if (this.angle == 360) {
+            this.angle = 0;
+        }
+    }
+
 }

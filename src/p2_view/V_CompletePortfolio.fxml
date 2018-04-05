@@ -31,14 +31,9 @@
                   <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="95.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Label text="Sehr gut! Hier ist dein fertiges Portfolio :)" GridPane.halignment="CENTER">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
                   <ImageView fitHeight="80.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                    <image>
-                        <Image url="@../img/Logo.jpg" />
+                        <Image url="@../ressources_img/Logo.jpg" />
                    </image>
                   </ImageView>
                   <GridPane GridPane.halignment="RIGHT" GridPane.rowIndex="3">
@@ -55,13 +50,12 @@
                         <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button alignment="TOP_CENTER" mnemonicParsing="false" onAction="#handleGo" text="Portfolio vergleichen!" GridPane.columnIndex="3" />
-                        <Button mnemonicParsing="false" onAction="#handleZuPortf" text="Zurück zum Hauptmenu" GridPane.columnIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#handleZuPortf" text="Zurück zum Hauptmenü" GridPane.columnIndex="3" />
                      </children>
                   </GridPane>
-                  <Text fill="#2883c6" strokeType="OUTSIDE" strokeWidth="0.0" text="Erstelltes Portfolio:" underline="true" GridPane.halignment="LEFT">
+                  <Text fill="#2883c6" strokeType="OUTSIDE" strokeWidth="0.0" text="Sehr gut! Hier ist dein fertiges Portfolio :)" GridPane.halignment="LEFT">
                      <font>
-                        <Font size="26.0" />
+                        <Font size="24.0" />
                      </font>
                      <GridPane.margin>
                         <Insets left="10.0" />

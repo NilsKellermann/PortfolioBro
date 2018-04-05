@@ -140,11 +140,16 @@
                                     <Insets right="5.0" />
                                  </GridPane.margin>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#handleZurueck" text="Zurück" GridPane.rowIndex="2" GridPane.valignment="TOP">
+
+                              <Label text="Gespeicherte Portfolios:" textFill="#2883c6" GridPane.valignment="BOTTOM">
+                                 <font>
+                                    <Font name="System Bold" size="22.0" />
+                                 </font>
                                  <GridPane.margin>
-                                    <Insets bottom="5.0" left="20.0" right="5.0" top="5.0" />
+                                    <Insets bottom="20.0" />
                                  </GridPane.margin>
-                              </Button>
+                              </Label>
+
                            </children>
                            <GridPane.margin>
                               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

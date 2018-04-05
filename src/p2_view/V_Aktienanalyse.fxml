@@ -18,8 +18,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="p2_view.VC_Aktienanalyse">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="p2_view.VC_Aktienanalyse">
    <children>
       <BorderPane maxHeight="4000.0" maxWidth="4000.0" prefHeight="600.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -83,11 +84,11 @@
                                                         </yAxis>
                                                       </ScatterChart>
                                                    </children></StackPane>
-                                                <Label text="Anmerkung: Zeichne ein Rechteck in die Grafiken um die Zoomfunktion zu aktivieren." textFill="#e00404" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                                                <Text fill="#e00404" strokeType="OUTSIDE" strokeWidth="0.0" text="Anmerkung: Zeichne ein Rechteck in die Grafiken um die Zoomfunktion zu aktivieren." wrappingWidth="473.6123046875" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                                                    <GridPane.margin>
                                                       <Insets bottom="20.0" left="40.0" right="20.0" top="20.0" />
                                                    </GridPane.margin>
-                                                </Label>
+                                                </Text>
                                              </children>
                                           </GridPane>
                                        </children>
@@ -241,9 +242,9 @@
                                  <GridPane.margin>
                                     <Insets right="20.0" />
                                  </GridPane.margin></Button>
-                              <Label text="mit Prozentwerten über 0" GridPane.rowIndex="1" />
-                              <Label alignment="BOTTOM_LEFT" text="werden in das Portfolio übernommen." GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-                              <Label text="Achtung: Nur enthaltene Aktien" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                              <Label text="mit Prozentwerten über 0" textFill="#e00404" GridPane.rowIndex="1" />
+                              <Label alignment="BOTTOM_LEFT" text="werden in das Portfolio übernommen." textFill="#e00404" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+                              <Label text="Achtung: Nur enthaltene Aktien" textFill="#e00404" GridPane.rowIndex="1" GridPane.valignment="TOP" />
                            </children>
                            <GridPane.margin>
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

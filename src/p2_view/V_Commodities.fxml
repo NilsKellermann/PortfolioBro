@@ -97,7 +97,7 @@
                               </GridPane>
                         </content>
                       </Tab>
-                        <Tab text="Energie u. weiteres">
+                        <Tab text="Rohöl und weitere">
                           <content>
                               <GridPane>
                                  <columnConstraints>

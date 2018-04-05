@@ -32,7 +32,7 @@ public interface ExcelPOI_AllCourses_S_C {
 
 	public static HashMap <String, HashMap<Date, Double>> readExcelData(String fileName) {
 		HashMap <String, HashMap<Date, Double>> result= new HashMap <String, HashMap<Date, Double>>();
-		System.out.println("start");
+		 
 		try {
 			//Create the input stream from the xlsx/xls file
 			FileInputStream fis = new FileInputStream(fileName);
@@ -49,7 +49,7 @@ public interface ExcelPOI_AllCourses_S_C {
 			//loop through each of the sheets
 			for(int i=0; i < numberOfSheets; i++){
 				Sheet sheet = workbook.getSheetAt(i);
-				System.out.println("start2");
+				 
 				
 /////////////////////////////				
 				HashMap<Date, Double> countriesList = new HashMap<Date, Double>();
@@ -59,7 +59,7 @@ public interface ExcelPOI_AllCourses_S_C {
 //				rowIterator.next(); 
 				while (rowIterator.hasNext()) 
 		        {
-					System.out.println("start3");
+					 
 					Double course = 0.0;
 					Date date = null;
 					
@@ -78,7 +78,7 @@ public interface ExcelPOI_AllCourses_S_C {
 ////		            			name = cell.getNumericCellValue();
 //		            		}else{
 		            			//random data, leave it
-		            			System.out.println("Random data::"+cell.getStringCellValue());
+		            			 
 //		            		}
 		            		break;
 		            	case Cell.CELL_TYPE_NUMERIC:
@@ -99,7 +99,7 @@ public interface ExcelPOI_AllCourses_S_C {
 		            			String string = "1/3/06";
 		            			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yy", Locale.ENGLISH);
 		            			LocalDate date2 = LocalDate.parse(cellStringValue, formatter);
-		            			System.out.println(date2); // 2010-01-02
+		            			  // 2010-01-02
 		            			date= Date.from(date2.atStartOfDay(ZoneId.systemDefault()).toInstant());;
 //		            		}else if(name == 0.0){
 //		            			name = 12.0;
@@ -110,7 +110,7 @@ public interface ExcelPOI_AllCourses_S_C {
 		            		}else{
 		            			course = cell.getNumericCellValue();
 		            			//random data, leave it
-		            			System.out.println("Random data::"+cell.getNumericCellValue());
+		            			 
 		            		}
 		            	}
 		            	
@@ -133,18 +133,18 @@ public interface ExcelPOI_AllCourses_S_C {
 
 	public static HashMap <String, HashMap<Date, Double>> getListS(){
 		File f = new File("bla");
-		System.out.println(f.getAbsolutePath());
+		 
 		HashMap <String, HashMap<Date, Double>> list = readExcelData("Files/ImportsheetShares.xlsx");
-		System.out.println("Assetclass List\n"+list);
-		System.out.println("abc");
+		 
+		 
 		return list;
 	}
 	public static HashMap <String, HashMap<Date, Double>> getListC(){
 		File f = new File("bla");
-		System.out.println(f.getAbsolutePath());
+		 
 		HashMap <String, HashMap<Date, Double>> list = readExcelData("Files/ImportsheetCommodities.xlsx");
-		System.out.println("Assetclass List\n"+list);
-		System.out.println("abc");
+		 
+		 
 		return list;
 	}	
 	

@@ -242,10 +242,11 @@ public class VC_CompletePortfolioCompare {
 			ChartPanel panel = new ChartPanel(chart);
 			panel.setMouseWheelEnabled(true);
 			sn2.setContent(panel);
-			System.out.println("Hallo");
+
 			
 			final Rotator rotator = new Rotator(plot);
 	        rotator.start();
+
 		}
 	
 	
@@ -280,10 +281,11 @@ public class VC_CompletePortfolioCompare {
 		ChartPanel panel = new ChartPanel(chart);
 		panel.setMouseWheelEnabled(true);
 		sn3.setContent(panel);
-		System.out.println("Hallo");
+
 		
 		final Rotator rotator = new Rotator(plot);
         rotator.start();
+
 	}
 
 
@@ -387,7 +389,7 @@ public class VC_CompletePortfolioCompare {
 	
 	@FXML
 	private void handleZurueck() throws IOException {
-		System.out.println("Weiterbutton pressed!");
+		 
 		this.c1.setSceneToV_Portfolios();
 	}
 }

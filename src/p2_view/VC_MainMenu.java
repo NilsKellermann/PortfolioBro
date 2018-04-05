@@ -64,7 +64,7 @@ public class VC_MainMenu {
 
 	@FXML
 	private void handleGo() throws IOException {
-		System.out.println("Weiterbutton pressed!");
+		 
 		this.c1.setSceneToV_Portfolios();
 
 	}

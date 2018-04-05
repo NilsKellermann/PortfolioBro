@@ -30,7 +30,7 @@ public String getIndustry() {
 	return industry.get();
 }
 public String getIndex() {
-	System.out.println(index.get());
+	 
 	return index.get();
 }
 public double getSigma() {
@@ -79,12 +79,12 @@ public RohstoffTableEntry(int share_id, String name, String industry, String ind
 	}
 
 public void addToHashOfHalfYear(Date date1, Double double1) {
-	System.out.println("abc");
+	 
 	this.hashOfHalfYear
 	.put(date1
 			, 
 			double1);
-	System.out.println("abc");
+	 
 	return;
 }
 

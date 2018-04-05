@@ -32,7 +32,7 @@ public interface ExcelPOI_Headerdata_S_C {
 	
 	public static HashMap <String, HashMap<String, String>> readExcelDataS(String fileName) {
 		HashMap <String, HashMap<String, String>> result= new HashMap <String, HashMap<String, String>>();
-		System.out.println("start");
+		 
 		try {
 			//Create the input stream from the xlsx/xls file
 			FileInputStream fis = new FileInputStream(fileName);
@@ -50,7 +50,7 @@ public interface ExcelPOI_Headerdata_S_C {
 			//loop through each of the sheets
 			for(int i=0; i < numberOfSheets; i++){
 				Sheet sheet = workbook.getSheetAt(i);
-				System.out.println("start2");
+				 
 
 				Iterator<Row> rowIterator = sheet.iterator();
 
@@ -61,7 +61,7 @@ public interface ExcelPOI_Headerdata_S_C {
 				while (rowIterator.hasNext()) 
 		        {
 					HashMap<String, String> countriesList = new HashMap<String, String>();
-					System.out.println("start3");
+					 
 					String aktienname = "";
 					String branche = "";
 					String index = "";
@@ -91,7 +91,7 @@ public interface ExcelPOI_Headerdata_S_C {
 		
 		public static HashMap <String, HashMap<String, String>> readExcelDataC(String fileName) {
 			HashMap <String, HashMap<String, String>> result= new HashMap <String, HashMap<String, String>>();
-			System.out.println("start");
+			 
 			try {
 				//Create the input stream from the xlsx/xls file
 				FileInputStream fis = new FileInputStream(fileName);
@@ -109,7 +109,7 @@ public interface ExcelPOI_Headerdata_S_C {
 				//loop through each of the sheets
 				for(int i=0; i < numberOfSheets; i++){
 					Sheet sheet = workbook.getSheetAt(i);
-					System.out.println("start2");
+					 
 
 					Iterator<Row> rowIterator = sheet.iterator();
 
@@ -120,7 +120,7 @@ public interface ExcelPOI_Headerdata_S_C {
 					while (rowIterator.hasNext()) 
 			        {
 						HashMap<String, String> countriesList = new HashMap<String, String>();
-						System.out.println("start3");
+						 
 						String rohstoffname = "";
 //						String branche = "";
 //						String index = "";
@@ -149,19 +149,19 @@ public interface ExcelPOI_Headerdata_S_C {
 
 	public static HashMap <String, HashMap<String, String>> getListS(){
 		File f = new File("bla");
-		System.out.println(f.getAbsolutePath());
+		 
 		HashMap <String, HashMap<String, String>> list = readExcelDataS("Files/DatenUebersicht.xlsx");
-		System.out.println("Assetclass List\n"+list);
-		System.out.println("abc");
+		 
+		 
 		return list;
 	}
 	
 	public static HashMap <String, HashMap<String, String>> getListC(){
 		File f = new File("bla");
-		System.out.println(f.getAbsolutePath());
+		 
 		HashMap <String, HashMap<String, String>> list = readExcelDataC("Files/DatenUebersichtC.xlsx");
-		System.out.println("Assetclass List\n"+list);
-		System.out.println("abc");
+		 
+		 
 		return list;
 	}
 	

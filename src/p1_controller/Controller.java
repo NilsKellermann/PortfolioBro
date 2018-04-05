@@ -214,11 +214,15 @@ public class Controller {
 		vc1.m1 = getInstance().model;
 
 		vc1.updateData();
+			
+		pane1.getStylesheets().add("p2_view/cssfilepath.css");	
+		
 		Stage prim=getInstance().prim;
 		prim.setScene(new Scene(pane1, 1200, 600));
 		prim.setMinWidth(800);
 		prim.setMinHeight(400);
 		prim.show();
+
 	}
 	public static void setSceneToV_CompletePortfolio() throws IOException {
 		
@@ -263,11 +267,11 @@ public class Controller {
 //	@Override
 //	public void handle(Event event) {
 //		// TODO Auto-generated method stub
-//		System.out.println("normal event");
+//		 
 //	}
 //
 //	public void handle(ActionEvent event) {
 //		// TODO Auto-generated method stub
-//		System.out.println("action");
+//		 
 //	}
 }
